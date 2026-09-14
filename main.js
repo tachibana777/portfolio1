@@ -1,4 +1,0 @@
-document.querySelector('#year')?.replaceChildren(String(new Date().getFullYear()));
-const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in');observer.unobserve(entry.target)}}),{threshold:.08});document.querySelectorAll('.animate').forEach(el=>observer.observe(el));
-const squares=document.querySelector('.squares');if(squares){for(let i=0;i<364;i++){const cell=document.createElement('i'),n=(i*17+i*i*3)%29;cell.className=n>26?'l4':n>23?'l3':n>18?'l2':n>13?'l1':'';squares.append(cell)}}
-const theme=document.querySelector('.theme');theme?.addEventListener('click',()=>{document.body.classList.toggle('light');localStorage.setItem('theme',document.body.classList.contains('light')?'light':'dark')});if(localStorage.getItem('theme')==='light')document.body.classList.add('light');

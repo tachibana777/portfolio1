@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: #0d0d0e; }
+body { margin: 0; background: #0d0d0e; color: #e7e7e8; font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+::selection { background: #e7e7e8; color: #0d0d0e; }
+@layer utilities { .text-balance { text-wrap: balance; } .section-title { @apply text-xl font-normal tracking-[-0.02em] text-neutral-200; } .muted { @apply text-neutral-500; } }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+  will-change: transform;
+}
+
+.marquee-track-reverse {
+  animation-direction: reverse;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation-play-state: paused;
+  }
+}

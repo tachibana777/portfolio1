@@ -1,0 +1,18 @@
+import type { Certificate, Experience, Project } from "./types";
+export const projects: Project[] = [
+  { title: "PSRU Blockchain Security Testing", role: "QA & Penetration Tester", description: "Performed comprehensive functional and security testing for the Activity Point & Carbon Platform. Assessed API endpoints using Burp Suite to mitigate OWASP vulnerabilities and ensure robust performance.", image: "/events/psru-cyber-hackathon-score.png", href: "#", action: "READ REPORT", technologies: ["Next.js", "CSS", "React", "Node"] },
+  { title: "Offensive Security Home Lab", role: "Security Researcher", description: "Designed and deployed a local lab featuring vulnerable Linux services and web applications. Conducted hands-on network scanning, exploitation, and log analysis safely.", image: "/events/security-training-lab.jpg", href: "#", action: "READ REPORT", technologies: ["HTML", "CSS", "JavaScript", "Linux"] },
+  { title: "OWASP Top 10 Vulnerability Assessment", role: "Penetration Tester", description: "Executed penetration tests on intentionally vulnerable web applications. Documented exploitation steps and provided actionable remediation strategies for developers.", image: "/events/static-code-analysis-lab.png", href: "#", action: "READ REPORT", technologies: ["OWASP", "Burp Suite", "React"] },
+  { title: "TCTT 2026 Write-ups", role: "Capture The Flag (CTF) Player", description: "Authored detailed write-ups for Thailand Cyber Top Talent challenges, covering web exploitation, reverse engineering, and network forensics.", image: "/events/new-regional-startups.jpg", href: "#", action: "READ REPORT", technologies: ["Laravel", "React", "Python", "Postgres"], status: "IN PROGRESS" }
+];
+export const experiences: Experience[] = [
+  { date: "Dec 2025 – Present", title: "Activity Point & Carbon Platform", company: "Project Blockchain", location: "Pibulsongkram Rajabhat University", bullets: ["Managed dual roles in software and security testing within a single platform to ensure robust system performance and security.", "Planned and executed functional, API, and end-to-end testing alongside comprehensive positive, negative, and boundary test cases.", "Assessed web and API security using Burp Suite following OWASP guidelines.", "Identified critical vulnerabilities including authentication flaws, IDOR, XSS, SQL injection, CSRF, RBAC, JWT sessions, and rate limiting."] },
+  { date: "Jun 2026 – Present", title: "Personal Cybersecurity Lab", company: "Home Lab", location: "Phitsanulok City, TH", bullets: ["Built and configured a personal lab with vulnerable web applications and Linux services to practice offensive and defensive security workflows.", "Used network scanning tools in a controlled setting for reconnaissance, vulnerability discovery, exploitation, log reviews, and remediation planning."] }
+];
+export const certificates: Certificate[] = [
+  { date: "Aug 2024", title: "Basic Cyber MOOC by NCSA", issuer: "National Cyber Security Agency", image: "/certificates/basic-cyber-mooc-ncsa.jpg" },
+  { date: "Sep 2024", title: "CTF Boot Camp 2024", issuer: "National Cyber Security Agency", image: "/certificates/ctf-bootcamp-2024.jpg" },
+  { date: "Oct 2024", title: "Thailand Cyber Top Talent 2024", issuer: "National Cyber Security Agency", image: "/certificates/thailand-cyber-top-talent-2024.jpg" },
+  { date: "Dec 2024", title: "PSRU Hackathon 2", issuer: "PSRU cyber hackathon 2", image: "/certificates/psru-hackathon-2.jpg" }
+];
+export const eventImages = ["static-code-analysis-lab.png", "security-training-lab.jpg", "r2m-regional-stage.jpg", "r2m-pitching.jpg", "r2m-award-team.jpg", "psru-cyber-hackathon-score.png", "new-regional-startups.jpg", "ctf-teamwork.jpg", "ctf-bootcamp-team.jpg"];

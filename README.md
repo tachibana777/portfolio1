@@ -1,19 +1,35 @@
-# Kritsada — Cybersecurity Portfolio
+# Kritsada Hongpatsa — Security Portfolio
 
-A dark, editorial portfolio for Kritsada Hongpatsa, focused on offensive security, CTF work, projects, certifications, and community events.
+A responsive cybersecurity and penetration-testing portfolio built with Next.js App Router, TypeScript, Tailwind CSS, and Framer Motion.
 
-## Local development
+## Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open `http://localhost:5173`.
+Open `http://localhost:3000`.
 
-## Production build
+## Production
 
 ```bash
 npm run build
-npm run preview
+npm run start
 ```
+
+## Structure
+
+```text
+app/                    Routes and global styles
+components/
+  home/                 Home-page sections
+  layout/               Shared header, footer, and page shell
+  projects/             Project-specific components
+  ui/                   Reusable presentation components
+lib/                    Typed content data and shared types
+public/                 Runtime images and resume
+docs/design/            Original design references
+```
+
+Portfolio content is maintained in `lib/data.ts`. Shared content types live in `lib/types.ts`.
