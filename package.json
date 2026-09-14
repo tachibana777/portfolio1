@@ -1,8 +1,14 @@
 {
-  "dependencies": {
-    "clsx": "^2.1.1",
-    "framer-motion": "^13.3.0",
-    "lucide-react": "^1.46.0",
-    "tailwind-merge": "^3.7.0"
+  "name": "kritsada-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.1.5"
   }
 }
