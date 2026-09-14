@@ -4,5 +4,6 @@ export { ContactSection } from "./ContactSection";
 export { ExperienceSection } from "./ExperienceSection";
 export { HeroSection } from "./HeroSection";
 export { OutsideSection } from "./OutsideSection";
+export { ProfileAvatar } from "./ProfileAvatar";
 export { ProjectsSection } from "./ProjectsSection";
 export { TechnologiesSection } from "./TechnologiesSection";

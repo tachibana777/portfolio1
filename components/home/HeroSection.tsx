@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, Github, Linkedin, Mail } from "lucide-react";
 import { Reveal } from "@/components/ui";
+import { ProfileAvatar } from "./ProfileAvatar";
 
 const RESUME_PATH = "/kritsada-hongpatsa-cv.png";
 
@@ -10,7 +10,7 @@ export function HeroSection() {
     <Reveal>
       <section className="pb-10">
         <div className="mb-7 flex items-center gap-4">
-          <Image src="/profile.jpg" alt="Kritsada Hongpatsa" width={76} height={76} priority className="h-[72px] w-[72px] rounded-full border border-neutral-300 object-cover grayscale" />
+          <ProfileAvatar />
           <div>
             <h1 className="flex items-center gap-1.5 text-lg font-semibold">Kritsada Hongpatsa <BadgeCheck size={16} className="fill-sky-500 text-ink" /></h1>
             <div className="mt-1.5 flex gap-2.5 text-neutral-400">
