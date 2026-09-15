@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Moon } from "lucide-react";
+import { ThemeToggle } from "@/components/theme";
 
 const navigation = [
   { label: "Projects", href: "/projects" },
@@ -22,7 +22,7 @@ export function Header() {
             </Link>
           ))}
           <span aria-hidden className="h-4 w-px bg-neutral-700" />
-          <Moon size={15} aria-label="Dark theme" />
+          <ThemeToggle />
         </nav>
       </div>
     </header>

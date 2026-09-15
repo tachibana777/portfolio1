@@ -10,7 +10,7 @@ import type { Project } from "@/lib/types";
 export function ProjectCard({ project }: Readonly<{ project: Project }>) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const spotlight = useMotionTemplate`radial-gradient(260px circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,.08), transparent 70%)`;
+  const spotlight = useMotionTemplate`radial-gradient(260px circle at ${mouseX}px ${mouseY}px, var(--spotlight-color), transparent 70%)`;
 
   function handleMouseMove(event: MouseEvent<HTMLDivElement>) {
     const bounds = event.currentTarget.getBoundingClientRect();
