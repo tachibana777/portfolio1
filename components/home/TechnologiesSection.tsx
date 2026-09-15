@@ -1,16 +1,11 @@
 import { Marquee, Reveal, SectionHeading } from "@/components/ui";
-import { technologies, type Technology } from "@/lib/technologies";
+import { technologies, type Technology, type TechnologyCategory } from "@/lib/technologies";
 
 const rowSettings = [
-  { direction: "left" as const, duration: 30 },
-  { direction: "right" as const, duration: 40 },
-  { direction: "left" as const, duration: 35 },
-];
-
-function splitIntoRows(items: Technology[], rowCount: number) {
-  const rowSize = Math.ceil(items.length / rowCount);
-  return Array.from({ length: rowCount }, (_, index) => items.slice(index * rowSize, (index + 1) * rowSize));
-}
+  { category: "web" as TechnologyCategory, direction: "left" as const, duration: 30 },
+  { category: "development" as TechnologyCategory, direction: "right" as const, duration: 40 },
+  { category: "security" as TechnologyCategory, direction: "left" as const, duration: 35 },
+] as const;
 
 function TechnologyPill({ technology }: Readonly<{ technology: Technology }>) {
   const Icon = technology.icon;
@@ -24,21 +19,19 @@ function TechnologyPill({ technology }: Readonly<{ technology: Technology }>) {
 }
 
 export function TechnologiesSection() {
-  const rows = splitIntoRows(technologies, rowSettings.length);
-
   return (
     <Reveal delay={0.18}>
       <section className="py-8">
-        <SectionHeading title="Technologies" />
+        <SectionHeading title="Technologies" href="/technologies" />
         <div className="space-y-2.5">
-          {rows.map((row, index) => (
+          {rowSettings.map((settings) => (
             <Marquee
-              key={rowSettings[index].duration}
-              direction={rowSettings[index].direction}
-              duration={rowSettings[index].duration}
+              key={settings.category}
+              direction={settings.direction}
+              duration={settings.duration}
               className="[mask-image:linear-gradient(to_right,transparent,black_7%,black_93%,transparent)]"
             >
-              {row.map((technology) => <TechnologyPill key={technology.name} technology={technology} />)}
+              {technologies.filter((technology) => technology.category === settings.category).map((technology) => <TechnologyPill key={technology.name} technology={technology} />)}
             </Marquee>
           ))}
         </div>

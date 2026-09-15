@@ -1,5 +1,5 @@
 import type { IconType } from "react-icons";
-import { FaNetworkWired, FaRobot, FaShieldHalved } from "react-icons/fa6";
+import { FaDatabase, FaFolderTree, FaKey, FaLock, FaNetworkWired, FaRobot, FaShieldHalved, FaTerminal } from "react-icons/fa6";
 import {
   SiBurpsuite,
   SiCss,
@@ -31,34 +31,42 @@ export type Technology = {
   name: string;
   icon: IconType;
   color: string;
+  category: TechnologyCategory;
 };
 
+export type TechnologyCategory = "web" | "development" | "security";
+
 export const technologies: Technology[] = [
-  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38bdf8" },
-  { name: "Vite", icon: SiVite, color: "#a855f7" },
-  { name: "Next.js", icon: SiNextdotjs, color: "#e5e5e5" },
-  { name: "React", icon: SiReact, color: "#61dafb" },
-  { name: "CSS", icon: SiCss, color: "#1572b6" },
-  { name: "HTML5", icon: SiHtml5, color: "#e34f26" },
-  { name: "TypeScript", icon: SiTypescript, color: "#3178c6" },
-  { name: "JavaScript", icon: SiJavascript, color: "#f7df1e" },
-  { name: "Python", icon: SiPython, color: "#3776ab" },
-  { name: "Rust", icon: SiRust, color: "#ce412b" },
-  { name: "MySQL", icon: SiMysql, color: "#4479a1" },
-  { name: "PostgreSQL", icon: SiPostgresql, color: "#4169e1" },
-  { name: "SQLite", icon: SiSqlite, color: "#44a2c7" },
-  { name: "Supabase", icon: SiSupabase, color: "#3ecf8e" },
-  { name: "Docker", icon: SiDocker, color: "#2496ed" },
-  { name: "Linux", icon: SiLinux, color: "#f5c400" },
-  { name: "Tauri", icon: SiTauri, color: "#ffc131" },
-  { name: "AI APIs", icon: FaRobot, color: "#10a37f" },
-  { name: "Git", icon: SiGit, color: "#f05032" },
-  { name: "GitHub", icon: SiGithub, color: "#e5e7eb" },
-  { name: "Kali Linux", icon: SiKalilinux, color: "#557c94" },
-  { name: "Burp Suite", icon: SiBurpsuite, color: "#ff6633" },
-  { name: "OWASP", icon: SiOwasp, color: "#5f91c7" },
-  { name: "Wireshark", icon: SiWireshark, color: "#1679a7" },
-  { name: "Metasploit", icon: SiMetasploit, color: "#2596cd" },
-  { name: "Network Security", icon: FaNetworkWired, color: "#22c55e" },
-  { name: "Penetration Testing", icon: FaShieldHalved, color: "#ef4444" },
+  { name: "HTML5", icon: SiHtml5, color: "#e34f26", category: "web" },
+  { name: "CSS", icon: SiCss, color: "#1572b6", category: "web" },
+  { name: "JavaScript", icon: SiJavascript, color: "#f7df1e", category: "web" },
+  { name: "TypeScript", icon: SiTypescript, color: "#3178c6", category: "web" },
+  { name: "React", icon: SiReact, color: "#61dafb", category: "web" },
+  { name: "Next.js", icon: SiNextdotjs, color: "currentColor", category: "web" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38bdf8", category: "web" },
+  { name: "Vite", icon: SiVite, color: "#a855f7", category: "web" },
+  { name: "Python", icon: SiPython, color: "#3776ab", category: "development" },
+  { name: "Rust", icon: SiRust, color: "#ce412b", category: "development" },
+  { name: "MySQL", icon: SiMysql, color: "#4479a1", category: "development" },
+  { name: "PostgreSQL", icon: SiPostgresql, color: "#4169e1", category: "development" },
+  { name: "SQLite", icon: SiSqlite, color: "#44a2c7", category: "development" },
+  { name: "Supabase", icon: SiSupabase, color: "#3ecf8e", category: "development" },
+  { name: "Docker", icon: SiDocker, color: "#2496ed", category: "development" },
+  { name: "Linux", icon: SiLinux, color: "#f5c400", category: "development" },
+  { name: "Tauri", icon: SiTauri, color: "#ffc131", category: "development" },
+  { name: "AI APIs", icon: FaRobot, color: "#10a37f", category: "development" },
+  { name: "Git", icon: SiGit, color: "#f05032", category: "development" },
+  { name: "GitHub", icon: SiGithub, color: "currentColor", category: "development" },
+  { name: "Kali Linux", icon: SiKalilinux, color: "#557c94", category: "security" },
+  { name: "Burp Suite", icon: SiBurpsuite, color: "#ff6633", category: "security" },
+  { name: "OWASP Top 10", icon: SiOwasp, color: "#5f91c7", category: "security" },
+  { name: "Wireshark", icon: SiWireshark, color: "#1679a7", category: "security" },
+  { name: "Metasploit", icon: SiMetasploit, color: "#2596cd", category: "security" },
+  { name: "Nmap", icon: FaNetworkWired, color: "#22c55e", category: "security" },
+  { name: "SQLmap", icon: FaDatabase, color: "#f59e0b", category: "security" },
+  { name: "Gobuster", icon: FaFolderTree, color: "#a78bfa", category: "security" },
+  { name: "John the Ripper", icon: FaKey, color: "#f97316", category: "security" },
+  { name: "Hydra", icon: FaLock, color: "#ef4444", category: "security" },
+  { name: "Terminal", icon: FaTerminal, color: "#94a3b8", category: "security" },
+  { name: "Penetration Testing", icon: FaShieldHalved, color: "#ef4444", category: "security" },
 ];
