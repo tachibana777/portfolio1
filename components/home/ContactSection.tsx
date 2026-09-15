@@ -10,9 +10,9 @@ export function ContactSection() {
   return (
     <Reveal>
       <section id="contact" className="grid gap-8 py-10 sm:grid-cols-[1fr_280px]">
-        <div><h2 className="section-title">Let&apos;s work together.</h2><p className="mt-3 text-xs leading-6 text-neutral-400">Available for a Penetration Testing internship or co-op program. Focused on Web & API Security, Vulnerability Assessments, and Offensive Security.</p></div>
+        <div><h2 className="section-title">Let&apos;s work together.</h2><p className="mt-3 text-[13px] leading-6 text-neutral-400">Available for a Penetration Testing internship or co-op program. Focused on Web & API Security, Vulnerability Assessments, and Offensive Security.</p></div>
         <div className="space-y-2">
-          {contactLinks.map(({ href, label, icon: Icon }) => <a key={href} href={href} className="contact-link flex items-center gap-3 rounded-lg border border-blue-950 bg-blue-950/20 p-3 text-[11px] text-blue-200 transition hover:border-blue-800"><Icon size={15} /><span>{label}</span></a>)}
+          {contactLinks.map(({ href, label, icon: Icon }) => <a key={href} href={href} className="contact-link flex items-center gap-3 rounded-lg border border-blue-950 bg-blue-950/20 p-3 text-xs text-blue-200 transition hover:border-blue-800"><Icon size={16} /><span>{label}</span></a>)}
         </div>
       </section>
     </Reveal>
