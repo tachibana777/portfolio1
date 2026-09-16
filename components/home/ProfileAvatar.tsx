@@ -63,8 +63,6 @@ export function ProfileAvatar() {
           src={REAL_IMAGE}
           alt="Kritsada Hongpatsa"
           fill
-          priority
-          unoptimized
           sizes="96px"
           className="object-cover [image-rendering:-webkit-optimize-contrast]"
         />
@@ -72,7 +70,7 @@ export function ProfileAvatar() {
 
       {reduceMotion && (
         <motion.div className="absolute inset-0" animate={{ opacity: isHovered ? 0 : 1 }} transition={{ duration: 0.15 }}>
-          <Image src={ANIME_IMAGE} alt="Anime portrait of Kritsada Hongpatsa" fill priority unoptimized sizes="96px" className="object-cover [image-rendering:-webkit-optimize-contrast]" />
+          <Image src={ANIME_IMAGE} alt="Anime portrait of Kritsada Hongpatsa" fill priority sizes="96px" className="object-cover [image-rendering:-webkit-optimize-contrast]" />
         </motion.div>
       )}
 
