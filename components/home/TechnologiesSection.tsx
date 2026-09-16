@@ -2,9 +2,9 @@ import { Marquee, Reveal, SectionHeading } from "@/components/ui";
 import { technologies, type Technology, type TechnologyCategory } from "@/lib/technologies";
 
 const rowSettings = [
-  { category: "web" as TechnologyCategory, direction: "left" as const, duration: 30 },
-  { category: "development" as TechnologyCategory, direction: "right" as const, duration: 40 },
-  { category: "security" as TechnologyCategory, direction: "left" as const, duration: 35 },
+  { category: "web" as TechnologyCategory, title: "Web Development", direction: "left" as const, duration: 30 },
+  { category: "development" as TechnologyCategory, title: "Development & Infrastructure", direction: "right" as const, duration: 40 },
+  { category: "security" as TechnologyCategory, title: "Pentesting & Security", direction: "left" as const, duration: 35 },
 ] as const;
 
 function TechnologyPill({ technology }: Readonly<{ technology: Technology }>) {
@@ -23,16 +23,18 @@ export function TechnologiesSection() {
     <Reveal delay={0.18}>
       <section className="py-10">
         <SectionHeading title="Technologies" href="/technologies" />
-        <div className="space-y-2.5">
+        <div className="space-y-5">
           {rowSettings.map((settings) => (
-            <Marquee
-              key={settings.category}
-              direction={settings.direction}
-              duration={settings.duration}
-              className="[mask-image:linear-gradient(to_right,transparent,black_7%,black_93%,transparent)]"
-            >
-              {technologies.filter((technology) => technology.category === settings.category).map((technology) => <TechnologyPill key={technology.name} technology={technology} />)}
-            </Marquee>
+            <div key={settings.category}>
+              <h3 className="mb-2 text-[11px] font-medium uppercase tracking-wider text-neutral-500">{settings.title}</h3>
+              <Marquee
+                direction={settings.direction}
+                duration={settings.duration}
+                className="[mask-image:linear-gradient(to_right,transparent,black_7%,black_93%,transparent)]"
+              >
+                {technologies.filter((technology) => technology.category === settings.category).map((technology) => <TechnologyPill key={technology.name} technology={technology} />)}
+              </Marquee>
+            </div>
           ))}
         </div>
       </section>

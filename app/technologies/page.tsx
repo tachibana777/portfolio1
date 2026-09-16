@@ -12,7 +12,7 @@ export default function TechnologiesPage() {
   return (
     <PageShell>
       <Reveal>
-        <PageIntro title="Technologies & Tools" description="The development stack and foundational security tools I use for building, testing, and understanding web systems." />
+        <PageIntro title="Full Tech Stack" description="The development stack and foundational security tools I use for building, testing, and understanding web systems." />
         <div className="mt-12 space-y-12">
           {categories.map((category) => (
             <section key={category.key}>
