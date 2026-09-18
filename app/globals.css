@@ -58,15 +58,30 @@ html.light {
   mix-blend-mode: normal;
 }
 
-::view-transition-old(root) { z-index: 1; }
+::view-transition-old(root) {
+  z-index: 1;
+}
+
 ::view-transition-new(root) {
   z-index: 9999;
-  animation: diagonal-theme-wipe 700ms cubic-bezier(0.76, 0, 0.24, 1) both;
+  animation: diagonal-theme-wipe 650ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 @keyframes diagonal-theme-wipe {
-  from { clip-path: polygon(0 0, 0 0, 0 0, 0 0); }
-  to { clip-path: polygon(0 0, 200% 0, 100% 100%, 0 100%); }
+  from {
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+  }
+  to {
+    clip-path: polygon(0 0, 200% 0, 100% 100%, 0 200%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
 }
 @layer utilities { .text-balance { text-wrap: balance; } .section-title { @apply text-xl font-normal tracking-[-0.02em] text-neutral-200; } .muted { @apply text-neutral-500; } }
 
