@@ -25,11 +25,38 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
         <Image src={project.image} alt={project.title} fill sizes="(min-width: 768px) 350px, 100vw" className="object-cover transition duration-500 group-hover:scale-[1.025]" />
       </div>
       <div className="relative z-20 flex flex-1 flex-col px-4 pb-4">
-        <div className="flex items-center gap-2"><h3 className="text-base font-semibold leading-snug text-neutral-100">{project.title}</h3>{project.status && <span className="rounded-full border border-neutral-700 px-2 py-0.5 text-[11px] text-neutral-400">{project.status}</span>}</div>
+        <div className="flex items-start justify-between gap-2 min-h-[44px]">
+          <h3 className="text-base font-semibold leading-snug text-neutral-100 flex-1">
+            {project.title}
+          </h3>
+          {project.status && (
+            <span className="shrink-0 whitespace-nowrap rounded-full border border-neutral-700/80 bg-neutral-900/60 px-2 py-0.5 text-[10px] font-medium text-neutral-300">
+              {project.status}
+            </span>
+          )}
+        </div>
         <p className="mt-1 text-xs font-medium text-neutral-300">{project.role}</p>
-        <p className="mt-2 text-[13px] leading-6 text-neutral-400">{project.description}</p>
-        <div className="mt-4 flex flex-wrap gap-1.5">{project.technologies.map((technology) => <span key={technology} title={technology} className="grid h-6 min-w-6 place-items-center rounded bg-neutral-900 px-2 text-[11px] text-neutral-400">{technology.slice(0, 2).toUpperCase()}</span>)}</div>
-        <Link href={project.href} className="mt-auto flex items-center justify-end border-t border-neutral-800 pt-4 text-[11px] font-medium tracking-[.08em] text-neutral-400 transition hover:text-white">{project.action}<ArrowUpRight size={13} className="ml-2 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></Link>
+        <p className="mt-2 text-[13px] leading-6 text-neutral-400 sm:min-h-[120px]">{project.description}</p>
+        <div className="mt-auto pt-4">
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {project.technologies.map((technology) => (
+              <span
+                key={technology}
+                title={technology}
+                className="grid h-6 min-w-6 place-items-center rounded bg-neutral-900 px-2 text-[11px] text-neutral-400"
+              >
+                {technology.slice(0, 2).toUpperCase()}
+              </span>
+            ))}
+          </div>
+          <Link
+            href={project.href}
+            className="flex items-center justify-end border-t border-neutral-800 pt-3.5 text-[11px] font-medium tracking-[.08em] text-neutral-400 transition hover:text-white"
+          >
+            {project.action}
+            <ArrowUpRight size={13} className="ml-2 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
       </div>
     </motion.article>
   );

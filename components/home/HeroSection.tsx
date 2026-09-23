@@ -16,7 +16,7 @@ export function HeroSection() {
             <div className="mt-1.5 flex gap-2.5 text-neutral-400">
               <Link href="https://github.com/tachibana777" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github size={14} /></Link>
               <Linkedin size={14} aria-label="LinkedIn" />
-              <Mail size={14} aria-label="Email" />
+              <a href="mailto:kridsada1324@gmail.com" aria-label="Email" className="transition hover:text-neutral-200"><Mail size={14} /></a>
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import { Mail, Phone } from "lucide-react";
 import { Reveal } from "@/components/ui";
 
 const contactLinks = [
-  { href: "mailto:kritsada1324@gmail.com", label: "kritsada1324@gmail.com", icon: Mail },
+  { href: "mailto:kridsada1324@gmail.com", label: "kridsada1324@gmail.com", icon: Mail },
   { href: "tel:+66821493025", label: "+66 82 149 3025", icon: Phone },
 ] as const;
 
