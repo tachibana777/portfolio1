@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BadgeCheck, Github, Linkedin, Mail } from "lucide-react";
 import { Reveal } from "@/components/ui";
 import { ProfileAvatar } from "./ProfileAvatar";
 
 const RESUME_PATH = "/kritsada-hongpatsa-cv.png";
+const WRITEUP_URL = "https://write-up-chi-ashy.vercel.app/";
 
 export function HeroSection() {
   return (
@@ -22,7 +23,14 @@ export function HeroSection() {
         </div>
         <h2 className="text-xl font-medium tracking-[-.025em] sm:text-[22px]">PENETRATION TESTER— <span className="font-normal text-neutral-500">Offensive Security</span></h2>
         <p className="mt-4 max-w-[680px] text-[13px] leading-7 text-neutral-400">I&apos;m a Computer Engineering student focused on Penetration Testing, Offensive Security, and Application Security. My interests include Web Application Security, API Security, Vulnerability Assessment, Reconnaissance, Exploitation, and Security Testing. I enjoy breaking down how systems work, identifying security weaknesses, understanding their root causes, and finding practical ways to improve them.</p>
-        <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-3 rounded bg-neutral-100 px-4 py-2.5 text-xs font-semibold text-neutral-950 transition hover:-translate-y-0.5 hover:bg-white">View Resume <ArrowRight size={13} /></a>
+        <div className="mt-5 flex flex-wrap items-center gap-3">
+          <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded bg-neutral-100 px-4 py-2.5 text-xs font-semibold text-neutral-950 transition hover:-translate-y-0.5 hover:bg-white">
+            View Resume <ArrowRight size={13} />
+          </a>
+          <a href={WRITEUP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded border border-neutral-800 bg-panel px-4 py-2.5 text-xs font-semibold text-neutral-200 transition hover:-translate-y-0.5 hover:border-neutral-600 hover:bg-neutral-800 hover:text-white">
+            View Write-ups <ArrowUpRight size={13} />
+          </a>
+        </div>
       </section>
     </Reveal>
   );
