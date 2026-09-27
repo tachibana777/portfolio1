@@ -1,4 +1,4 @@
-import type { Certificate, Experience, Project } from "./types";
+import type { Award, Certificate, Experience, Project } from "./types";
 export const projects: Project[] = [
   { title: "PSRU Blockchain Security Testing", role: "QA & Penetration Tester", description: "Performed comprehensive functional and security testing for the Activity Point & Carbon Platform. Assessed API endpoints using Burp Suite to mitigate OWASP vulnerabilities and ensure robust performance.", image: "/events/psru-cyber-hackathon-score.png", href: "#", action: "READ REPORT", technologies: ["Next.js", "CSS", "React", "Node"], status: "IN PROGRESS" },
   { title: "Offensive Security Home Lab", role: "Security Researcher", description: "Designed and deployed a local lab featuring vulnerable Linux services and web applications. Conducted hands-on network scanning, exploitation, and log analysis safely.", image: "/events/security-training-lab.jpg", href: "#", action: "READ REPORT", technologies: ["HTML", "CSS", "JavaScript", "Linux"], status: "IN PROGRESS" },
@@ -137,4 +137,52 @@ export const certificates: Certificate[] = [
     description: "Won second runner-up in the SOLIDWORKS engineering 3D design competition at the 2024 nationwide Rajabhat student professional skills contest."
   }
 ];
+
+export const awards: Award[] = [
+  {
+    title: "Student Innovation Awards 2026",
+    category: "Honorable Mention — Science & Technology Category",
+    description: "Won an honorable mention in the 1st Undergraduate Student Innovation Awards for the project 'Carbon Point recorded on Blockchain for traceability, security, integrity, and transparency', organized by the Division of Educational Services, Pibulsongkram Rajabhat University.",
+    certificateUrl: "/certificates/student-innovation-awards-2026.jpg",
+  },
+  {
+    title: "Business Brotherhood 2024",
+    category: "Selected for 200,000 THB Funding",
+    description: "Robo Tech received Phase 1 funding in the Digital Technology category for Biosite, a sitting-posture detection camera, through the innovation entrepreneur development program supported by the Ministry of Higher Education, Science, Research and Innovation.",
+    certificateUrl: "/certificates/business-brotherhood.jpg",
+  },
+  {
+    title: "Research to Market (R2M) 2023",
+    category: "First Runner-up — University Level",
+    description: "Team Robocom won first runner-up at university level and was selected to represent Pibulsongkram Rajabhat University in the regional R2M competition.",
+    certificateUrl: "/certificates/r2m-2023.jpg",
+  },
+  {
+    title: "AI Tech Startup",
+    category: "Honorable Mention — Team BLOCKSPHERE",
+    description: "Received an honorable mention in the AI Tech Startup competition under the Digital Innovation Hub initiative, organized by the Digital Technology Institute and the Faculty of Engineering and Industrial Technology at Pibulsongkram Rajabhat University.",
+    certificateUrl: "/certificates/ai-tech-startup.jpg",
+  },
+  {
+    title: "SOLIDWORKS Engineering 3D Design",
+    category: "Second Runner-up — National Rajabhat Network",
+    description: "Won second runner-up in the engineering 3D design category using SOLIDWORKS at the 2024 Student Professional Skills Competition for the nationwide Rajabhat industrial technology network.",
+    certificateUrl: "/certificates/solidworks-award.jpg",
+  },
+  {
+    title: "Thailand Cyber Top Talent",
+    category: "Participant",
+    description: "Applied cybersecurity fundamentals in national-level CTF-style security challenges.",
+    writeupLabel: "Read TCTT 2026 Write-up",
+    writeupUrl: "https://write-up-chi-ashy.vercel.app/",
+    certificateUrl: "/certificates/thailand-cyber-top-talent-2026.png",
+  },
+  {
+    title: "PSRU Hackathon",
+    category: "Participant",
+    description: "Participated in cybersecurity challenges involving practical problem solving and teamwork in a fast-paced competition.",
+    certificateUrl: "/certificates/psru-hackathon-3.jpg",
+  },
+];
+
 export const eventImages = ["static-code-analysis-lab.png", "security-training-lab.jpg", "r2m-regional-stage.jpg", "r2m-pitching.jpg", "r2m-award-team.jpg", "psru-cyber-hackathon-score.png", "new-regional-startups.jpg", "ctf-teamwork.jpg", "ctf-bootcamp-team.jpg"];

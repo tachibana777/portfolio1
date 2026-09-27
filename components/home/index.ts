@@ -1,4 +1,5 @@
 export { ActivitySection } from "./ActivitySection";
+export { AwardsSection } from "./AwardsSection";
 export { CertificationsSection, EducationSection } from "./BackgroundSection";
 export { ContactSection } from "./ContactSection";
 export { ExperienceSection } from "./ExperienceSection";

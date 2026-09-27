@@ -1,5 +1,6 @@
 import {
   ActivitySection,
+  AwardsSection,
   CertificationsSection,
   ContactSection,
   EducationSection,
@@ -19,6 +20,7 @@ export default function HomePage() {
         <HeroSection />
         <ExperienceSection />
         <ProjectsSection />
+        <AwardsSection />
         <TechnologiesSection />
         <CertificationsSection />
         <EducationSection />

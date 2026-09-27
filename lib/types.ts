@@ -24,3 +24,13 @@ export type Certificate = {
   image: string;
   description?: string;
 };
+
+export type Award = {
+  title: string;
+  category: string;
+  description: string;
+  date?: string;
+  writeupUrl?: string;
+  writeupLabel?: string;
+  certificateUrl?: string;
+};

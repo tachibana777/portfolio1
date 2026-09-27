@@ -4,6 +4,7 @@ import { ThemeToggle } from "@/components/theme";
 const navigation = [
   { label: "Projects", href: "/projects" },
   { label: "Experience", href: "/experience" },
+  { label: "Awards", href: "/awards" },
   { label: "Events", href: "/events" },
 ] as const;
 
