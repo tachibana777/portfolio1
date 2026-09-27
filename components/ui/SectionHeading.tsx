@@ -12,9 +12,9 @@ export function SectionHeading({ title, href, linkLabel = "View All" }: SectionH
     <div className="mb-5 flex items-center justify-between">
       <h2 className="section-title">{title}</h2>
       {href && (
-        <Link href={href} className="flex items-center gap-2 text-xs text-neutral-400 transition hover:text-white">
+        <Link href={href} className="flex items-center gap-2 text-sm font-medium text-neutral-400 transition hover:text-white">
           {linkLabel}
-          <ArrowRight size={11} />
+          <ArrowRight size={13} />
         </Link>
       )}
     </div>

@@ -12,11 +12,11 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 h-16 border-b border-line/80 bg-ink/85 backdrop-blur-xl">
       <div className="mx-auto flex h-full w-[min(100%-2rem,720px)] items-center justify-between">
-        <Link href="/" className="text-xs font-bold tracking-wide text-neutral-100">
+        <Link href="/" className="text-sm font-bold tracking-wide text-neutral-100">
           MEOW
         </Link>
 
-        <nav aria-label="Primary navigation" className="flex items-center gap-4 text-xs text-neutral-400 sm:gap-6">
+        <nav aria-label="Primary navigation" className="flex items-center gap-5 text-sm font-medium text-neutral-300 sm:gap-6">
           {navigation.map(({ label, href }) => (
             <Link key={href} href={href} className="transition hover:text-white">
               {label}

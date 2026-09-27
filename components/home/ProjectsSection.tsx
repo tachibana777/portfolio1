@@ -13,9 +13,9 @@ export function ProjectsSection() {
           {projects.map((project) => <ProjectCard key={project.title} project={project} />)}
         </div>
         <div className="text-center">
-          <Link href="/projects" className="mt-6 inline-flex items-center gap-3 rounded bg-neutral-100 px-4 py-2.5 text-xs font-semibold text-black transition hover:-translate-y-0.5">
+          <Link href="/projects" className="mt-7 inline-flex items-center gap-3 rounded bg-neutral-100 px-5 py-2.5 text-sm font-semibold text-black transition hover:-translate-y-0.5">
             Explore Projects
-            <ArrowRight size={12} />
+            <ArrowRight size={14} />
           </Link>
         </div>
       </section>

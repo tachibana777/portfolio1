@@ -11,8 +11,8 @@ function TechnologyPill({ technology }: Readonly<{ technology: Technology }>) {
   const Icon = technology.icon;
 
   return (
-    <span className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-lg border border-dashed border-neutral-800 bg-neutral-900/50 px-3 py-2 text-xs text-neutral-300 transition-colors hover:border-neutral-600 hover:bg-neutral-900">
-      <Icon aria-hidden size={13} style={{ color: technology.color }} />
+    <span className="flex shrink-0 items-center gap-2.5 whitespace-nowrap rounded-lg border border-dashed border-neutral-800 bg-neutral-900/50 px-3.5 py-2 text-sm text-neutral-200 transition-colors hover:border-neutral-600 hover:bg-neutral-900">
+      <Icon aria-hidden size={15} style={{ color: technology.color }} />
       {technology.name}
     </span>
   );
@@ -26,7 +26,7 @@ export function TechnologiesSection() {
         <div className="space-y-5">
           {rowSettings.map((settings) => (
             <div key={settings.category}>
-              <h3 className="mb-2 text-[11px] font-medium uppercase tracking-wider text-neutral-500">{settings.title}</h3>
+              <h3 className="mb-2.5 text-xs font-semibold uppercase tracking-wider text-neutral-400">{settings.title}</h3>
               <Marquee
                 direction={settings.direction}
                 duration={settings.duration}

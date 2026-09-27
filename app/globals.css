@@ -7,7 +7,7 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: #0d0d0e; }
-body { margin: 0; background: #0d0d0e; color: #e7e7e8; font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: #0d0d0e; color: #e7e7e8; font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
 ::selection { background: #e7e7e8; color: #0d0d0e; }
 
 html.light {
@@ -83,7 +83,7 @@ html.light {
     animation: none !important;
   }
 }
-@layer utilities { .text-balance { text-wrap: balance; } .section-title { @apply text-xl font-normal tracking-[-0.02em] text-neutral-200; } .muted { @apply text-neutral-500; } }
+@layer utilities { .text-balance { text-wrap: balance; } .section-title { @apply text-2xl font-semibold tracking-tight text-neutral-100; } .muted { @apply text-neutral-400; } }
 
 @keyframes reveal-enter {
   from { opacity: 0; transform: translateY(20px); }
