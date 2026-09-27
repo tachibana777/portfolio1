@@ -50,13 +50,6 @@ html.light {
 .light .hover\:border-neutral-600:hover { border-color: #737373; }
 .light .contact-link { border-color: #bfdbfe; background-color: #eff6ff; color: #1e3a8a; }
 .light .contact-link:hover { border-color: #60a5fa; }
-.light .award-card { background-color: #ffffff; border-color: #e2e8f0; }
-.light .award-card:hover { border-color: #38bdf8; box-shadow: 0 6px 16px rgba(56, 189, 248, 0.12); }
-.light .award-card-category { color: #0284c7; }
-.light .award-card-btn-writeup { border-color: #bae6fd; background-color: #f0f9ff; color: #0369a1; }
-.light .award-card-btn-writeup:hover { background-color: #e0f2fe; color: #075985; border-color: #7dd3fc; }
-.light .award-card-btn-cert { border-color: #e2e8f0; background-color: #f8fafc; color: #475569; }
-.light .award-card-btn-cert:hover { background-color: #f1f5f9; color: #0f172a; border-color: #cbd5e1; }
 .light ::selection { background: #171717; color: #ffffff; }
 
 ::view-transition-old(root),
