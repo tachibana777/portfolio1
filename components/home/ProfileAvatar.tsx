@@ -46,7 +46,7 @@ export function ProfileAvatar() {
 
   return (
     <motion.div
-      className="relative h-32 w-32 sm:h-36 sm:w-36 shrink-0 cursor-pointer overflow-hidden rounded-full border-2 border-neutral-400 bg-white shadow-[0_0_0_4px_rgba(255,255,255,0.05)]"
+      className="relative h-32 w-32 sm:h-40 sm:w-40 shrink-0 cursor-pointer overflow-hidden rounded-full border-2 border-neutral-400 bg-white shadow-sm"
       aria-label="Hover to reveal Kritsada's real profile photo"
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
@@ -63,14 +63,14 @@ export function ProfileAvatar() {
           src={REAL_IMAGE}
           alt="Kritsada Hongpatsa"
           fill
-          sizes="(min-width: 640px) 144px, 128px"
+          sizes="(min-width: 640px) 160px, 128px"
           className="object-cover [image-rendering:-webkit-optimize-contrast]"
         />
       </motion.div>
 
       {reduceMotion && (
         <motion.div className="absolute inset-0" animate={{ opacity: isHovered ? 0 : 1 }} transition={{ duration: 0.15 }}>
-          <Image src={ANIME_IMAGE} alt="Anime portrait of Kritsada Hongpatsa" fill priority sizes="(min-width: 640px) 144px, 128px" className="object-cover [image-rendering:-webkit-optimize-contrast]" />
+          <Image src={ANIME_IMAGE} alt="Anime portrait of Kritsada Hongpatsa" fill priority sizes="(min-width: 640px) 160px, 128px" className="object-cover [image-rendering:-webkit-optimize-contrast]" />
         </motion.div>
       )}
 

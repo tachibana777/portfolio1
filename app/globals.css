@@ -83,7 +83,7 @@ html.light {
     animation: none !important;
   }
 }
-@layer utilities { .text-balance { text-wrap: balance; } .section-title { @apply text-2xl font-semibold tracking-tight text-neutral-100; } .muted { @apply text-neutral-400; } }
+@layer utilities { .text-balance { text-wrap: balance; } .section-title { @apply text-2xl sm:text-3xl font-normal tracking-tight text-neutral-100; } .muted { @apply text-neutral-400; } }
 
 @keyframes reveal-enter {
   from { opacity: 0; transform: translateY(20px); }

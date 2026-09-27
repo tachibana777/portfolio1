@@ -8,12 +8,12 @@ export function ExperienceSection() {
         <SectionHeading title="Experience" href="/experience" linkLabel="View Details" />
         <div className="space-y-6">
           {experiences.map((experience) => (
-            <article key={experience.title} className="grid grid-cols-[110px_1fr] gap-5 text-sm sm:text-[15px] leading-relaxed sm:grid-cols-[140px_1fr]">
-              <time className="pt-0.5 font-mono text-xs sm:text-[13px] text-neutral-400">{experience.date}</time>
+            <article key={experience.title} className="sm:grid sm:grid-cols-[160px_1fr] sm:gap-6">
+              <time className="text-xs font-medium text-neutral-400 whitespace-nowrap mb-1 sm:mb-0 sm:pt-1">{experience.date}</time>
               <div>
-                <h3 className="text-base sm:text-lg font-semibold text-neutral-100">{experience.title}</h3>
-                <p className="mt-0.5 text-sm sm:text-[15px] text-neutral-300">{experience.company}</p>
-                <p className="text-xs sm:text-sm text-neutral-400">{experience.location}</p>
+                <h3 className="text-base sm:text-[17px] font-semibold text-neutral-100 leading-tight">{experience.title}</h3>
+                <p className="mt-1 text-sm font-medium text-neutral-300">{experience.company}</p>
+                <p className="mt-0.5 text-sm text-neutral-400">{experience.location}</p>
               </div>
             </article>
           ))}

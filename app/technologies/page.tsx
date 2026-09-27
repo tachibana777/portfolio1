@@ -16,12 +16,12 @@ export default function TechnologiesPage() {
         <div className="mt-12 space-y-12">
           {categories.map((category) => (
             <section key={category.key}>
-              <h2 className="text-lg font-medium text-neutral-100">{category.title}</h2>
-              <p className="mt-1 text-xs leading-5 text-neutral-500">{category.description}</p>
+              <h2 className="text-base sm:text-lg font-semibold text-neutral-100">{category.title}</h2>
+              <p className="mt-1 text-sm font-light text-neutral-400">{category.description}</p>
               <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {technologies.filter((technology) => technology.category === category.key).map((technology) => {
                   const Icon = technology.icon;
-                  return <div key={technology.name} className="flex items-center gap-3 rounded-xl border border-dashed border-neutral-800 bg-panel px-4 py-3 text-xs text-neutral-300 transition hover:-translate-y-0.5 hover:border-neutral-600"><Icon aria-hidden size={16} style={{ color: technology.color }} /><span>{technology.name}</span></div>;
+                  return <div key={technology.name} className="flex items-center gap-3 rounded-xl border border-dashed border-neutral-800 bg-panel px-4 py-3 text-sm font-medium text-neutral-200 transition hover:-translate-y-0.5 hover:border-neutral-600"><Icon aria-hidden size={16} style={{ color: technology.color }} /><span>{technology.name}</span></div>;
                 })}
               </div>
             </section>

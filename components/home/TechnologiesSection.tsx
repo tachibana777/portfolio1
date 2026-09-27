@@ -26,7 +26,7 @@ export function TechnologiesSection() {
         <div className="space-y-5">
           {rowSettings.map((settings) => (
             <div key={settings.category}>
-              <h3 className="mb-2.5 text-xs font-semibold uppercase tracking-wider text-neutral-400">{settings.title}</h3>
+              <h3 className="mb-2.5 text-xs font-mono uppercase tracking-widest text-neutral-400">{settings.title}</h3>
               <Marquee
                 direction={settings.direction}
                 duration={settings.duration}

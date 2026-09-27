@@ -12,7 +12,7 @@ export default function ExperiencePage() {
             <h2 className="mt-2 text-xl font-semibold text-neutral-100">{experience.title}</h2>
             <p className="mt-1 text-sm sm:text-base text-neutral-300">{experience.company}</p>
             <p className="text-xs sm:text-sm text-neutral-400">{experience.location}</p>
-            <ul className="mt-5 list-disc space-y-3 pl-4 text-sm sm:text-[15px] leading-relaxed text-neutral-300">
+            <ul className="mt-5 list-disc space-y-3 pl-4 text-sm sm:text-base font-light leading-relaxed text-neutral-300">
               {experience.bullets.map((bullet) => (
                 <li key={bullet}>{bullet}</li>
               ))}

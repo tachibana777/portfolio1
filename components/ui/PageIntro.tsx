@@ -9,12 +9,12 @@ type PageIntroProps = Readonly<{
 export function PageIntro({ title, description }: PageIntroProps) {
   return (
     <header>
-      <Link href="/" className="flex items-center gap-2 text-sm font-medium text-neutral-400 transition hover:text-white">
-        <ChevronLeft size={16} />
+      <Link href="/" className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-neutral-400 transition hover:text-white">
+        <ChevronLeft size={14} />
         Back to Home
       </Link>
-      <h1 className="mt-8 text-3xl font-semibold tracking-tight text-neutral-100 sm:text-4xl">{title}</h1>
-      <p className="mt-2.5 max-w-xl text-base leading-relaxed text-neutral-300">{description}</p>
+      <h1 className="mt-7 text-3xl font-normal tracking-tight text-neutral-100 sm:text-4xl">{title}</h1>
+      <p className="mt-2.5 max-w-xl text-base font-light leading-7 text-neutral-400 sm:text-lg sm:leading-8">{description}</p>
     </header>
   );
 }

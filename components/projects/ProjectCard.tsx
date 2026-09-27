@@ -2,15 +2,15 @@
 
 import type { MouseEvent } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import type { Project } from "@/lib/types";
+import { ProjectTechIcon } from "./ProjectTechIcon";
 
 export function ProjectCard({ project }: Readonly<{ project: Project }>) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const spotlight = useMotionTemplate`radial-gradient(260px circle at ${mouseX}px ${mouseY}px, var(--spotlight-color), transparent 70%)`;
+  const spotlight = useMotionTemplate`radial-gradient(240px circle at ${mouseX}px ${mouseY}px, var(--spotlight-color), transparent 70%)`;
 
   function handleMouseMove(event: MouseEvent<HTMLDivElement>) {
     const bounds = event.currentTarget.getBoundingClientRect();
@@ -19,43 +19,81 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
   }
 
   return (
-    <motion.article onMouseMove={handleMouseMove} whileHover={{ y: -4 }} transition={{ duration: 0.2 }} className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-dashed border-neutral-800 bg-panel">
-      <motion.div aria-hidden className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: spotlight }} />
-      <div className="relative m-2.5 aspect-[16/8] overflow-hidden rounded-md bg-neutral-100">
-        <Image src={project.image} alt={project.title} fill sizes="(min-width: 768px) 350px, 100vw" className="object-cover transition duration-500 group-hover:scale-[1.025]" />
+    <motion.article
+      onMouseMove={handleMouseMove}
+      whileHover={{ y: -3 }}
+      transition={{ duration: 0.2 }}
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-dashed border-neutral-800 bg-panel p-3 transition-[border-color,box-shadow] duration-300 hover:border-neutral-600 hover:shadow-[0_12px_30px_-24px_rgba(255,255,255,0.25)]"
+    >
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{ background: spotlight }}
+      />
+
+      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-neutral-800/80 bg-neutral-950">
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          sizes="(min-width: 1024px) 260px, (min-width: 640px) 340px, 100vw"
+          className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        />
       </div>
-      <div className="relative z-20 flex flex-1 flex-col px-4 pb-4">
-        <div className="flex items-start justify-between gap-2 min-h-[44px]">
-          <h3 className="text-lg font-semibold leading-snug text-neutral-100 flex-1">
-            {project.title}
-          </h3>
-          {project.status && (
-            <span className="shrink-0 whitespace-nowrap rounded-full border border-neutral-700/80 bg-neutral-900/60 px-2.5 py-0.5 text-xs font-medium text-neutral-300">
+
+      <div className="mt-3 flex flex-1 flex-col px-1.5">
+        {project.status && (
+          <div className="mb-2 flex items-center">
+            <span className="inline-flex w-fit whitespace-nowrap rounded-full border border-dashed border-neutral-700 bg-neutral-900/90 px-2 py-0.5 text-[9px] font-mono font-medium uppercase tracking-wider text-neutral-400">
               {project.status}
             </span>
+          </div>
+        )}
+
+        <div className="flex min-h-0 flex-1 flex-col">
+          <h3 className="text-base sm:text-[17px] font-semibold text-neutral-100 leading-snug">
+            {project.title}
+          </h3>
+
+          {project.role && (
+            <p className="mt-1 text-xs font-semibold text-neutral-300">
+              {project.role}
+            </p>
+          )}
+
+          {project.description && (
+            <p className="mt-1.5 text-xs sm:text-[13px] font-light leading-relaxed text-neutral-400 line-clamp-3">
+              {project.description}
+            </p>
+          )}
+
+          {project.technologies?.length > 0 && (
+            <div className="mt-auto pt-3">
+              <div className="flex items-center gap-2.5">
+                {project.technologies.map((tech) => (
+                  <ProjectTechIcon key={tech} name={tech} />
+                ))}
+              </div>
+            </div>
           )}
         </div>
-        <p className="mt-1 text-sm font-medium text-neutral-300">{project.role}</p>
-        <p className="mt-2 text-sm sm:text-[15px] leading-relaxed text-neutral-300 sm:min-h-[120px]">{project.description}</p>
-        <div className="mt-auto pt-4">
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            {project.technologies.map((technology) => (
-              <span
-                key={technology}
-                title={technology}
-                className="grid h-7 min-w-7 place-items-center rounded bg-neutral-900 px-2.5 text-xs text-neutral-300"
-              >
-                {technology.slice(0, 2).toUpperCase()}
-              </span>
-            ))}
-          </div>
-          <Link
+      </div>
+
+      <div className="mt-auto">
+        <div className="w-full h-px bg-neutral-800/90 mt-3 mb-1" />
+        <div className="flex min-h-[32px] items-center justify-end px-1 pt-1">
+          <a
             href={project.href}
-            className="flex items-center justify-end border-t border-neutral-800 pt-3.5 text-xs sm:text-[13px] font-semibold tracking-[.08em] text-neutral-400 transition hover:text-white"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group/link inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-widest text-neutral-400 transition-colors hover:text-white"
           >
-            {project.action}
-            <ArrowUpRight size={14} className="ml-2 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
+            <span>{project.action || "VISIT SITE"}</span>
+            <ArrowUpRight
+              size={13}
+              className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+            />
+          </a>
         </div>
       </div>
     </motion.article>

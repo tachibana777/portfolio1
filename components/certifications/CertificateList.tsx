@@ -22,11 +22,11 @@ export function CertificateList({ certificates }: Readonly<{ certificates: Certi
               <h2 className="text-xl font-semibold text-neutral-100">{certificate.title}</h2>
               <p className="mt-1 text-sm sm:text-base text-neutral-300">{certificate.issuer}</p>
               {certificate.description && (
-                <p className="mt-2 text-sm sm:text-[15px] text-neutral-300 leading-relaxed">{certificate.description}</p>
+                <p className="mt-2 text-sm sm:text-base font-light text-neutral-400 leading-relaxed">{certificate.description}</p>
               )}
               <div className="mt-4 flex items-end gap-4">
                 <CertificateThumbnail src={certificate.image} title={certificate.title} width={110} height={80} className="h-20 w-[110px]" />
-                <a href={certificate.image} target="_blank" rel="noopener noreferrer" className="text-xs sm:text-sm text-neutral-400 underline-offset-4 transition hover:text-white hover:underline">
+                <a href={certificate.image} target="_blank" rel="noopener noreferrer" className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 underline-offset-4 transition hover:text-white hover:underline">
                   View certificate
                 </a>
               </div>

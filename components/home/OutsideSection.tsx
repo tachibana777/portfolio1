@@ -21,9 +21,9 @@ export function OutsideSection() {
         <SectionHeading title="Outside the IDE" />
         <div className="grid items-center gap-8 sm:grid-cols-[1fr_210px]">
           <div>
-            <p className="text-sm sm:text-[15px] leading-relaxed text-neutral-300">When I&apos;m not working, I usually relax by playing the guitar and listening to music, or by playing games with friends.</p>
+            <p className="text-base font-light leading-7 text-neutral-400">When I&apos;m not working, I usually relax by playing the guitar and listening to music, or by playing games with friends.</p>
             <div className="mt-4 flex flex-wrap gap-2.5">
-              {interests.map((interest) => <span key={interest} className="rounded-full border border-neutral-800 px-3.5 py-1.5 text-xs sm:text-sm text-neutral-300">{interest}</span>)}
+              {interests.map((interest) => <span key={interest} className="rounded-full border border-neutral-800 px-3.5 py-1.5 text-xs sm:text-sm font-medium text-neutral-300">{interest}</span>)}
             </div>
           </div>
           <button
