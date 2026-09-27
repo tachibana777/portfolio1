@@ -22,4 +22,5 @@ export type Certificate = {
   title: string;
   issuer: string;
   image: string;
+  description?: string;
 };
