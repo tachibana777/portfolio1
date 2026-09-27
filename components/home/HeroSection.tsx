@@ -3,7 +3,7 @@ import { ArrowRight, ArrowUpRight, BadgeCheck, Github, Linkedin, Mail } from "lu
 import { Reveal } from "@/components/ui";
 import { ProfileAvatar } from "./ProfileAvatar";
 
-const RESUME_PATH = "/kritsada-hongpatsa-cv.png";
+const RESUME_PATH = "/kritsada-hongpatsa-cv.pdf";
 const WRITEUP_URL = "https://write-up-chi-ashy.vercel.app/";
 
 export function HeroSection() {
