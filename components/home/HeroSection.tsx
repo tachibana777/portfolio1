@@ -30,6 +30,9 @@ export function HeroSection() {
           <a href={WRITEUP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded border border-neutral-800 bg-panel px-4 py-2.5 text-xs font-semibold text-neutral-200 transition hover:-translate-y-0.5 hover:border-neutral-600 hover:bg-neutral-800 hover:text-white">
             View Write-ups <ArrowUpRight size={13} />
           </a>
+          <Link href="/awards" className="inline-flex items-center gap-2 rounded border border-neutral-800 bg-panel px-4 py-2.5 text-xs font-semibold text-neutral-200 transition hover:-translate-y-0.5 hover:border-neutral-600 hover:bg-neutral-800 hover:text-white">
+            Awards <ArrowRight size={13} />
+          </Link>
         </div>
       </section>
     </Reveal>
