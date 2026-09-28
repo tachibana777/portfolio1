@@ -51,7 +51,7 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
         )}
 
         <div className="flex min-h-0 flex-1 flex-col">
-          <h3 className="text-base sm:text-[17px] font-semibold text-neutral-100 leading-snug">
+          <h3 className="text-base sm:text-[17px] font-semibold text-neutral-100 leading-snug sm:min-h-[44px]">
             {project.title}
           </h3>
 
@@ -62,7 +62,7 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
           )}
 
           {project.description && (
-            <p className="mt-1.5 text-xs sm:text-[13px] font-light leading-relaxed text-neutral-400 line-clamp-3">
+            <p className="mt-1.5 text-xs sm:text-[13px] font-light leading-relaxed text-neutral-400">
               {project.description}
             </p>
           )}
