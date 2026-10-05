@@ -18,9 +18,7 @@ export function ThemeToggle() {
   function toggleTheme() {
     const nextTheme = resolvedTheme === "dark" ? "light" : "dark";
     const viewTransitionDocument = document as ViewTransitionDocument;
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (!viewTransitionDocument.startViewTransition || reduceMotion) {
+    if (!viewTransitionDocument.startViewTransition) {
       setTheme(nextTheme);
       return;
     }
