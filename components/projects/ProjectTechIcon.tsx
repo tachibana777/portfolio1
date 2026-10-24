@@ -1,4 +1,5 @@
 import type { IconType } from "react-icons";
+import { FaNetworkWired } from "react-icons/fa6";
 import {
   SiAstro,
   SiBurpsuite,
@@ -21,14 +22,55 @@ import {
   SiPython,
   SiReact,
   SiSonarqubeserver,
+  SiSplunk,
   SiSupabase,
   SiTailwindcss,
   SiTypescript,
+  SiUbuntu,
   SiVercel,
   SiVite,
+  SiVmware,
   SiWireshark,
   SiWordpress,
 } from "react-icons/si";
+
+function SiemIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="M7.5 12.5h2l1.5-3 2 6 1.5-3h2" />
+    </svg>
+  );
+}
+
+function LogAnalysisIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <path d="M4 4v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.342a2 2 0 0 0-.602-1.43l-4.44-4.342A2 2 0 0 0 13.56 2H6a2 2 0 0 0-2 2z" />
+      <path d="M8 11h8" />
+      <path d="M8 15h4" />
+      <circle cx="15.5" cy="15.5" r="2.5" />
+      <path d="m17.5 17.5 2.5 2.5" />
+    </svg>
+  );
+}
+
+function FirewallIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M3 9h18" />
+      <path d="M3 15h18" />
+      <path d="M9 3v6" />
+      <path d="M15 3v6" />
+      <path d="M6 9v6" />
+      <path d="M12 9v6" />
+      <path d="M18 9v6" />
+      <path d="M9 15v6" />
+      <path d="M15 15v6" />
+    </svg>
+  );
+}
 
 function PlaywrightIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
   return (
@@ -87,8 +129,8 @@ const techMap: Record<string, TechConfig> = {
   vite: { icon: SiVite, color: "#bd34fe" },
   supabase: { icon: SiSupabase, color: "#3ecf8e" },
   astro: { icon: SiAstro, color: "#ff5d01" },
-  markdown: { icon: SiMarkdown, color: "#ffffff" },
-  md: { icon: SiMarkdown, color: "#ffffff" },
+  markdown: { icon: SiMarkdown, color: "currentColor" },
+  md: { icon: SiMarkdown, color: "currentColor" },
   vercel: { icon: SiVercel, color: "currentColor" },
   "tailwind css": { icon: SiTailwindcss, color: "#38bdf8" },
   postman: { icon: SiPostman, color: "#ff6c37" },
@@ -96,6 +138,17 @@ const techMap: Record<string, TechConfig> = {
   "sonar qube": { icon: SiSonarqubeserver, color: "#4b9fd5" },
   sonar: { icon: SiSonarqubeserver, color: "#4b9fd5" },
   playwright: { icon: PlaywrightIcon as unknown as IconType, color: "currentColor" },
+  splunk: { icon: SiSplunk, color: "#f58220" },
+  ubuntu: { icon: SiUbuntu, color: "#e95420" },
+  siem: { icon: SiemIcon as unknown as IconType, color: "#10b981" },
+  "log analysis": { icon: LogAnalysisIcon as unknown as IconType, color: "#8b5cf6" },
+  "log-analysis": { icon: LogAnalysisIcon as unknown as IconType, color: "#8b5cf6" },
+  loganalysis: { icon: LogAnalysisIcon as unknown as IconType, color: "#8b5cf6" },
+  logs: { icon: LogAnalysisIcon as unknown as IconType, color: "#8b5cf6" },
+  vmware: { icon: SiVmware, color: "#0284c7" },
+  nmap: { icon: FaNetworkWired, color: "#22c55e" },
+  ufw: { icon: FirewallIcon as unknown as IconType, color: "#f97316" },
+  firewall: { icon: FirewallIcon as unknown as IconType, color: "#f97316" },
 };
 
 export function ProjectTechIcon({ name }: Readonly<{ name: string }>) {
@@ -106,7 +159,7 @@ export function ProjectTechIcon({ name }: Readonly<{ name: string }>) {
     return (
       <span
         title={name}
-        className="inline-block rounded bg-neutral-800/80 px-1.5 py-0.5 font-mono text-[10px] text-neutral-400"
+        className="inline-block rounded border border-neutral-700/60 bg-neutral-800/80 px-1.5 py-0.5 font-mono text-[10px] text-neutral-300 transition-colors dark:border-neutral-800 dark:bg-neutral-900/80 dark:text-neutral-400"
       >
         {name.slice(0, 3).toUpperCase()}
       </span>
@@ -118,7 +171,7 @@ export function ProjectTechIcon({ name }: Readonly<{ name: string }>) {
   return (
     <span
       title={name}
-      className="inline-flex items-center justify-center opacity-75 transition-all hover:opacity-100 hover:-translate-y-0.5"
+      className="inline-flex items-center justify-center opacity-85 transition-all hover:opacity-100 hover:-translate-y-0.5"
     >
       <Icon size={16} style={{ color: config.color }} aria-hidden="true" />
     </span>

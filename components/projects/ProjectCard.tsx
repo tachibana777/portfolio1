@@ -2,6 +2,7 @@
 
 import type { MouseEvent } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import type { Project } from "@/lib/types";
@@ -33,12 +34,12 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
 
       <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-neutral-800/80 bg-neutral-950">
         {project.href && project.href !== "#" ? (
-          <a
+          <Link
             href={project.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            target={project.href.startsWith("http") ? "_blank" : undefined}
+            rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
             className="relative block h-full w-full"
-            aria-label={`Open ${project.title} in new tab`}
+            aria-label={`Open ${project.title}`}
           >
             <Image
               src={project.image}
@@ -47,7 +48,7 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
               sizes="(min-width: 1024px) 260px, (min-width: 640px) 340px, 100vw"
               className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
             />
-          </a>
+          </Link>
         ) : (
           <Image
             src={project.image}
@@ -71,14 +72,14 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
         <div className="flex min-h-0 flex-1 flex-col">
           <h3 className="text-base sm:text-[17px] font-semibold text-neutral-100 leading-snug sm:min-h-[44px]">
             {project.href && project.href !== "#" ? (
-              <a
+              <Link
                 href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={project.href.startsWith("http") ? "_blank" : undefined}
+                rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="transition-colors hover:text-white hover:underline decoration-neutral-500 underline-offset-4"
               >
                 {project.title}
-              </a>
+              </Link>
             ) : (
               project.title
             )}
@@ -111,18 +112,24 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
       <div className="mt-auto">
         <div className="w-full h-px bg-neutral-800/90 mt-3 mb-1" />
         <div className="flex min-h-[32px] items-center justify-end px-1 pt-1">
-          <a
-            href={project.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group/link inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-widest text-neutral-400 transition-colors hover:text-white"
-          >
-            <span>{project.action || "VISIT SITE"}</span>
-            <ArrowUpRight
-              size={13}
-              className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
-            />
-          </a>
+          {project.href && project.href !== "#" ? (
+            <Link
+              href={project.href}
+              target={project.href.startsWith("http") ? "_blank" : undefined}
+              rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="group/link inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-widest text-neutral-400 transition-colors hover:text-white"
+            >
+              <span>{project.action || "VISIT SITE"}</span>
+              <ArrowUpRight
+                size={13}
+                className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+              />
+            </Link>
+          ) : (
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-widest text-neutral-600">
+              <span>{project.action || "VISIT SITE"}</span>
+            </span>
+          )}
         </div>
       </div>
     </motion.article>

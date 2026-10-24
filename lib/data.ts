@@ -1,13 +1,46 @@
 import type { Award, Certificate, Experience, Project } from "./types";
 export const projects: Project[] = [
-  { title: "PSRUGreenVibe", role: "QA & Penetration Tester", description: "Conducted Web & API penetration testing (OWASP Top 10) using Burp Suite, alongside functional QA and automated E2E regression testing with Playwright and Postman.", image: "/events/psru-greenvibe.png", href: "#", action: "VISIT SITE", technologies: ["Burp Suite", "OWASP", "Playwright", "Postman", "SonarQube", "Postgres", "Docker", "Git", "Next.js"] },
-  { title: "Offensive Security Home Lab", role: "Security Researcher", description: "Designed and deployed a local lab featuring vulnerable Linux services and web applications. Conducted hands-on network scanning, exploitation, and log analysis safely.", image: "/events/security-training-lab.jpg", href: "#", action: "VISIT SITE", technologies: ["HTML", "CSS", "JavaScript", "Linux"], status: "IN PROGRESS" },
-  { title: "OWASP Top 10 Vulnerability Assessment", role: "Penetration Tester", description: "Executed penetration tests on intentionally vulnerable web applications. Documented exploitation steps and provided actionable remediation strategies for developers.", image: "/events/static-code-analysis-lab.png", href: "#", action: "VISIT SITE", technologies: ["OWASP", "Burp Suite", "React"], status: "IN PROGRESS" },
+  { title: "PSRUGreenVibe", role: "QA & Penetration Tester", description: "Conducted Web & API penetration testing (OWASP Top 10) using Burp Suite, alongside functional QA and automated E2E regression testing with Playwright and Postman.", image: "/events/psru-greenvibe.png", href: "#", action: "VISIT SITE", technologies: ["Burp Suite", "OWASP", "Playwright", "Postman", "SonarQube", "Postgres", "Docker", "Git", "Next.js"], status: "IN PROGRESS" },
+  { title: "Offensive Security", role: "Red Team & Penetration Tester", description: "Hands-on penetration testing and offensive security research focusing on vulnerability discovery, network reconnaissance, exploitation techniques, and practical security assessments.", image: "/events/security-training-lab.jpg", href: "#", action: "VISIT SITE", technologies: ["Kali Linux", "Linux", "Burp Suite", "Nmap", "Metasploit", "OWASP"], status: "IN PROGRESS" },
+  { title: "SOC Analyst Incident Investigation Lab", role: "Blue Team & SIEM", description: "Built a virtual SOC lab using Splunk Enterprise to collect and analyze Ubuntu authentication and firewall logs, detect SSH brute-force attempts and potential port scans, investigate security events, and visualize findings through a monitoring dashboard with alert notifications.", image: "/events/soc-analyst-lab.png", href: "/projects/soc-analyst-lab", action: "VISIT SITE", technologies: ["Splunk", "Ubuntu", "Linux", "SIEM", "Log Analysis"] },
   { title: "TCTT 2026 Write-ups", role: "Capture The Flag (CTF) Player", description: "Authored detailed write-ups for Thailand Cyber Top Talent 2026 challenges.", image: "/events/tctt-2026-writeup.jpg", href: "https://write-up-chi-ashy.vercel.app/posts/tctt2026/tctt2026-write-up/", action: "VISIT SITE", technologies: ["Astro", "Tailwind CSS", "Markdown", "Vercel"] }
 ];
 export const experiences: Experience[] = [
-  { date: "Dec 2025 – Present", title: "Activity Point & Carbon Platform", company: "Project Blockchain", location: "Pibulsongkram Rajabhat University", bullets: ["Managed dual roles in software and security testing within a single platform to ensure robust system performance and security.", "Planned and executed functional, API, and end-to-end testing alongside comprehensive positive, negative, and boundary test cases.", "Assessed web and API security using Burp Suite following OWASP guidelines.", "Identified critical vulnerabilities including authentication flaws, IDOR, XSS, SQL injection, CSRF, RBAC, JWT sessions, and rate limiting."] },
-  { date: "Jun 2026 – Present", title: "Personal Cybersecurity Lab", company: "Home Lab", location: "Phitsanulok City, TH", bullets: ["Built and configured a personal lab with vulnerable web applications and Linux services to practice offensive and defensive security workflows.", "Used network scanning tools in a controlled setting for reconnaissance, vulnerability discovery, exploitation, log reviews, and remediation planning."] }
+  {
+    date: "Oct 2026 – Present",
+    title: "SOC Analyst Incident Investigation Lab",
+    company: "Blue Team & SIEM Lab",
+    location: "Phitsanulok City, TH",
+    bullets: [
+      "Built a virtualized SOC environment deploying Splunk Enterprise on Ubuntu Server to ingest and analyze authentication (/var/log/auth.log) and firewall (/var/log/ufw.log) telemetry.",
+      "Engineered SPL-based behavioral detection rules for SSH brute-force attempts (>= 3 failures in 5m) and network port scans (>= 4 unique destination ports in 1m).",
+      "Constructed the 'SOC Lab - Security Overview' monitoring dashboard with single-value metric cards, timeline spike charts, and top attacker IP tables.",
+      "Configured automated cron alert rules and documented end-to-end incident investigation workflows distinguishing confirmed observations from hypotheses."
+    ]
+  },
+  {
+    date: "Jun 2026 – Present",
+    title: "Offensive Security Lab",
+    company: "Red Team & Penetration Testing",
+    location: "Phitsanulok City, TH",
+    bullets: [
+      "Built and configured a personal cybersecurity lab with Kali Linux and vulnerable targets to practice offensive security workflows.",
+      "Conducted network reconnaissance, port scanning, and service enumeration using Nmap in a controlled setting.",
+      "Executed penetration tests against intentionally vulnerable web applications using Burp Suite and Metasploit, documenting exploitation steps, attack chains, and remediation planning."
+    ]
+  },
+  {
+    date: "Dec 2025 – Present",
+    title: "PSRUGreenVibe (Activity Point & Carbon Platform)",
+    company: "QA & Penetration Tester",
+    location: "Pibulsongkram Rajabhat University",
+    bullets: [
+      "Managed dual roles in software QA and security testing within a single platform to ensure robust system performance and security.",
+      "Planned and executed functional, API, and automated E2E regression testing using Playwright and Postman alongside comprehensive positive, negative, and boundary test cases.",
+      "Assessed web and API security using Burp Suite following OWASP Top 10 guidelines.",
+      "Identified critical vulnerabilities including authentication flaws, IDOR, XSS, SQL injection, CSRF, RBAC, JWT sessions, and rate limiting."
+    ]
+  }
 ];
 export const certificates: Certificate[] = [
   // 2026
