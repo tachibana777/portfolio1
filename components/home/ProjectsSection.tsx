@@ -17,7 +17,7 @@ export function ProjectsSection() {
         <div className="mt-8 flex justify-center">
           <Link
             href="/projects"
-            className="group inline-flex items-center gap-1.5 rounded-lg border border-neutral-200 bg-white px-5 py-2.5 text-sm font-medium text-neutral-950 shadow-sm transition hover:scale-[1.03] dark:bg-white dark:text-neutral-950"
+            className="project-explore-link group inline-flex items-center gap-1.5 rounded-lg border px-5 py-2.5 text-sm font-medium shadow-sm transition hover:scale-[1.03]"
           >
             <span>Explore Projects</span>
             <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />

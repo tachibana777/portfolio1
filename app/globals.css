@@ -52,6 +52,21 @@ html.light {
 .light .contact-link:hover { border-color: #60a5fa; }
 .light ::selection { background: #171717; color: #ffffff; }
 
+/* Status tag (IN PROGRESS, etc.) — theme-aware */
+.status-tag { border-color: #525252; background-color: #171717; color: #d4d4d4; }
+.light .status-tag { border-color: #a3a3a3; background-color: #f2f2ef; color: #525252; }
+
+.project-explore-link { border-color: #e5e5e5; background-color: #ffffff; color: #0a0a0a; }
+.project-explore-link:hover { border-color: #d4d4d4; background-color: #e5e5e5; }
+.light .project-explore-link { border-color: #171717; background-color: #171717; color: #ffffff; }
+.light .project-explore-link:hover { border-color: #404040; background-color: #404040; }
+
+/* Project card hover shadow — dark shadow in light mode instead of white glow */
+.light .hover\:shadow-\[0_12px_30px_-24px_rgba\(255\,255\,255\,0\.25\)\]:hover {
+  box-shadow: 0 12px 30px -24px rgba(0, 0, 0, 0.18);
+}
+
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;

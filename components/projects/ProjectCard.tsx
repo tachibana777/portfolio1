@@ -24,7 +24,7 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
       onMouseMove={handleMouseMove}
       whileHover={{ y: -3 }}
       transition={{ duration: 0.2 }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-dashed border-neutral-800 bg-panel p-3 transition-[border-color,box-shadow] duration-300 hover:border-neutral-600 hover:shadow-[0_12px_30px_-24px_rgba(255,255,255,0.25)]"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-dashed border-neutral-800 bg-panel p-3 transition-[border-color,box-shadow] duration-300 hover:border-neutral-600 hover:shadow-[0_12px_30px_-24px_rgba(0,0,0,0.18)] dark:hover:shadow-[0_12px_30px_-24px_rgba(255,255,255,0.25)]"
     >
       <motion.div
         aria-hidden
@@ -32,7 +32,7 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
         style={{ background: spotlight }}
       />
 
-      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-neutral-800/80 bg-neutral-950">
+      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950">
         {project.href && project.href !== "#" ? (
           <Link
             href={project.href}
@@ -63,7 +63,7 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
       <div className="mt-3 flex flex-1 flex-col px-1.5">
         {project.status && (
           <div className="mb-2 flex items-center">
-            <span className="inline-flex w-fit whitespace-nowrap rounded-full border border-dashed border-neutral-700 bg-neutral-900/90 px-2 py-0.5 text-[9px] font-mono font-medium uppercase tracking-wider text-neutral-400">
+            <span className="status-tag inline-flex w-fit whitespace-nowrap rounded-full border border-dashed px-2 py-0.5 text-[9px] font-mono font-medium uppercase tracking-wider">
               {project.status}
             </span>
           </div>
