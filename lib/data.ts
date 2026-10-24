@@ -236,4 +236,22 @@ export const awards: Award[] = [
   },
 ];
 
-export const eventImages = ["static-code-analysis-lab.png", "security-training-lab.jpg", "r2m-regional-stage.jpg", "r2m-pitching.jpg", "r2m-award-team.jpg", "psru-cyber-hackathon-score.png", "new-regional-startups.jpg", "ctf-teamwork.jpg", "ctf-bootcamp-team.jpg"];
+export const eventImages = [
+  "r2m-regional-stage.jpg",
+  "r2m-pitching.jpg",
+  "r2m-award-team.jpg",
+  "ctf-teamwork.jpg",
+  "ctf-bootcamp-team.jpg",
+  "new-regional-startups.jpg",
+  "psru-cyber-hackathon-score.png",
+  "outside-event-1.jpg",
+  "outside-event-2.jpg",
+  "outside-event-3.jpg",
+  "outside-event-4.jpg",
+  "security-training-lab.jpg",
+  "static-code-analysis-lab.png",
+  "soc-analyst-lab.png",
+  "splunk-soc-dashboard.png",
+  "tctt-2026-writeup.jpg",
+  "carbon-wallet-platform.png"
+];

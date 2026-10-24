@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, BadgeCheck, Github, Linkedin, Mail } from "lucide-react";
+import { BadgeCheck, Github, Linkedin, Mail } from "lucide-react";
 import { Reveal } from "@/components/ui";
 import { ProfileAvatar } from "./ProfileAvatar";
 
@@ -26,14 +26,14 @@ export function HeroSection() {
         <h2 className="max-w-full text-[1.7rem] font-normal tracking-tight leading-tight text-neutral-100 sm:text-[2.05rem] md:text-[2.15rem]">PENETRATION TESTER— <span className="text-[0.95em] font-light text-neutral-400">Offensive Security</span></h2>
         <p className="mt-4 max-w-[680px] text-base font-light leading-7 text-neutral-400 sm:text-lg sm:leading-8">I&apos;m a Computer Engineering student focused on Penetration Testing, Offensive Security, and Application Security. My interests include Web Application Security, API Security, Vulnerability Assessment, Reconnaissance, Exploitation, and Security Testing. I enjoy breaking down how systems work, identifying security weaknesses, understanding their root causes, and finding practical ways to improve them.</p>
         <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
-          <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 rounded-lg bg-neutral-100 px-6 py-3 text-base font-medium text-neutral-950 transition hover:scale-[1.03] hover:bg-white">
-            View Resume <ArrowRight size={16} />
+          <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center rounded-lg bg-neutral-100 px-6 py-3 text-base font-medium text-neutral-950 transition hover:scale-[1.03] hover:bg-white">
+            View Resume
           </a>
-          <a href={WRITEUP_URL} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 rounded-lg border border-neutral-800 bg-panel px-6 py-3 text-base font-medium text-neutral-200 transition hover:scale-[1.03] hover:border-neutral-600 hover:text-white">
-            View Write-ups <ArrowUpRight size={16} />
+          <a href={WRITEUP_URL} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center rounded-lg border border-neutral-800 bg-panel px-6 py-3 text-base font-medium text-neutral-200 transition hover:scale-[1.03] hover:border-neutral-600 hover:text-white">
+            View Write-ups
           </a>
-          <Link href="/awards" className="group inline-flex items-center gap-2 rounded-lg border border-neutral-800 bg-panel px-6 py-3 text-base font-medium text-neutral-200 transition hover:scale-[1.03] hover:border-neutral-600 hover:text-white">
-            Awards <ArrowRight size={16} />
+          <Link href="/awards" className="group inline-flex items-center rounded-lg border border-neutral-800 bg-panel px-6 py-3 text-base font-medium text-neutral-200 transition hover:scale-[1.03] hover:border-neutral-600 hover:text-white">
+            Awards
           </Link>
         </div>
       </section>

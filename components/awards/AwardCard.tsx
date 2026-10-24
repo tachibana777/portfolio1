@@ -1,4 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
 import type { Award } from "@/lib/types";
 
 type AwardCardProps = Readonly<{
@@ -26,10 +25,9 @@ export function AwardCard({ award }: AwardCardProps) {
               href={award.writeupUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-widest text-neutral-400 transition hover:text-white"
+              className="inline-flex items-center text-[11px] font-mono uppercase tracking-widest text-neutral-400 transition hover:text-white"
             >
               <span>{award.writeupLabel || "Read write-up"}</span>
-              <ArrowUpRight size={13} />
             </a>
           </div>
         )}
