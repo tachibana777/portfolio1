@@ -7,10 +7,33 @@ export const projects: Project[] = [
 ];
 export const experiences: Experience[] = [
   {
+    date: "Dec 2025 – Present",
+    title: "PSRUGreenVibe",
+    company: "QA & Penetration Tester",
+    location: "Pibulsongkram Rajabhat University",
+    bullets: [
+      "Managed dual roles in software QA and security testing within a single platform to ensure robust system performance and security.",
+      "Planned and executed functional, API, and automated E2E regression testing using Playwright and Postman alongside comprehensive positive, negative, and boundary test cases.",
+      "Assessed web and API security using Burp Suite following OWASP Top 10 guidelines.",
+      "Identified critical vulnerabilities including authentication flaws, IDOR, XSS, SQL injection, CSRF, RBAC, JWT sessions, and rate limiting."
+    ]
+  },
+  {
+    date: "Jun 2026 – Present",
+    title: "Offensive Security",
+    company: "Red Team & Penetration Tester",
+    location: "Home Lab · Phitsanulok City, TH",
+    bullets: [
+      "Built a dedicated offensive security home lab featuring vulnerable Linux services and intentionally flawed web applications.",
+      "Conducted network reconnaissance, port scanning, and service enumeration using Nmap and Wireshark in an isolated testing environment.",
+      "Performed web penetration testing adhering to OWASP Top 10 using Burp Suite and Metasploit to demonstrate impact, exploit chains, and document remediation steps."
+    ]
+  },
+  {
     date: "Oct 2026 – Present",
     title: "SOC Analyst Incident Investigation Lab",
-    company: "Blue Team & SIEM Lab",
-    location: "Phitsanulok City, TH",
+    company: "Blue Team & SIEM",
+    location: "Home Lab · Phitsanulok City, TH",
     bullets: [
       "Built a virtualized SOC environment deploying Splunk Enterprise on Ubuntu Server to ingest and analyze authentication (/var/log/auth.log) and firewall (/var/log/ufw.log) telemetry.",
       "Engineered SPL-based behavioral detection rules for SSH brute-force attempts (>= 3 failures in 5m) and network port scans (>= 4 unique destination ports in 1m).",
@@ -19,26 +42,14 @@ export const experiences: Experience[] = [
     ]
   },
   {
-    date: "Jun 2026 – Present",
-    title: "Offensive Security Lab",
-    company: "Red Team & Penetration Testing",
-    location: "Phitsanulok City, TH",
+    date: "Aug 2026 – Present",
+    title: "TCTT 2026 Write-ups",
+    company: "Capture The Flag (CTF) Player",
+    location: "National Cyber Security Agency (NCSA)",
     bullets: [
-      "Built and configured a personal cybersecurity lab with Kali Linux and vulnerable targets to practice offensive security workflows.",
-      "Conducted network reconnaissance, port scanning, and service enumeration using Nmap in a controlled setting.",
-      "Executed penetration tests against intentionally vulnerable web applications using Burp Suite and Metasploit, documenting exploitation steps, attack chains, and remediation planning."
-    ]
-  },
-  {
-    date: "Dec 2025 – Present",
-    title: "PSRUGreenVibe (Activity Point & Carbon Platform)",
-    company: "QA & Penetration Tester",
-    location: "Pibulsongkram Rajabhat University",
-    bullets: [
-      "Managed dual roles in software QA and security testing within a single platform to ensure robust system performance and security.",
-      "Planned and executed functional, API, and automated E2E regression testing using Playwright and Postman alongside comprehensive positive, negative, and boundary test cases.",
-      "Assessed web and API security using Burp Suite following OWASP Top 10 guidelines.",
-      "Identified critical vulnerabilities including authentication flaws, IDOR, XSS, SQL injection, CSRF, RBAC, JWT sessions, and rate limiting."
+      "Competed in Thailand Cyber Top Talent 2026 national cybersecurity competition as a member of Whereistheflag team from PSRU.",
+      "Authored detailed write-ups covering technical challenge analysis, web exploitation, reverse engineering, and defensive takeaways.",
+      "Published and maintained a dedicated documentation website using Astro, Tailwind CSS, and Markdown."
     ]
   }
 ];
