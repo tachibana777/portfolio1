@@ -23,8 +23,10 @@ export function HeroSection() {
             </div>
           </div>
         </div>
-        <h2 className="max-w-full text-[1.7rem] font-normal tracking-tight leading-tight text-neutral-100 sm:text-[2.05rem] md:text-[2.15rem]">PENETRATION TESTER— <span className="text-[0.95em] font-light text-neutral-400">Offensive Security</span></h2>
-        <p className="mt-4 max-w-[680px] text-base font-light leading-7 text-neutral-400 sm:text-lg sm:leading-8">I&apos;m a Computer Engineering student focused on Penetration Testing, Offensive Security, and Application Security. My interests include Web Application Security, API Security, Vulnerability Assessment, Reconnaissance, Exploitation, and Security Testing. I enjoy breaking down how systems work, identifying security weaknesses, understanding their root causes, and finding practical ways to improve them.</p>
+        <h2 className="max-w-full text-[1.7rem] font-normal tracking-tight leading-tight text-neutral-100 sm:text-[2.05rem] md:text-[2.15rem]">
+          PENETRATION TESTER &amp; <span className="text-[0.95em] font-light text-sky-600 dark:text-sky-400">SOC ANALYST</span>
+        </h2>
+        <p className="mt-4 max-w-[680px] text-base font-light leading-7 text-neutral-400 sm:text-lg sm:leading-8">A final-year Computer Engineering student with real-world experience in cybersecurity, including web and API testing (OWASP Top 10), vulnerability assessment, and SIEM log analysis/incident investigation using Splunk. Active in national CTF competitions with a practical understanding of attack techniques and defense controls. Seeking internship opportunities in roles such as Penetration Tester, SOC Analyst, or Information Security Intern.</p>
         <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
           <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center rounded-lg bg-neutral-100 px-6 py-3 text-base font-medium text-neutral-950 transition hover:scale-[1.03] hover:bg-white">
             View Resume
