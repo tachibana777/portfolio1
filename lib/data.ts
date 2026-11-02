@@ -7,26 +7,14 @@ export const projects: Project[] = [
 ];
 export const experiences: Experience[] = [
   {
-    date: "Dec 2025 – Oct 2026",
-    title: "PSRUGreenVibe",
-    company: "QA & Penetration Tester",
-    location: "Pibulsongkram Rajabhat University",
+    date: "Oct 2026",
+    title: "Offensive Security",
+    company: "Red Team & Penetration Tester",
+    location: "Home Lab · Phitsanulok City, TH",
     bullets: [
-      "Managed dual roles in software QA and security testing within a single platform to ensure robust system performance and security.",
-      "Planned and executed functional, API, and automated E2E regression testing using Playwright and Postman alongside comprehensive positive, negative, and boundary test cases.",
-      "Assessed web and API security using Burp Suite following OWASP Top 10 guidelines.",
-      "Identified critical vulnerabilities including authentication flaws, IDOR, XSS, SQL injection, CSRF, RBAC, JWT sessions, and rate limiting."
-    ]
-  },
-  {
-    date: "Aug 2026",
-    title: "TCTT 2026 Write-ups",
-    company: "Capture The Flag (CTF) Player",
-    location: "National Cyber Security Agency (NCSA)",
-    bullets: [
-      "Competed in Thailand Cyber Top Talent 2026 national cybersecurity competition as a member of Whereistheflag team from PSRU.",
-      "Authored detailed write-ups covering technical challenge analysis, web exploitation, reverse engineering, and defensive takeaways.",
-      "Published and maintained a dedicated documentation website using Astro, Tailwind CSS, and Markdown."
+      "Built a dedicated offensive security home lab featuring vulnerable Linux services and intentionally flawed web applications.",
+      "Conducted network reconnaissance, port scanning, and service enumeration using Nmap and Wireshark in an isolated testing environment.",
+      "Performed web penetration testing adhering to OWASP Top 10 using Burp Suite and Metasploit to demonstrate impact, exploit chains, and document remediation steps."
     ]
   },
   {
@@ -42,14 +30,26 @@ export const experiences: Experience[] = [
     ]
   },
   {
-    date: "Oct 2026",
-    title: "Offensive Security",
-    company: "Red Team & Penetration Tester",
-    location: "Home Lab · Phitsanulok City, TH",
+    date: "Aug 2026",
+    title: "TCTT 2026 Write-ups",
+    company: "Capture The Flag (CTF) Player",
+    location: "National Cyber Security Agency (NCSA)",
     bullets: [
-      "Built a dedicated offensive security home lab featuring vulnerable Linux services and intentionally flawed web applications.",
-      "Conducted network reconnaissance, port scanning, and service enumeration using Nmap and Wireshark in an isolated testing environment.",
-      "Performed web penetration testing adhering to OWASP Top 10 using Burp Suite and Metasploit to demonstrate impact, exploit chains, and document remediation steps."
+      "Competed in Thailand Cyber Top Talent 2026 national cybersecurity competition as a member of Whereistheflag team from PSRU.",
+      "Authored detailed write-ups covering technical challenge analysis, web exploitation, reverse engineering, and defensive takeaways.",
+      "Published and maintained a dedicated documentation website using Astro, Tailwind CSS, and Markdown."
+    ]
+  },
+  {
+    date: "Dec 2025 – Oct 2026",
+    title: "PSRUGreenVibe",
+    company: "QA & Penetration Tester",
+    location: "Pibulsongkram Rajabhat University",
+    bullets: [
+      "Managed dual roles in software QA and security testing within a single platform to ensure robust system performance and security.",
+      "Planned and executed functional, API, and automated E2E regression testing using Playwright and Postman alongside comprehensive positive, negative, and boundary test cases.",
+      "Assessed web and API security using Burp Suite following OWASP Top 10 guidelines.",
+      "Identified critical vulnerabilities including authentication flaws, IDOR, XSS, SQL injection, CSRF, RBAC, JWT sessions, and rate limiting."
     ]
   }
 ];

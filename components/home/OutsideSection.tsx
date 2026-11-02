@@ -6,10 +6,14 @@ import { Reveal, SectionHeading } from "@/components/ui";
 
 const interests = ["Gaming", "Guitar", "Music"];
 const outsideImages = [
-  "/outside/IMG_1394.JPG",
-  "/outside/IMG_1841.JPG",
-  "/outside/IMG_0824.JPG",
-  "/outside/IMG_20260614_111212.jpg",
+  "/outside/IMG_1.jpg",
+  "/outside/IMG_2.jpg",
+  "/outside/IMG_3.jpg",
+  "/outside/IMG_4.jpg",
+  "/outside/IMG_5.jpg",
+  "/outside/IMG_6.jpg",
+  "/outside/IMG_7.jpg",
+  "/outside/IMG_8.jpg",
 ];
 
 export function OutsideSection() {
