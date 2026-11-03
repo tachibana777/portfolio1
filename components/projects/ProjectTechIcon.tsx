@@ -86,6 +86,30 @@ function PlaywrightIcon({ size = 16, style, className }: Readonly<{ size?: strin
   );
 }
 
+function ThreatIntelIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" />
+      <path d="M12 2v4" />
+      <path d="M12 18v4" />
+      <path d="M2 12h4" />
+      <path d="M18 12h4" />
+    </svg>
+  );
+}
+
+function MispIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="M12 8v4" />
+      <circle cx="12" cy="16" r="1" />
+    </svg>
+  );
+}
+
 type TechConfig = {
   icon: IconType;
   color: string;
@@ -149,6 +173,10 @@ const techMap: Record<string, TechConfig> = {
   nmap: { icon: FaNetworkWired, color: "#22c55e" },
   ufw: { icon: FirewallIcon as unknown as IconType, color: "#f97316" },
   firewall: { icon: FirewallIcon as unknown as IconType, color: "#f97316" },
+  misp: { icon: MispIcon as unknown as IconType, color: "#2596cd" },
+  "threat intelligence": { icon: ThreatIntelIcon as unknown as IconType, color: "#ef4444" },
+  "threat-intelligence": { icon: ThreatIntelIcon as unknown as IconType, color: "#ef4444" },
+  threatintel: { icon: ThreatIntelIcon as unknown as IconType, color: "#ef4444" },
 };
 
 export function ProjectTechIcon({ name }: Readonly<{ name: string }>) {

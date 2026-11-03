@@ -1,20 +1,22 @@
 import type { Award, Certificate, Experience, Project } from "./types";
 export const projects: Project[] = [
-  { title: "Offensive Security", role: "Red Team & Penetration Tester", description: "Hands-on penetration testing and offensive security research focusing on vulnerability discovery, network reconnaissance, exploitation techniques, and practical security assessments.", image: "/events/security-training-lab.jpg", href: "#", action: "VISIT SITE", technologies: ["Kali Linux", "Linux", "Burp Suite", "Nmap", "Metasploit", "OWASP"], status: "IN PROGRESS" },
+  { title: "MISP Threat Intelligence Sharing Lab", role: "Blue Team & Threat Intelligence", description: "Deployed a multi-node MISP (Malware Information Sharing Platform) environment on Ubuntu 24.04.5 using VMware to practice threat intelligence sharing, RBAC user management, organization-based access control, server synchronization (Push & Pull), feed configuration, and TLP-based data classification across two interconnected MISP instances.", image: "/events/misp-events-list.png", href: "/projects/misp-threat-intel-lab", action: "VISIT SITE", technologies: ["MISP", "Ubuntu", "Linux", "VMware", "Threat Intelligence"] },
   { title: "SOC Analyst Incident Investigation Lab", role: "Blue Team & SIEM", description: "Built a virtual SOC lab using Splunk Enterprise to collect and analyze Ubuntu authentication and firewall logs, detect SSH brute-force attempts and potential port scans, investigate security events, and visualize findings through a monitoring dashboard with alert notifications.", image: "/events/soc-analyst-lab.png", href: "/projects/soc-analyst-lab", action: "VISIT SITE", technologies: ["Splunk", "Ubuntu", "Linux", "SIEM", "Log Analysis"] },
-  { title: "TCTT 2026 Write-ups", role: "Capture The Flag (CTF) Player", description: "Authored detailed write-ups for Thailand Cyber Top Talent 2026 challenges.", image: "/events/tctt-2026-writeup.jpg", href: "https://write-up-chi-ashy.vercel.app/posts/tctt2026/tctt2026-write-up/", action: "VISIT SITE", technologies: ["Astro", "Tailwind CSS", "Markdown", "Vercel"] },
-  { title: "PSRUGreenVibe", role: "QA & Penetration Tester", description: "Conducted Web & API penetration testing (OWASP Top 10) using Burp Suite, alongside functional QA and automated E2E regression testing with Playwright and Postman.", image: "/events/psru-greenvibe.png", href: "#", action: "VISIT SITE", technologies: ["Burp Suite", "OWASP", "Playwright", "Postman", "SonarQube", "Postgres", "Docker", "Git", "Next.js"], status: "IN PROGRESS" }
+  { title: "Offensive Security", role: "Red Team & Penetration Tester", description: "Hands-on penetration testing and offensive security research focusing on vulnerability discovery, network reconnaissance, exploitation techniques, and practical security assessments.", image: "/events/security-training-lab.jpg", href: "#", action: "VISIT SITE", technologies: ["Kali Linux", "Linux", "Burp Suite", "Nmap", "Metasploit", "OWASP"], status: "IN PROGRESS" },
+  { title: "PSRUGreenVibe", role: "QA & Penetration Tester", description: "Conducted Web & API penetration testing (OWASP Top 10) using Burp Suite, alongside functional QA and automated E2E regression testing with Playwright and Postman.", image: "/events/psru-greenvibe.png", href: "#", action: "VISIT SITE", technologies: ["Burp Suite", "OWASP", "Playwright", "Postman", "SonarQube", "Postgres", "Docker", "Git", "Next.js"], status: "IN PROGRESS" },
+  { title: "TCTT 2026 Write-ups", role: "Capture The Flag (CTF) Player", description: "Authored detailed write-ups for Thailand Cyber Top Talent 2026 challenges.", image: "/events/tctt-2026-writeup.jpg", href: "https://write-up-chi-ashy.vercel.app/posts/tctt2026/tctt2026-write-up/", action: "VISIT SITE", technologies: ["Astro", "Tailwind CSS", "Markdown", "Vercel"] }
 ];
 export const experiences: Experience[] = [
   {
-    date: "Oct 2026",
-    title: "Offensive Security",
-    company: "Red Team & Penetration Tester",
+    date: "Nov 2026",
+    title: "MISP Threat Intelligence Sharing Lab",
+    company: "Blue Team & Threat Intelligence",
     location: "Home Lab · Phitsanulok City, TH",
     bullets: [
-      "Built a dedicated offensive security home lab featuring vulnerable Linux services and intentionally flawed web applications.",
-      "Conducted network reconnaissance, port scanning, and service enumeration using Nmap and Wireshark in an isolated testing environment.",
-      "Performed web penetration testing adhering to OWASP Top 10 using Burp Suite and Metasploit to demonstrate impact, exploit chains, and document remediation steps."
+      "Deployed two MISP 2.5.51 instances on Ubuntu 24.04.5 via VMware to simulate threat intelligence sharing between NCSA and ORGNAME.",
+      "Configured Role-Based Access Control (RBAC), organization management, and Sync User accounts with API key-based authentication for inter-node communication.",
+      "Configured bidirectional Push & Pull synchronization, verified node connectivity, and monitored synchronization jobs through the Jobs queue.",
+      "Reviewed OSINT feed settings and MISP events tagged with MITRE ATT&CK and TLP; documented IOC search, event review, and correlation workflows using the MISP 2026 guide."
     ]
   },
   {
@@ -30,14 +32,14 @@ export const experiences: Experience[] = [
     ]
   },
   {
-    date: "Aug 2026",
-    title: "TCTT 2026 Write-ups",
-    company: "Capture The Flag (CTF) Player",
-    location: "National Cyber Security Agency (NCSA)",
+    date: "Oct 2026",
+    title: "Offensive Security",
+    company: "Red Team & Penetration Tester",
+    location: "Home Lab · Phitsanulok City, TH",
     bullets: [
-      "Competed in Thailand Cyber Top Talent 2026 national cybersecurity competition as a member of Whereistheflag team from PSRU.",
-      "Authored detailed write-ups covering technical challenge analysis, web exploitation, reverse engineering, and defensive takeaways.",
-      "Published and maintained a dedicated documentation website using Astro, Tailwind CSS, and Markdown."
+      "Built a dedicated offensive security home lab featuring vulnerable Linux services and intentionally flawed web applications.",
+      "Conducted network reconnaissance, port scanning, and service enumeration using Nmap and Wireshark in an isolated testing environment.",
+      "Performed web penetration testing adhering to OWASP Top 10 using Burp Suite and Metasploit to demonstrate impact, exploit chains, and document remediation steps."
     ]
   },
   {
@@ -50,6 +52,17 @@ export const experiences: Experience[] = [
       "Planned and executed functional, API, and automated E2E regression testing using Playwright and Postman alongside comprehensive positive, negative, and boundary test cases.",
       "Assessed web and API security using Burp Suite following OWASP Top 10 guidelines.",
       "Identified critical vulnerabilities including authentication flaws, IDOR, XSS, SQL injection, CSRF, RBAC, JWT sessions, and rate limiting."
+    ]
+  },
+  {
+    date: "Aug 2026",
+    title: "TCTT 2026 Write-ups",
+    company: "Capture The Flag (CTF) Player",
+    location: "National Cyber Security Agency (NCSA)",
+    bullets: [
+      "Competed in Thailand Cyber Top Talent 2026 national cybersecurity competition as a member of Whereistheflag team from PSRU.",
+      "Authored detailed write-ups covering technical challenge analysis, web exploitation, reverse engineering, and defensive takeaways.",
+      "Published and maintained a dedicated documentation website using Astro, Tailwind CSS, and Markdown."
     ]
   }
 ];
