@@ -5,7 +5,7 @@ import { ProjectCard } from "@/components/projects/ProjectCard";
 import { Reveal, SectionHeading } from "@/components/ui";
 
 export function ProjectsSection() {
-  const projectCountLabel = projects.length >= 5 ? "5+" : String(projects.length);
+  const projectCountLabel = `${projects.length}+`;
 
   return (
     <Reveal delay={0.14}>
