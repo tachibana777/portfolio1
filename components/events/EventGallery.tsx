@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { Shuffle } from "lucide-react";
 import { useMemo, useState } from "react";
+import { useEffect } from "react";
 
 export type EventCategory = "All" | "Nature & Travel" | "Cybersecurity Work" | "Events & Competitions" | "Everyday Moments";
 
@@ -14,39 +16,49 @@ export type EventItem = {
 const categories: EventCategory[] = ["All", "Nature & Travel", "Events & Competitions", "Cybersecurity Work", "Everyday Moments"];
 const allViewOrder: EventItem["category"][] = ["Nature & Travel", "Cybersecurity Work", "Events & Competitions", "Everyday Moments"];
 
+function shuffle<T>(items: T[]) {
+  const result = [...items];
+  for (let index = result.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [result[index], result[randomIndex]] = [result[randomIndex], result[index]];
+  }
+  return result;
+}
+
+function buildBalancedRandomOrder(items: EventItem[]) {
+  const buckets = new Map(allViewOrder.map((category) => [category, shuffle(items.filter((item) => item.category === category))]));
+  const mixed: EventItem[] = [];
+  let index = 0;
+  while (mixed.length < items.length) {
+    for (const category of allViewOrder) {
+      const item = buckets.get(category)?.[index];
+      if (item) mixed.push(item);
+    }
+    index += 1;
+  }
+  return mixed;
+}
+
 export function EventGallery({ items }: Readonly<{ items: EventItem[] }>) {
   const [activeCategory, setActiveCategory] = useState<EventCategory>("All");
-  const filteredItems = useMemo(() => {
-    const selected = activeCategory === "All" ? items : items.filter((item) => item.category === activeCategory);
-    if (activeCategory !== "All") return selected;
+  const [visibleItems, setVisibleItems] = useState(items);
 
-    const buckets = new Map(allViewOrder.map((category) => [category, selected.filter((item) => item.category === category)]));
-    const mixed: EventItem[] = [];
-    let index = 0;
-    while (mixed.length < selected.length) {
-      for (const category of allViewOrder) {
-        const item = buckets.get(category)?.[index];
-        if (item) mixed.push(item);
-      }
-      index += 1;
-    }
+  function randomizeAll() {
+    setVisibleItems(buildBalancedRandomOrder(items));
+  }
 
-    // Apply the annotated desktop layout: positions are counted left-to-right,
-    // top-to-bottom in the three-column All view.
-    if (mixed.length > 7) {
-      const originalPosition2 = mixed[1];
-      const originalPosition6 = mixed[5];
-      const originalPosition8 = mixed[7];
-      const aquariumIndex = mixed.findIndex((item) => item.file === "IMG_6599.jpg");
-      if (aquariumIndex !== -1) {
-        [mixed[3], mixed[aquariumIndex]] = [mixed[aquariumIndex], mixed[3]];
-      }
-      mixed[1] = originalPosition6;
-      mixed[7] = originalPosition2;
-      mixed[5] = originalPosition8;
+  useEffect(() => {
+    if (activeCategory === "All") {
+      randomizeAll();
+    } else {
+      setVisibleItems(items.filter((item) => item.category === activeCategory));
     }
-    return mixed;
   }, [activeCategory, items]);
+
+  const filteredItems = useMemo(
+    () => activeCategory === "All" ? visibleItems : visibleItems.filter((item) => item.category === activeCategory),
+    [activeCategory, visibleItems],
+  );
   return (
     <div className="mt-8">
       <div className="mb-7 flex flex-wrap items-center gap-2" role="tablist" aria-label="Event photo categories">
@@ -63,6 +75,11 @@ export function EventGallery({ items }: Readonly<{ items: EventItem[] }>) {
           </button>
         ))}
         <span className="ml-auto text-xs text-neutral-500">{filteredItems.length} photos</span>
+        {activeCategory === "All" && (
+          <button type="button" onClick={randomizeAll} className="event-filter inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium">
+            <Shuffle size={13} /> Shuffle
+          </button>
+        )}
       </div>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
