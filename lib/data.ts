@@ -1,5 +1,6 @@
 import type { Award, Certificate, Experience, Project } from "./types";
 export const projects: Project[] = [
+  { title: "MISP to Wazuh Endpoint Automated Response Lab", role: "Blue Team & Automated Response", description: "Advanced the IOC detection pipeline into response automation: hash-based malware evidence collection, verified transfer and removal, malicious IP blocking, and DNS sinkholing with Wazuh Active Response.", image: "/events/misp-jobs-server1.png", href: "/projects/misp-wazuh-automated-response-lab", action: "READ REPORT", technologies: ["MISP", "Wazuh", "Suricata", "Active Response", "Incident Response", "Linux"] },
   { title: "MISP to Wazuh IOC Detection Lab", role: "Blue Team & Threat Intelligence", description: "Extended the MISP sharing lab into an end-to-end detection pipeline: cleaned threat indicators, built a Wazuh CDB list, matched Suricata network telemetry, and verified dashboard alerts from a simulated attacker.", image: "/events/misp-tlp-table.png", href: "/projects/misp-wazuh-ioc-lab", action: "READ REPORT", technologies: ["MISP", "Wazuh", "Suricata", "Ubuntu", "Kali Linux", "Threat Intelligence"] },
   { title: "MISP Threat Intelligence Sharing Lab", role: "Blue Team & Threat Intelligence", description: "Deployed a multi-node MISP (Malware Information Sharing Platform) environment on Ubuntu 24.04.5 using VMware to practice threat intelligence sharing, RBAC user management, organization-based access control, server synchronization (Push & Pull), feed configuration, and TLP-based data classification across two interconnected MISP instances.", image: "/events/misp-events-list.png", href: "/projects/misp-threat-intel-lab", action: "VISIT SITE", technologies: ["MISP", "Ubuntu", "Linux", "VMware", "Threat Intelligence"] },
   { title: "SOC Analyst Incident Investigation Lab", role: "Blue Team & SIEM", description: "Built a virtual SOC lab using Splunk Enterprise to collect and analyze Ubuntu authentication and firewall logs, detect SSH brute-force attempts and potential port scans, investigate security events, and visualize findings through a monitoring dashboard with alert notifications.", image: "/events/soc-analyst-lab.png", href: "/projects/soc-analyst-lab", action: "VISIT SITE", technologies: ["Splunk", "Ubuntu", "Linux", "SIEM", "Log Analysis"] },
@@ -8,6 +9,18 @@ export const projects: Project[] = [
   { title: "TCTT 2026 Write-ups", role: "Capture The Flag (CTF) Player", description: "Authored detailed write-ups for Thailand Cyber Top Talent 2026 challenges.", image: "/events/tctt-2026-writeup.jpg", href: "https://write-up-chi-ashy.vercel.app/posts/tctt2026/tctt2026-write-up/", action: "VISIT SITE", technologies: ["Astro", "Tailwind CSS", "Markdown", "Vercel"] }
 ];
 export const experiences: Experience[] = [
+  {
+    date: "Nov 2026",
+    title: "MISP to Wazuh Endpoint Automated Response Lab",
+    company: "Blue Team & Automated Response",
+    location: "Home Lab · Phitsanulok City, TH",
+    bullets: [
+      "Designed three Wazuh Active Response workflows: hash-based malware evidence collection, malicious IP blocking, and malicious-domain sinkholing.",
+      "Built a guarded response script that hashes an EICAR test file, records metadata, creates a password-protected archive, transfers and verifies evidence on a separate manager, then deletes the original only after every step succeeds.",
+      "Added allowlists, input validation, idempotent iptables handling, timeout-based response cleanup, and throttling to reduce unsafe or repetitive automated actions.",
+      "Documented troubleshooting for Wazuh field names, rule inheritance, DNS array matching, SSH key permissions, evidence integrity checks, and service reload behavior."
+    ]
+  },
   {
     date: "Nov 2026",
     title: "MISP to Wazuh IOC Detection Lab",
