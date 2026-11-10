@@ -12,14 +12,7 @@ export type EventItem = {
 };
 
 const categories: EventCategory[] = ["All", "Nature & Travel", "Events & Competitions", "Cybersecurity Work", "Everyday Moments"];
-const natureFirst = [
-  "IMG_20260614_105750_243.webp",
-  "1781420030240.jpg",
-  "IMG_20260401_155412_339.webp",
-  "IMG_0341.jpg",
-  "IMG_1837.jpg",
-  "IMG_6599.jpg",
-];
+const allViewOrder: EventItem["category"][] = ["Nature & Travel", "Cybersecurity Work", "Events & Competitions", "Everyday Moments"];
 
 export function EventGallery({ items }: Readonly<{ items: EventItem[] }>) {
   const [activeCategory, setActiveCategory] = useState<EventCategory>("All");
@@ -27,14 +20,17 @@ export function EventGallery({ items }: Readonly<{ items: EventItem[] }>) {
     const selected = activeCategory === "All" ? items : items.filter((item) => item.category === activeCategory);
     if (activeCategory !== "All") return selected;
 
-    return [...selected].sort((a, b) => {
-      const aRank = natureFirst.indexOf(a.file);
-      const bRank = natureFirst.indexOf(b.file);
-      if (aRank === -1 && bRank === -1) return 0;
-      if (aRank === -1) return 1;
-      if (bRank === -1) return -1;
-      return aRank - bRank;
-    });
+    const buckets = new Map(allViewOrder.map((category) => [category, selected.filter((item) => item.category === category)]));
+    const mixed: EventItem[] = [];
+    let index = 0;
+    while (mixed.length < selected.length) {
+      for (const category of allViewOrder) {
+        const item = buckets.get(category)?.[index];
+        if (item) mixed.push(item);
+      }
+      index += 1;
+    }
+    return mixed;
   }, [activeCategory, items]);
   return (
     <div className="mt-8">
@@ -54,10 +50,10 @@ export function EventGallery({ items }: Readonly<{ items: EventItem[] }>) {
         <span className="ml-auto text-xs text-neutral-500">{filteredItems.length} photos</span>
       </div>
 
-      <div className="columns-2 gap-4 sm:columns-3">
-        {filteredItems.map((item, index) => (
-          <figure key={item.file} className="group mb-4 break-inside-avoid overflow-hidden rounded-2xl border border-neutral-200/80 bg-panel shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-neutral-800/80">
-            <div className={`relative overflow-hidden ${index % 5 === 1 ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+        {filteredItems.map((item) => (
+          <figure key={item.file} className="group overflow-hidden rounded-2xl border border-neutral-200/80 bg-panel shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-neutral-800/80">
+            <div className="relative aspect-[4/3] overflow-hidden">
               <Image
                 src={`/events/${encodeURIComponent(item.file)}`}
                 alt={item.title}
