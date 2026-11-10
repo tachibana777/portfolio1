@@ -63,11 +63,6 @@ export default function EventsPage() {
     <PageShell>
       <Reveal>
         <PageIntro title="Events" description="A visual journal of cybersecurity labs, competitions, university events, and everyday moments outside the IDE." />
-        <div className="mt-8 grid gap-3 sm:grid-cols-3">
-          <div className="rounded-2xl border border-neutral-200 bg-panel p-4 dark:border-neutral-800"><p className="text-2xl font-semibold text-neutral-100">{eventItems.length}</p><p className="mt-1 text-xs text-neutral-500">Photos collected</p></div>
-          <div className="rounded-2xl border border-neutral-200 bg-panel p-4 dark:border-neutral-800"><p className="text-2xl font-semibold text-neutral-100">4</p><p className="mt-1 text-xs text-neutral-500">Photo stories</p></div>
-          <div className="rounded-2xl border border-neutral-200 bg-panel p-4 dark:border-neutral-800"><p className="text-2xl font-semibold text-neutral-100">2023–2026</p><p className="mt-1 text-xs text-neutral-500">Timeline</p></div>
-        </div>
         <EventGallery items={eventItems} />
       </Reveal>
     </PageShell>

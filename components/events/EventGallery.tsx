@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { Shuffle } from "lucide-react";
-import { useMemo, useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export type EventCategory = "All" | "Nature & Travel" | "Cybersecurity Work" | "Events & Competitions" | "Everyday Moments";
 
@@ -13,7 +12,6 @@ export type EventItem = {
   category: Exclude<EventCategory, "All">;
 };
 
-const categories: EventCategory[] = ["All", "Nature & Travel", "Events & Competitions", "Cybersecurity Work", "Everyday Moments"];
 const allViewOrder: EventItem["category"][] = ["Nature & Travel", "Cybersecurity Work", "Events & Competitions", "Everyday Moments"];
 
 function shuffle<T>(items: T[]) {
@@ -40,7 +38,6 @@ function buildBalancedRandomOrder(items: EventItem[]) {
 }
 
 export function EventGallery({ items }: Readonly<{ items: EventItem[] }>) {
-  const [activeCategory, setActiveCategory] = useState<EventCategory>("All");
   const [visibleItems, setVisibleItems] = useState(items);
 
   function randomizeAll() {
@@ -48,42 +45,21 @@ export function EventGallery({ items }: Readonly<{ items: EventItem[] }>) {
   }
 
   useEffect(() => {
-    if (activeCategory === "All") {
-      randomizeAll();
-    } else {
-      setVisibleItems(items.filter((item) => item.category === activeCategory));
-    }
-  }, [activeCategory, items]);
+    randomizeAll();
+  }, [items]);
 
-  const filteredItems = useMemo(
-    () => activeCategory === "All" ? visibleItems : visibleItems.filter((item) => item.category === activeCategory),
-    [activeCategory, visibleItems],
-  );
   return (
     <div className="mt-8">
-      <div className="mb-7 flex flex-wrap items-center gap-2" role="tablist" aria-label="Event photo categories">
-        {categories.map((category) => (
-          <button
-            key={category}
-            type="button"
-            role="tab"
-            aria-selected={activeCategory === category}
-            onClick={() => setActiveCategory(category)}
-            className={`event-filter rounded-full border px-3.5 py-1.5 text-xs font-medium transition ${activeCategory === category ? "event-filter-active" : ""}`}
-          >
-            {category}
-          </button>
-        ))}
-        <span className="ml-auto text-xs text-neutral-500">{filteredItems.length} photos</span>
-        {activeCategory === "All" && (
-          <button type="button" onClick={randomizeAll} className="event-filter inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium">
-            <Shuffle size={13} /> Shuffle
-          </button>
-        )}
+      <div className="mb-7 flex flex-wrap items-center gap-2" aria-label="Event photo controls">
+        <span className="event-filter event-filter-active rounded-full border px-3.5 py-1.5 text-xs font-medium">All</span>
+        <button type="button" onClick={randomizeAll} className="event-filter inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium">
+          <Shuffle size={13} /> Shuffle
+        </button>
+        <span className="ml-auto text-xs text-neutral-500">{visibleItems.length} photos</span>
       </div>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-        {filteredItems.map((item) => (
+        {visibleItems.map((item) => (
           <figure key={item.file} className="group overflow-hidden rounded-2xl border border-neutral-200/80 bg-panel shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-neutral-800/80">
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
