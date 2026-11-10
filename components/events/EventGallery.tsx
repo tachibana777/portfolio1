@@ -36,9 +36,6 @@ export function EventGallery({ items }: Readonly<{ items: EventItem[] }>) {
       return aRank - bRank;
     });
   }, [activeCategory, items]);
-  const featuredItems = activeCategory === "All" ? filteredItems.filter((item) => item.category === "Nature & Travel") : [];
-  const galleryItems = activeCategory === "All" ? filteredItems.filter((item) => item.category !== "Nature & Travel") : filteredItems;
-
   return (
     <div className="mt-8">
       <div className="mb-7 flex flex-wrap items-center gap-2" role="tablist" aria-label="Event photo categories">
@@ -57,24 +54,9 @@ export function EventGallery({ items }: Readonly<{ items: EventItem[] }>) {
         <span className="ml-auto text-xs text-neutral-500">{filteredItems.length} photos</span>
       </div>
 
-      {featuredItems.length > 0 && (
-        <div className="mb-8 -mx-1 overflow-x-auto pb-3 [scrollbar-width:thin]">
-          <div className="flex w-max gap-4 px-1">
-            {featuredItems.map((item) => (
-              <figure key={item.file} className="group relative w-[220px] shrink-0 overflow-hidden rounded-2xl border border-neutral-200/80 bg-panel shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-neutral-800/80 sm:w-[260px]">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image src={`/events/${encodeURIComponent(item.file)}`} alt={item.title} fill sizes="260px" className="object-cover transition duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-4 pb-3 pt-12"><figcaption className="text-sm font-medium text-white">{item.title}</figcaption></div>
-                </div>
-              </figure>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
-        {galleryItems.map((item, index) => (
-          <figure key={item.file} className="group mb-4 break-inside-avoid overflow-hidden rounded-2xl border border-neutral-200/80 bg-panel shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-neutral-800/80">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+        {filteredItems.map((item, index) => (
+          <figure key={item.file} className="group overflow-hidden rounded-2xl border border-neutral-200/80 bg-panel shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-neutral-800/80">
             <div className={`relative overflow-hidden ${index % 5 === 1 ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
               <Image
                 src={`/events/${encodeURIComponent(item.file)}`}
