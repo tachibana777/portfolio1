@@ -30,6 +30,21 @@ export function EventGallery({ items }: Readonly<{ items: EventItem[] }>) {
       }
       index += 1;
     }
+
+    // Apply the annotated desktop layout: positions are counted left-to-right,
+    // top-to-bottom in the three-column All view.
+    if (mixed.length > 7) {
+      const originalPosition2 = mixed[1];
+      const originalPosition6 = mixed[5];
+      const originalPosition8 = mixed[7];
+      const aquariumIndex = mixed.findIndex((item) => item.file === "IMG_6599.jpg");
+      if (aquariumIndex !== -1) {
+        [mixed[3], mixed[aquariumIndex]] = [mixed[aquariumIndex], mixed[3]];
+      }
+      mixed[1] = originalPosition6;
+      mixed[7] = originalPosition2;
+      mixed[5] = originalPosition8;
+    }
     return mixed;
   }, [activeCategory, items]);
   return (
