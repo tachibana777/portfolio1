@@ -8,8 +8,11 @@ function ResetToLightOnOpen() {
   const { setTheme } = useTheme();
 
   useEffect(() => {
+    // Reset only once when the app opens; do not override the user's toggle.
     setTheme("light");
-  }, [setTheme]);
+    // next-themes exposes a stable setter, and this effect intentionally runs once per mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return null;
 }
