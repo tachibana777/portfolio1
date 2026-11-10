@@ -15,6 +15,7 @@ html.light {
   background: #f7f7f5;
   --spotlight-color: rgba(0, 0, 0, 0.07);
 }
+html.dark { color-scheme: dark; }
 .light body { background: #f7f7f5; color: #171717; }
 .light .bg-ink { background-color: rgb(247 247 245 / 0.88); }
 .light .bg-ink\/85 { background-color: rgb(247 247 245 / 0.88); }
@@ -37,9 +38,17 @@ html.light {
 .light .border-neutral-800,
 .light .border-line,
 .light .border-line\/80 { border-color: #deded9; }
+.light .border-neutral-200\/80,
+.light .border-neutral-800\/80,
+.light .border-neutral-800\/90 { border-color: #deded9; }
 .light .border-neutral-700 { border-color: #c9c9c3; }
 .light .border-neutral-400 { border-color: #a3a3a3; }
 .light .border-neutral-100 { border-color: #171717; }
+.light .bg-neutral-900\/30,
+.light .bg-neutral-900\/40,
+.light .bg-neutral-900\/60,
+.light .bg-neutral-900\/80 { background-color: rgb(242 242 239 / 0.82); }
+.light .bg-neutral-950\/60 { background-color: rgb(255 255 255 / 0.92); }
 .light .before\:border-ink::before { border-color: #f7f7f5; }
 .light .section-title { color: #171717; }
 .light .theme-toggle:hover { background-color: #e7e7e3; color: #171717; }
