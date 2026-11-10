@@ -7,7 +7,7 @@ export function ExperienceSection() {
       <section className="py-10">
         <SectionHeading title="Experience" href="/experience" linkLabel="View Details" />
         <div className="space-y-6">
-          {experiences.map((experience) => (
+          {experiences.slice(0, 4).map((experience) => (
             <article key={experience.title} className="sm:grid sm:grid-cols-[160px_1fr] sm:gap-6">
               <time className="text-xs font-medium text-neutral-400 whitespace-nowrap mb-1 sm:mb-0 sm:pt-1">{experience.date}</time>
               <div>

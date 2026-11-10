@@ -16,6 +16,7 @@ export function HeroSection() {
             <h1 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-100 sm:text-2xl md:text-3xl">
               Kritsada Hongpatsa <BadgeCheck size={22} className="fill-sky-500 text-ink" />
             </h1>
+            <p className="text-xs font-mono font-medium tracking-wide text-sky-600 dark:text-sky-400">Internship at NCSA</p>
             <div className="flex items-center gap-3.5 text-neutral-400">
               <Link href="https://github.com/tachibana777" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="transition-all hover:text-white hover:-translate-y-0.5"><Github size={19} /></Link>
               <Linkedin size={19} aria-label="LinkedIn" className="cursor-pointer transition-all hover:text-white hover:-translate-y-0.5" />

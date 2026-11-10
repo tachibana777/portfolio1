@@ -5,6 +5,8 @@ import { ProjectCard } from "@/components/projects/ProjectCard";
 import { Reveal, SectionHeading } from "@/components/ui";
 
 export function ProjectsSection() {
+  const projectCountLabel = projects.length >= 5 ? "5+" : String(projects.length);
+
   return (
     <Reveal delay={0.14}>
       <section className="py-10">
@@ -19,7 +21,7 @@ export function ProjectsSection() {
             href="/projects"
             className="project-explore-link group inline-flex items-center gap-1.5 rounded-lg border px-5 py-2.5 text-sm font-medium shadow-sm transition hover:scale-[1.03]"
           >
-            <span>Explore Projects</span>
+            <span>Explore Projects {projectCountLabel}</span>
             <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
           </Link>
         </div>
