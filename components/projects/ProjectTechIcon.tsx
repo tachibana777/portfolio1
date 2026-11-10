@@ -187,7 +187,8 @@ export function ProjectTechIcon({ name }: Readonly<{ name: string }>) {
     return (
       <span
         title={name}
-        className="inline-block rounded border border-neutral-700/60 bg-neutral-800/80 px-1.5 py-0.5 font-mono text-[10px] text-neutral-300 transition-colors dark:border-neutral-800 dark:bg-neutral-900/80 dark:text-neutral-400"
+        aria-label={name}
+        className="tech-badge inline-flex min-w-[34px] items-center justify-center rounded border px-1.5 py-0.5 font-mono text-[10px] font-medium tracking-wide transition-all hover:-translate-y-0.5"
       >
         {name.slice(0, 3).toUpperCase()}
       </span>
