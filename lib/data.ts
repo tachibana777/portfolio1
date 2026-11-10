@@ -1,5 +1,6 @@
 import type { Award, Certificate, Experience, Project } from "./types";
 export const projects: Project[] = [
+  { title: "MISP to Wazuh IOC Detection Lab", role: "Blue Team & Threat Intelligence", description: "Extended the MISP sharing lab into an end-to-end detection pipeline: cleaned threat indicators, built a Wazuh CDB list, matched Suricata network telemetry, and verified dashboard alerts from a simulated attacker.", image: "/events/misp-tlp-table.png", href: "/projects/misp-wazuh-ioc-lab", action: "READ REPORT", technologies: ["MISP", "Wazuh", "Suricata", "Ubuntu", "Kali Linux", "Threat Intelligence"] },
   { title: "MISP Threat Intelligence Sharing Lab", role: "Blue Team & Threat Intelligence", description: "Deployed a multi-node MISP (Malware Information Sharing Platform) environment on Ubuntu 24.04.5 using VMware to practice threat intelligence sharing, RBAC user management, organization-based access control, server synchronization (Push & Pull), feed configuration, and TLP-based data classification across two interconnected MISP instances.", image: "/events/misp-events-list.png", href: "/projects/misp-threat-intel-lab", action: "VISIT SITE", technologies: ["MISP", "Ubuntu", "Linux", "VMware", "Threat Intelligence"] },
   { title: "SOC Analyst Incident Investigation Lab", role: "Blue Team & SIEM", description: "Built a virtual SOC lab using Splunk Enterprise to collect and analyze Ubuntu authentication and firewall logs, detect SSH brute-force attempts and potential port scans, investigate security events, and visualize findings through a monitoring dashboard with alert notifications.", image: "/events/soc-analyst-lab.png", href: "/projects/soc-analyst-lab", action: "VISIT SITE", technologies: ["Splunk", "Ubuntu", "Linux", "SIEM", "Log Analysis"] },
   { title: "Offensive Security", role: "Red Team & Penetration Tester", description: "Hands-on penetration testing and offensive security research focusing on vulnerability discovery, network reconnaissance, exploitation techniques, and practical security assessments.", image: "/events/security-training-lab.jpg", href: "#", action: "VISIT SITE", technologies: ["Kali Linux", "Linux", "Burp Suite", "Nmap", "Metasploit", "OWASP"], status: "IN PROGRESS" },
@@ -7,6 +8,18 @@ export const projects: Project[] = [
   { title: "TCTT 2026 Write-ups", role: "Capture The Flag (CTF) Player", description: "Authored detailed write-ups for Thailand Cyber Top Talent 2026 challenges.", image: "/events/tctt-2026-writeup.jpg", href: "https://write-up-chi-ashy.vercel.app/posts/tctt2026/tctt2026-write-up/", action: "VISIT SITE", technologies: ["Astro", "Tailwind CSS", "Markdown", "Vercel"] }
 ];
 export const experiences: Experience[] = [
+  {
+    date: "Nov 2026",
+    title: "MISP to Wazuh IOC Detection Lab",
+    company: "Blue Team & Threat Intelligence",
+    location: "Home Lab · Phitsanulok City, TH",
+    bullets: [
+      "Extended a multi-node MISP lab into a detection pipeline that pulled published IP indicators through the MISP REST API and cleaned them with validation, warninglists, private-range filtering, whitelisting, and deduplication.",
+      "Generated a Wazuh CDB list and custom level-12 rule, then validated the rule with wazuh-logtest before live traffic testing.",
+      "Deployed Suricata on a Linux endpoint, forwarded eve.json through the Wazuh agent, and correlated a simulated Kali scan with a MISP IOC match in the Wazuh dashboard.",
+      "Documented troubleshooting around API authentication, CDB test data, duplicate rule IDs, Suricata upgrades, and alert volume limitations."
+    ]
+  },
   {
     date: "Nov 2026",
     title: "MISP Threat Intelligence Sharing Lab",
