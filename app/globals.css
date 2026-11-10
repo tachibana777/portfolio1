@@ -71,6 +71,16 @@ html.dark { color-scheme: dark; }
 .light .tech-badge { border-color: #b8b8b2; background-color: #e5e5e1; color: #171717; }
 .light .tech-badge:hover { border-color: #737373; background-color: #d4d4d0; }
 
+/* Event filter pills: keep text and borders readable in both themes. */
+.event-filter { border-color: #454545; background-color: #171717; color: #d4d4d4; }
+.event-filter:hover { border-color: #8a8a8a; color: #ffffff; }
+.event-filter-active { border-color: #f5f5f5; background-color: #f5f5f5; color: #171717; }
+.event-filter-active:hover { border-color: #ffffff; background-color: #ffffff; color: #0d0d0e; }
+.light .event-filter { border-color: #c4c4be; background-color: #ffffff; color: #404040; }
+.light .event-filter:hover { border-color: #737373; color: #171717; }
+.light .event-filter-active { border-color: #171717; background-color: #171717; color: #ffffff; }
+.light .event-filter-active:hover { border-color: #404040; background-color: #404040; color: #ffffff; }
+
 .project-explore-link { border-color: #e5e5e5; background-color: #ffffff; color: #0a0a0a; }
 .project-explore-link:hover { border-color: #d4d4d4; background-color: #e5e5e5; }
 .light .project-explore-link { border-color: #171717; background-color: #171717; color: #ffffff; }
