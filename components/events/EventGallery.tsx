@@ -30,6 +30,17 @@ export function EventGallery({ items }: Readonly<{ items: EventItem[] }>) {
       }
       index += 1;
     }
+
+    const swapPositions = (firstFile: string, secondFile: string) => {
+      const firstIndex = mixed.findIndex((item) => item.file === firstFile);
+      const secondIndex = mixed.findIndex((item) => item.file === secondFile);
+      if (firstIndex === -1 || secondIndex === -1) return;
+      [mixed[firstIndex], mixed[secondIndex]] = [mixed[secondIndex], mixed[firstIndex]];
+    };
+
+    // Keep the annotated layout balanced: move work/lab photos into the early rows.
+    swapPositions("1773574840281.jpg", "IMG_0305.jpg");
+    swapPositions("IMG_0341.jpg", "IMG_0135.jpg");
     return mixed;
   }, [activeCategory, items]);
   return (
