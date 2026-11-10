@@ -54,9 +54,9 @@ export function EventGallery({ items }: Readonly<{ items: EventItem[] }>) {
         <span className="ml-auto text-xs text-neutral-500">{filteredItems.length} photos</span>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+      <div className="grid items-start grid-cols-2 gap-4 sm:grid-cols-3">
         {filteredItems.map((item, index) => (
-          <figure key={item.file} className="group overflow-hidden rounded-2xl border border-neutral-200/80 bg-panel shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-neutral-800/80">
+          <figure key={item.file} className="group h-fit overflow-hidden rounded-2xl border border-neutral-200/80 bg-panel shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-neutral-800/80">
             <div className={`relative overflow-hidden ${index % 5 === 1 ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
               <Image
                 src={`/events/${encodeURIComponent(item.file)}`}
