@@ -27,10 +27,16 @@ function readableTitle(file: string) {
 
 function getEventItems(): EventItem[] {
   const eventsDirectory = join(process.cwd(), "public", "events");
+  const categoryOrder: Record<EventItem["category"], number> = {
+    "Life & Moments": 0,
+    "Events & Community": 1,
+    "Cybersecurity & Labs": 2,
+  };
+
   return readdirSync(eventsDirectory)
     .filter((file) => imageExtensions.has(file.slice(file.lastIndexOf(".")).toLowerCase()))
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }))
-    .map((file) => ({ file, title: readableTitle(file), category: classifyEvent(file) }));
+    .map((file) => ({ file, title: readableTitle(file), category: classifyEvent(file) }))
+    .sort((a, b) => categoryOrder[a.category] - categoryOrder[b.category] || a.file.localeCompare(b.file, undefined, { numeric: true, sensitivity: "base" }));
 }
 
 export default function EventsPage() {
