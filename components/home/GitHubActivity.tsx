@@ -2,17 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import { useTheme } from "next-themes";
 
 const GitHubCalendar = dynamic(() => import("react-github-calendar"), { ssr: false });
 
 const activityTheme = {
+  light: ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
   dark: ["#14201c", "#0e4429", "#006d32", "#26a641", "#39d353"],
 };
 
 export function GitHubActivity() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -48,7 +54,7 @@ export function GitHubActivity() {
   return (
     <div ref={containerRef} className="min-h-40 overflow-x-auto rounded-lg border border-line p-4 text-xs text-neutral-400">
       {isVisible
-        ? <GitHubCalendar key={refreshKey} username="tachibana777" blockSize={9} blockMargin={3} fontSize={11} colorScheme="dark" theme={activityTheme} />
+        ? <GitHubCalendar key={refreshKey} username="tachibana777" blockSize={9} blockMargin={3} fontSize={11} colorScheme={mounted && resolvedTheme === "dark" ? "dark" : "light"} theme={activityTheme} />
         : <div className="h-28 animate-pulse rounded bg-neutral-900/50" role="status" aria-label="Loading GitHub activity" />}
     </div>
   );

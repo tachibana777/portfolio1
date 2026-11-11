@@ -14,7 +14,7 @@ function classifyEvent(file: string): EventItem["category"] {
   if (name.includes("r2m") || name.includes("ctf") || name.includes("startup") || name.includes("outside-event") || name.includes("screenshot 2024")) {
     return "Events & Competitions";
   }
-  if (name.includes("misp") || name.includes("splunk") || name.includes("soc") || name.includes("security") || name.includes("static-code") || name.includes("psru-cyber") || name.includes("psru-greenvibe") || name.includes("tctt") || name.includes("carbon") || name.includes("screenshot 2026") || name.includes("img_0135") || name.includes("img_0305") || name.includes("img_1469") || name.includes("img_202611")) {
+  if (name.includes("misp") || name.startsWith("edr-") || name.startsWith("xdr-") || name.includes("splunk") || name.includes("soc") || name.includes("security") || name.includes("static-code") || name.includes("psru-cyber") || name.includes("psru-greenvibe") || name.includes("tctt") || name.includes("carbon") || name.includes("screenshot 2026") || name.includes("img_0135") || name.includes("img_0305") || name.includes("img_1469") || name.includes("img_202611")) {
     return "Cybersecurity Work";
   }
   return "Everyday Moments";
