@@ -12,6 +12,7 @@ const activityTheme = {
 export function GitHubActivity() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -31,10 +32,23 @@ export function GitHubActivity() {
     return () => observer.disconnect();
   }, []);
 
+  // Refetch when the tab regains focus after 5+ minutes, or every 10 minutes while open.
+  useEffect(() => {
+    if (!isVisible) return;
+    let last = Date.now();
+    const refresh = () => { last = Date.now(); setRefreshKey((k) => k + 1); };
+    const onVisible = () => {
+      if (document.visibilityState === "visible" && Date.now() - last > 5 * 60 * 1000) refresh();
+    };
+    const timer = window.setInterval(() => { if (document.visibilityState === "visible") refresh(); }, 10 * 60 * 1000);
+    document.addEventListener("visibilitychange", onVisible);
+    return () => { window.clearInterval(timer); document.removeEventListener("visibilitychange", onVisible); };
+  }, [isVisible]);
+
   return (
     <div ref={containerRef} className="min-h-40 overflow-x-auto rounded-lg border border-line p-4 text-xs text-neutral-400">
       {isVisible
-        ? <GitHubCalendar username="tachibana777" blockSize={9} blockMargin={3} fontSize={11} colorScheme="dark" theme={activityTheme} />
+        ? <GitHubCalendar key={refreshKey} username="tachibana777" blockSize={9} blockMargin={3} fontSize={11} colorScheme="dark" theme={activityTheme} />
         : <div className="h-28 animate-pulse rounded bg-neutral-900/50" role="status" aria-label="Loading GitHub activity" />}
     </div>
   );

@@ -110,6 +110,86 @@ function MispIcon({ size = 16, style, className }: Readonly<{ size?: string | nu
   );
 }
 
+function WazuhIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="M8 9l1.8 6L12 11l2.2 4L16 9" />
+    </svg>
+  );
+}
+
+function XdrIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="2.5" /><circle cx="5" cy="5" r="1.8" /><circle cx="19" cy="5" r="1.8" /><circle cx="5" cy="19" r="1.8" /><circle cx="19" cy="19" r="1.8" /><path d="M6.3 6.3l3.9 3.9M17.7 6.3l-3.9 3.9M6.3 17.7l3.9-3.9M17.7 17.7l-3.9-3.9" />
+    </svg>
+  );
+}
+
+function SuricataIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /><path d="M12 2v2M5 4l1.2 1.6M19 4l-1.2 1.6" />
+    </svg>
+  );
+}
+
+function AuditdIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <rect x="5" y="3" width="14" height="18" rx="2" /><path d="M9 3h6v3H9z" /><path d="M8.5 11l1.5 1.5 2.5-3M14 11.5h2M8.5 17l1.5 1.5 2.5-3M14 17.5h2" />
+    </svg>
+  );
+}
+
+function MitreIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><path d="M14 17.5h7M17.5 14v7" />
+    </svg>
+  );
+}
+
+function DetectionIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+    </svg>
+  );
+}
+
+function EdrIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /><path d="M12 6.5l4 1.5v2.5c0 2-1.8 3.3-4 4-2.2-.7-4-2-4-4V8z" />
+    </svg>
+  );
+}
+
+function ResponseIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" />
+    </svg>
+  );
+}
+
+function FimIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h5" /><path d="M14 2l6 6h-6z" /><circle cx="17" cy="17" r="3" /><path d="m21 21-1.9-1.9" />
+    </svg>
+  );
+}
+
+function IncidentIcon({ size = 16, style, className }: Readonly<{ size?: string | number; style?: React.CSSProperties; className?: string }>) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} className={className} aria-hidden="true">
+      <path d="M7 18v-6a5 5 0 0 1 10 0v6" /><path d="M5 18h14v3H5z" /><path d="M12 2v2M4.2 5.2l1.4 1.4M19.8 5.2l-1.4 1.4" />
+    </svg>
+  );
+}
+
 type TechConfig = {
   icon: IconType;
   color: string;
@@ -177,20 +257,48 @@ const techMap: Record<string, TechConfig> = {
   "threat intelligence": { icon: ThreatIntelIcon as unknown as IconType, color: "#ef4444" },
   "threat-intelligence": { icon: ThreatIntelIcon as unknown as IconType, color: "#ef4444" },
   threatintel: { icon: ThreatIntelIcon as unknown as IconType, color: "#ef4444" },
+  "wazuh": { icon: WazuhIcon as unknown as IconType, color: "#00a9e5" },
+  "xdr": { icon: XdrIcon as unknown as IconType, color: "#a78bfa" },
+  "suricata": { icon: SuricataIcon as unknown as IconType, color: "#f97316" },
+  "auditd": { icon: AuditdIcon as unknown as IconType, color: "#22c55e" },
+  "mitre att&ck": { icon: MitreIcon as unknown as IconType, color: "#e11d48" },
+  "detection engineering": { icon: DetectionIcon as unknown as IconType, color: "#06b6d4" },
+  "edr": { icon: EdrIcon as unknown as IconType, color: "#38bdf8" },
+  "active response": { icon: ResponseIcon as unknown as IconType, color: "#facc15" },
+  "fim": { icon: FimIcon as unknown as IconType, color: "#14b8a6" },
+  "incident response": { icon: IncidentIcon as unknown as IconType, color: "#ef4444" },
 };
 
-export function ProjectTechIcon({ name }: Readonly<{ name: string }>) {
+type Align = "start" | "center" | "end";
+
+const tipPos: Record<Align, string> = {
+  start: "left-0",
+  center: "left-1/2 -translate-x-1/2",
+  end: "right-0",
+};
+
+function Tip({ name, align }: Readonly<{ name: string; align: Align }>) {
+  return (
+    <span
+      role="tooltip"
+      className={`pointer-events-none absolute bottom-full z-20 mb-1.5 ${tipPos[align]} whitespace-nowrap rounded-md border border-neutral-700 bg-neutral-900 px-2 py-1 font-mono text-[10px] font-medium normal-case tracking-normal text-neutral-100 opacity-0 shadow-lg transition-opacity duration-150 group-hover/tech:opacity-100 group-focus-visible/tech:opacity-100`}
+    >
+      {name}
+    </span>
+  );
+}
+
+export function ProjectTechIcon({ name, align = "center" }: Readonly<{ name: string; align?: Align }>) {
   const key = name.trim().toLowerCase();
   const config = techMap[key];
 
   if (!config) {
     return (
-      <span
-        title={name}
-        aria-label={name}
-        className="tech-badge inline-flex min-w-[34px] items-center justify-center rounded border px-1.5 py-0.5 font-mono text-[10px] font-medium tracking-wide transition-all hover:-translate-y-0.5"
-      >
-        {name.slice(0, 3).toUpperCase()}
+      <span tabIndex={0} aria-label={name} className="group/tech relative inline-flex outline-none">
+        <span className="tech-badge inline-flex min-w-[34px] items-center justify-center rounded border px-1.5 py-0.5 font-mono text-[10px] font-medium tracking-wide transition-all group-hover/tech:-translate-y-0.5">
+          {name.slice(0, 3).toUpperCase()}
+        </span>
+        <Tip name={name} align={align} />
       </span>
     );
   }
@@ -198,11 +306,9 @@ export function ProjectTechIcon({ name }: Readonly<{ name: string }>) {
   const Icon = config.icon;
 
   return (
-    <span
-      title={name}
-      className="inline-flex items-center justify-center opacity-85 transition-all hover:opacity-100 hover:-translate-y-0.5"
-    >
+    <span tabIndex={0} aria-label={name} className="group/tech relative inline-flex items-center justify-center opacity-85 outline-none transition-all hover:-translate-y-0.5 hover:opacity-100 focus-visible:opacity-100">
       <Icon size={16} style={{ color: config.color }} aria-hidden="true" />
+      <Tip name={name} align={align} />
     </span>
   );
 }

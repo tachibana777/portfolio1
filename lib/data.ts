@@ -1,8 +1,8 @@
 import type { Award, Certificate, Experience, Project } from "./types";
 export const projects: Project[] = [
-  { title: "MISP to Wazuh Endpoint Automated Response Lab", role: "Blue Team & Automated Response", description: "Advanced the IOC detection pipeline into response automation: hash-based malware evidence collection, verified transfer and removal, malicious IP blocking, and DNS sinkholing with Wazuh Active Response.", image: "/events/misp-jobs-server1.png", href: "/projects/misp-wazuh-automated-response-lab", action: "READ REPORT", technologies: ["MISP", "Wazuh", "Suricata", "Active Response", "Incident Response", "Linux"] },
-  { title: "MISP to Wazuh IOC Detection Lab", role: "Blue Team & Threat Intelligence", description: "Extended the MISP sharing lab into an end-to-end detection pipeline: cleaned threat indicators, built a Wazuh CDB list, matched Suricata network telemetry, and verified dashboard alerts from a simulated attacker.", image: "/events/Screenshot 2026-11-10 104032.png", href: "/projects/misp-wazuh-ioc-lab", action: "READ REPORT", technologies: ["MISP", "Wazuh", "Suricata", "Ubuntu", "Kali Linux", "Threat Intelligence"] },
-  { title: "MISP Threat Intelligence Sharing Lab", role: "Blue Team & Threat Intelligence", description: "Deployed a multi-node MISP (Malware Information Sharing Platform) environment on Ubuntu 24.04.5 using VMware to practice threat intelligence sharing, RBAC user management, organization-based access control, server synchronization (Push & Pull), feed configuration, and TLP-based data classification across two interconnected MISP instances.", image: "/events/misp-events-list.png", href: "/projects/misp-threat-intel-lab", action: "VISIT SITE", technologies: ["MISP", "Ubuntu", "Linux", "VMware", "Threat Intelligence"] },
+  { title: "Wazuh XDR-style Correlation Lab", org: "NCSA", role: "Blue Team & XDR", description: "Linked network, endpoint and login signals into six correlation rules plus an outbound IOC rule, so one alert describes one stage of an attack. Verified with wazuh-logtest and a six-stage attack from Kali, mapped to MITRE ATT&CK.", image: "/events/xdr-02-dashboard-exercise.png", href: "/projects/wazuh-xdr-lab", action: "READ REPORT", technologies: ["Wazuh", "XDR", "Suricata", "auditd", "MITRE ATT&CK", "Detection Engineering"] },
+  { title: "Wazuh EDR Lab: Hash Response, Evidence, Auditd, Isolation", org: "NCSA", role: "Blue Team & EDR", description: "Built an open-source EDR on a Wazuh endpoint: SHA256 malware detection from a MISP hash list, verified evidence collection with delete or quarantine, IP and domain blocking, auditd and persistence rules, a read-only triage script, and reversible host isolation.", image: "/events/edr-01-overview.png", href: "/projects/wazuh-edr-lab", action: "READ REPORT", technologies: ["Wazuh", "EDR", "Active Response", "auditd", "FIM", "Incident Response"] },
+  { title: "MISP Threat Intelligence Sharing Lab", org: "NCSA", role: "Blue Team & Threat Intelligence", description: "Two MISP nodes that share indicators, then feed Wazuh to detect a known-bad IP from Suricata data: RBAC, push and pull sync, feed and TLP review, restSearch IOC cleaning, a Wazuh CDB list, and rule 100100 verified with a simulated Kali attack.", image: "/events/misp-events-list.png", href: "/projects/misp-threat-intel-lab", action: "VISIT SITE", technologies: ["MISP", "Wazuh", "Suricata", "Ubuntu", "VMware", "Threat Intelligence"] },
   { title: "SOC Analyst Incident Investigation Lab", role: "Blue Team & SIEM", description: "Built a virtual SOC lab using Splunk Enterprise to collect and analyze Ubuntu authentication and firewall logs, detect SSH brute-force attempts and potential port scans, investigate security events, and visualize findings through a monitoring dashboard with alert notifications.", image: "/events/soc-analyst-lab.png", href: "/projects/soc-analyst-lab", action: "VISIT SITE", technologies: ["Splunk", "Ubuntu", "Linux", "SIEM", "Log Analysis"] },
   { title: "Offensive Security", role: "Red Team & Penetration Tester", description: "Hands-on penetration testing and offensive security research focusing on vulnerability discovery, network reconnaissance, exploitation techniques, and practical security assessments.", image: "/events/security-training-lab.jpg", href: "#", action: "VISIT SITE", technologies: ["Kali Linux", "Linux", "Burp Suite", "Nmap", "Metasploit", "OWASP"], status: "IN PROGRESS" },
   { title: "PSRUGreenVibe", role: "QA & Penetration Tester", description: "Conducted Web & API penetration testing (OWASP Top 10) using Burp Suite, alongside functional QA and automated E2E regression testing with Playwright and Postman.", image: "/events/psru-greenvibe.png", href: "#", action: "VISIT SITE", technologies: ["Burp Suite", "OWASP", "Playwright", "Postman", "SonarQube", "Postgres", "Docker", "Git", "Next.js"], status: "IN PROGRESS" },
@@ -11,26 +11,26 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     date: "Nov 2026",
-    title: "MISP to Wazuh Endpoint Automated Response Lab",
-    company: "Blue Team & Automated Response",
+    title: "Wazuh XDR-style Correlation Lab",
+    company: "Blue Team & XDR",
     location: "Home Lab · Phitsanulok City, TH",
     bullets: [
-      "Designed three Wazuh Active Response workflows: hash-based malware evidence collection, malicious IP blocking, and malicious-domain sinkholing.",
-      "Built a guarded response script that hashes an EICAR test file, records metadata, creates a password-protected archive, transfers and verifies evidence on a separate manager, then deletes the original only after every step succeeds.",
-      "Added allowlists, input validation, idempotent iptables handling, timeout-based response cleanup, and throttling to reduce unsafe or repetitive automated actions.",
-      "Documented troubleshooting for Wazuh field names, rule inheritance, DNS array matching, SSH key permissions, evidence integrity checks, and service reload behavior."
+      "Built an XDR-style pipeline that links Suricata network data, auditd and FIM endpoint data, and SSH login logs into six Wazuh correlation rules plus an outbound IOC rule (100110).",
+      "Used if_matched_sid, frequency and timeframe to detect brute force then success, persistence after login, /tmp execution then C2 callback, and listed-domain query then execution.",
+      "Tested every rule with wazuh-logtest including negative cases, then ran a six-stage attack from Kali in about eight minutes where each stage raised its own alert.",
+      "Found and fixed a rule-ordering gap (100500 hiding 100520) with a new child rule 100521, and documented correlation limits such as src_ip versus srcip."
     ]
   },
   {
     date: "Nov 2026",
-    title: "MISP to Wazuh IOC Detection Lab",
-    company: "Blue Team & Threat Intelligence",
+    title: "Wazuh EDR Lab: Hash Response, Evidence, Auditd, Isolation",
+    company: "Blue Team & EDR",
     location: "Home Lab · Phitsanulok City, TH",
     bullets: [
-      "Extended a multi-node MISP lab into a detection pipeline that pulled published IP indicators through the MISP REST API and cleaned them with validation, warninglists, private-range filtering, whitelisting, and deduplication.",
-      "Generated a Wazuh CDB list and custom level-12 rule, then validated the rule with wazuh-logtest before live traffic testing.",
-      "Deployed Suricata on a Linux endpoint, forwarded eve.json through the Wazuh agent, and correlated a simulated Kali scan with a MISP IOC match in the Wazuh dashboard.",
-      "Documented troubleshooting around API authentication, CDB test data, duplicate rule IDs, Suricata upgrades, and alert volume limitations."
+      "Built an open-source EDR on a Wazuh endpoint that detects known malware by SHA256 using a 26,619-hash list imported from MISP and rule 100200.",
+      "Wrote a response script that preserves evidence (hash, metadata, password-protected zip, verified copy on the Manager over a restricted SSH key) before deleting or quarantining a file.",
+      "Added auditd execution and persistence rules (100400, 100410-100413), IP and domain blocking with allowlists and timeouts, and a read-only triage script.",
+      "Implemented reversible host isolation with automatic release and documented fixes for symlink false positives, key permissions and timer accuracy."
     ]
   },
   {
@@ -40,9 +40,9 @@ export const experiences: Experience[] = [
     location: "Home Lab · Phitsanulok City, TH",
     bullets: [
       "Deployed two MISP 2.5.51 instances on Ubuntu 24.04.5 via VMware to simulate threat intelligence sharing between NCSA and ORGNAME.",
-      "Configured Role-Based Access Control (RBAC), organization management, and Sync User accounts with API key-based authentication for inter-node communication.",
-      "Configured bidirectional Push & Pull synchronization, verified node connectivity, and monitored synchronization jobs through the Jobs queue.",
-      "Reviewed OSINT feed settings and MISP events tagged with MITRE ATT&CK and TLP; documented IOC search, event review, and correlation workflows using the MISP 2026 guide."
+      "Configured RBAC, organizations, and Sync User accounts with API key authentication, then set up bidirectional Push & Pull sync and monitored it through the Jobs queue.",
+      "Pulled 37,005 indicators through the MISP restSearch API, cleaned them, and built a Wazuh CDB list with level-12 rule 100100 matching Suricata flow data.",
+      "Reviewed OSINT feeds, TLP, and MITRE ATT&CK tagged events; verified the full MISP to Wazuh alert chain with a simulated Kali scan."
     ]
   },
   {

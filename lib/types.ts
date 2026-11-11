@@ -7,6 +7,7 @@ export type Project = {
   action: "VISIT SITE" | "READ REPORT";
   technologies: string[];
   status?: string;
+  org?: string;
 };
 
 export type Experience = {

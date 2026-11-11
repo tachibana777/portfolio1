@@ -8,3 +8,10 @@ dist/
 .env*
 !.env.example
 preview-*.png
+
+# Source material (copies used by the site live in public/events)
+EDR photo/
+MISP/
+1-misp.md
+2-edr.md
+3-xdr.md

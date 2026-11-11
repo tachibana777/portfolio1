@@ -61,11 +61,18 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
       </div>
 
       <div className="mt-3 flex flex-1 flex-col px-1.5">
-        {project.status && (
-          <div className="mb-2 flex items-center">
+        {(project.org || project.status) && (
+          <div className="mb-2 flex flex-wrap items-center gap-1.5">
+            {project.org && (
+              <span className="org-tag inline-flex w-fit whitespace-nowrap rounded-full border border-dashed px-2 py-0.5 text-[9px] font-mono font-medium uppercase tracking-wider">
+                {project.org}
+              </span>
+            )}
+            {project.status && (
             <span className="status-tag inline-flex w-fit whitespace-nowrap rounded-full border border-dashed px-2 py-0.5 text-[9px] font-mono font-medium uppercase tracking-wider">
               {project.status}
             </span>
+            )}
           </div>
         )}
 
@@ -100,8 +107,8 @@ export function ProjectCard({ project }: Readonly<{ project: Project }>) {
           {project.technologies?.length > 0 && (
             <div className="mt-auto pt-3">
               <div className="flex flex-wrap items-center gap-2.5">
-                {project.technologies.map((tech) => (
-                  <ProjectTechIcon key={tech} name={tech} />
+                {project.technologies.map((tech, i, all) => (
+                  <ProjectTechIcon key={tech} name={tech} align={i < 2 ? "start" : i >= all.length - 2 ? "end" : "center"} />
                 ))}
               </div>
             </div>
