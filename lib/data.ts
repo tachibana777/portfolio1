@@ -13,7 +13,7 @@ export const experiences: Experience[] = [
     date: "Nov 2026",
     title: "Wazuh XDR-style Correlation Lab",
     company: "Blue Team & XDR",
-    location: "National Cyber Security Agency (NCSA) · Phitsanulok City, TH",
+    location: "National Cyber Security Agency (NCSA)",
     bullets: [
       "Built an XDR-style pipeline that links Suricata network data, auditd and FIM endpoint data, and SSH login logs into six Wazuh correlation rules plus an outbound IOC rule (100110).",
       "Used if_matched_sid, frequency and timeframe to detect brute force then success, persistence after login, /tmp execution then C2 callback, and listed-domain query then execution.",
@@ -25,7 +25,7 @@ export const experiences: Experience[] = [
     date: "Nov 2026",
     title: "Wazuh EDR Lab: Hash Response, Evidence, Auditd, Isolation",
     company: "Blue Team & EDR",
-    location: "National Cyber Security Agency (NCSA) · Phitsanulok City, TH",
+    location: "National Cyber Security Agency (NCSA)",
     bullets: [
       "Built an open-source EDR on a Wazuh endpoint that detects known malware by SHA256 using a 26,619-hash list imported from MISP and rule 100200.",
       "Wrote a response script that preserves evidence (hash, metadata, password-protected zip, verified copy on the Manager over a restricted SSH key) before deleting or quarantining a file.",
@@ -37,7 +37,7 @@ export const experiences: Experience[] = [
     date: "Nov 2026",
     title: "MISP Threat Intelligence Sharing Lab",
     company: "Blue Team & Threat Intelligence",
-    location: "National Cyber Security Agency (NCSA) · Phitsanulok City, TH",
+    location: "National Cyber Security Agency (NCSA)",
     bullets: [
       "Deployed two MISP 2.5.51 instances on Ubuntu 24.04.5 via VMware to simulate threat intelligence sharing between NCSA and ORGNAME.",
       "Configured RBAC, organizations, and Sync User accounts with API key authentication, then set up bidirectional Push & Pull sync and monitored it through the Jobs queue.",
