@@ -59,7 +59,7 @@ function Step({ title, where, children }: { title: string; where?: string; child
 }
 
 const overview = [
-  ["Platform", "Shuffle on soar-shuffle (192.168.136.146), UI on port 3443 (HTTPS, self-signed)"],
+  ["Platform", "Shuffle on soar-shuffle (192.168.136.146), UI on port 3443 (HTTPS, self-signed); Shuffle version not recorded"],
   ["Workflow", "wazuh-alert-intake"],
   ["Input", "Wazuh integration sends rules 100500, 100510, 100511, 100520, 100521, 100530, 100540 to a webhook"],
   ["Decision", "Ask MISP whether the source IP is a known indicator"],
@@ -157,6 +157,8 @@ export default function WazuhSoarLabPage() {
             <h2 className={h2}>2. Design</h2>
             <Pre>{design}</Pre>
             <Shot src="/events/soar-01-canvas.png" alt="Shuffle workflow canvas wazuh-alert-intake: Pick ip, Http 1, Approval, Wazuh login, Wazuh block, Wait, Wazuh unblock and the notify nodes" w={1220} h={785} />
+            <Shot src="/events/soar-07-final-workflow.png" alt="Finished Shuffle workflow wazuh-alert-intake: Notify pending, Http 1, Approval, Approved note, Wazuh login, Wazuh block, Wait 60s, a second Wazuh node and Notify unblocked" w={1008} h={638} />
+            <p className="text-xs font-light text-neutral-400">The finished workflow in Shuffle (13 November 2026): the delay node is labelled <strong className="font-semibold text-neutral-200">Wait 60s</strong> and <strong className="font-semibold text-neutral-200">Notify pending</strong> covers the case where MISP does not know the IP.</p>
             <ul className="list-disc space-y-2 pl-5 text-sm font-light leading-relaxed text-neutral-300 sm:text-base">
               <li><strong className="font-semibold text-neutral-100">Auto-block only for a confirmed indicator.</strong> A source IP that MISP lists (to_ids, published, not on a warning list) is blocked without waiting. Anything else waits for a person.</li>
               <li><strong className="font-semibold text-neutral-100">The allowlist stays in the script.</strong> <code className={code}>block-ip.sh</code> refuses the gateway and the lab hosts, so a wrong decision in Shuffle cannot cut the lab off.</li>
@@ -180,6 +182,9 @@ export default function WazuhSoarLabPage() {
             <Step title="Step 2. Pick the IP, ask MISP">
               <p>Node <code className={code}>pick_ip</code> (Execute python) takes the IP from <code className={code}>data.srcip</code> and falls back to <code className={code}>data.dest_ip</code>. Node <code className={code}>Http 1</code> calls <code className={code}>POST /attributes/restSearch</code> with a <strong className="font-semibold text-neutral-100">read-only</strong> MISP key in the <code className={code}>Authorization</code> header and the body:</p>
               <Pre>{`{"returnFormat":"json","value":"<ip>","to_ids":1,"published":1,"deleted":0,"enforceWarninglist":1}`}</Pre>
+              <p>What MISP answered for a listed IP (source: SOAR lab test, 13 November 2026; only these two values were recorded):</p>
+              <Pre>{`HTTP status: 200
+X-Result-Count: 1`}</Pre>
               <p>The reply header <code className={code}>X-Result-Count</code> says how many attributes matched. Conditions in Shuffle cannot index into lists (<code className={code}>.#0</code> is rejected) and <code className={code}>contains</code> on a structured body did not match, but a scalar header works:</p>
               <Table head={["Edge", "Conditions"]} mono={-1} rows={[
                 ["Http 1 → Wazuh login (auto-block)", <><code className={code}>$http_1.headers.X-Result-Count</code> larger than <code className={code}>0</code> <strong className="font-semibold text-neutral-100">and</strong> <code className={code}>$pick_ip.message.ip</code> matches <code className={code}>{"^\\d+\\.\\d+\\.\\d+\\.\\d+$"}</code> (an empty value can make MISP return everything)</>],

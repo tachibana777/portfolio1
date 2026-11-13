@@ -71,7 +71,7 @@ const results = [
   ["SCA and rootcheck", "102 SCA alerts at the Manager; rootcheck scans with no findings"],
   ["Triage report", "13 sections; temp-dir processes and changed files correctly empty on a clean host"],
   ["Isolation, 60 s, from a session coming from the Manager", "Session survived; internet blocked; released at 06:56:50 (30 s late before the accuracy fix)"],
-  ["Isolation, 40 s, after the accuracy fix", "Released at 06:58:49, exactly on time"],
+  ["Isolation, 40 s, after the accuracy fix", "Released at 06:58:49, exactly on time (start time not recorded)"],
   ["Block IP and block domain log", "SINKHOLED qouv.fr and repeated BLOCKED 192.168.136.145 whenever Kali produced new traffic"],
 ];
 

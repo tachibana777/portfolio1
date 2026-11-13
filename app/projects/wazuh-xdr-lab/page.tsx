@@ -240,6 +240,10 @@ export default function WazuhXdrLabPage() {
               </table>
             </div>
             <div className="overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950">
+              <ZoomImage src="/events/xdr-03-rule-100521-details.png" alt="Document details of rule 100521: data.srcip 192.168.136.145, the Accepted password log line, T1110" width={1919} height={989} className="h-auto w-full object-cover" />
+            </div>
+            <p className="text-sm font-light leading-relaxed text-neutral-400">Rule 100521 (row above): the opened alert shows <code className={code}>data.srcip</code> 192.168.136.145, the <code className={code}>Accepted password</code> log line of 11 November 07:57:12, level 15 and MITRE T1110.</p>
+            <div className="overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950">
               <ZoomImage src="/events/xdr-04-rule-100530-details.png" alt="Document details of a rule 100530 alert: outbound connection from 192.168.136.143 to 192.168.136.145 port 22, MITRE T1071" width={1919} height={1079} className="h-auto w-full object-cover" />
             </div>
             <p className="flex items-start gap-2 text-sm font-light leading-relaxed text-neutral-300"><Globe2 size={16} className="mt-0.5 shrink-0 text-sky-400" />The opened 100530 alert shows <code className={code}>data.event_type</code> ssh, 192.168.136.143:50458 to 192.168.136.145:22, which is the test script&apos;s own connection to Kali.</p>

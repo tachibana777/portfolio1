@@ -624,12 +624,15 @@ export default function MispLabPage() {
                 </p>
               </div>
               <ZoomImage
-                src="/events/misp-guide-p43-img4.png"
-                alt="MISP sample ransomware event with creator organization, owner organization, tags, and distribution"
-                width={1456}
-                height={982}
+                src="/events/misp-event-context.png"
+                alt="MISP event view of an OSINT feed event with creator organisation CIRCL, owner organisation NCSA, tags and distribution"
+                width={1898}
+                height={887}
                 className="h-auto w-full object-contain"
               />
+              <figcaption className="border-t border-neutral-800 px-4 py-3 text-xs font-light text-neutral-400">
+                An OSINT feed event (created by CIRCL, owner NCSA) imported into the lab MISP, showing creator organisation, tags and distribution.
+              </figcaption>
             </figure>
 
             <p className="text-sm font-light text-neutral-400">
@@ -778,7 +781,7 @@ nmap -sS -p 1-1000 192.168.136.143`}</code>
                       ["2", "wc -l misp_badip gives 1,001; grep -c of the test IP gives 1", "The CDB loaded and holds the test IP"],
                       ["3", "Suricata eve.json", "event_type: flow, src_ip 192.168.136.145 → 192.168.136.143, many destination ports"],
                       ["4", "alerts.json", "Rule 100100, agent misp-endpoint, location /var/log/suricata/eve.json. In total this rule fired 1,115 times between 6 and 12 November 2026."],
-                      ["5", "Wazuh Overview dashboard", "High severity (level 12 to 14) = 1,001; Agents Active (1)"],
+                      ["5", "Wazuh Overview dashboard", "High severity (level 12 to 14) = 1,001; Agents Active (1) (time range of the screenshot: not recorded)"],
                     ].map(([n, e, w]) => (
                       <tr key={n} className="hover:bg-neutral-900/30">
                         <td className="px-4 py-2.5 font-mono text-neutral-500">{n}</td>

@@ -62,6 +62,8 @@ html.dark { color-scheme: dark; }
 .light .border-neutral-500 { border-color: #a3a3a3; }
 .light .bg-sky-950\/70 { background-color: #e0f2fe; }
 .light .border-sky-800\/60 { border-color: #7dd3fc; }
+.light .bg-sky-950\/40 { background-color: #e0f2fe; }
+.light .border-sky-700 { border-color: #0284c7; }
 .light .bg-emerald-950\/70 { background-color: #d1fae5; }
 .light .border-emerald-800\/60 { border-color: #6ee7b7; }
 .light .bg-amber-950\/20 { background-color: #fef3c7; }
