@@ -4,7 +4,7 @@ import { hashKey, type Dict } from "../core";
 const credentials: Dict = {
   // ---- Certifications
   emu7kh: "ใบรับรองทางวิชาชีพและการอบรมเฉพาะทางด้าน Cybersecurity, CTF และ offensive security",
-  b75y74: "ได้รับ Honorable Mention สาขาวิทยาศาสตร์และ technology จากโครงการ 'Carbon Point recorded on Blockchain for traceability, security, integrity, transparency' ในการประกวด Undergraduate Student Innovation Awards ครั้งที่ 1, PSRU",
+  b75y74: "ได้รับ Honorable Mention สาขาวิทยาศาสตร์และเทคโนโลยี จากโครงการ 'Carbon Point recorded on Blockchain for traceability, security, integrity, transparency' ในการประกวด Undergraduate Student Innovation Awards ครั้งที่ 1, PSRU",
   "1r4k6rz": "ดูใบรับรอง",
   op2krr: "เข้าแข่งขัน Thailand Cyber Top Talent 2026 ในฐานะสมาชิกทีม Whereistheflag จากมหาวิทยาลัยราชภัฏพิบูลสงคราม",
   "2yryr": "ได้รับรางวัล Honorable Mention ในการแข่งขัน AI Tech Startup กับทีม BLOCKSPHERE ภายใต้โครงการ Digital Innovation Hub",
@@ -15,7 +15,7 @@ const credentials: Dict = {
   "1621eje": "ผ่านหลักสูตรอบรมภาคปฏิบัติ Secure Software Development &amp; Application Security ที่จัดขึ้นระหว่างวันที่ 27–28 มิถุนายน 2026",
   "1j8tuvc": "สำเร็จหลักสูตร Getting Started in Cybersecurity 3.0 ของ Fortinet Training Institute",
   "149udws": "เม.ย. 2026",
-  itbw7c: "เข้าร่วมแข่งขัน Wan Lai CTF Challenge online โดย DropCTF เมื่อวันที่ 30 เมษายน 2026",
+  "itbw7c": "เข้าร่วมแข่งขัน Wan Lai CTF Challenge แบบ online โดย DropCTF เมื่อวันที่ 30 เมษายน 2026",
   eng71z: "มี.ค. 2026",
   "1latlyn": "ผ่านการอบรมภาคปฏิบัติและเข้าแข่งขันทักษะ cybersecurity ที่ PSRU Cyber Hackathon #3",
   wjzxbn: "ส.ค. 2025",
@@ -43,7 +43,7 @@ const credentials: Dict = {
   // ---- Technologies
   "1qv9hms": "Tech Stack ทั้งหมด",
   lnfjdh: "stack สำหรับพัฒนาและเครื่องมือ security พื้นฐานที่ใช้สร้าง ทดสอบ และทำความเข้าใจระบบ web",
-  "1tpp5hf": "Technology หลักที่ใช้สร้าง web interface และ application สมัยใหม่",
+  "1tpp5hf": "technology หลักที่ใช้สร้าง web interface และ application สมัยใหม่",
   "1a6s9ya": "ภาษา, database, version control และเครื่องมือสำหรับพัฒนาบนเครื่อง local",
   aalz1e: "เครื่องมือพื้นฐานสำหรับ reconnaissance, web testing, exploitation และ analysis",
 };
