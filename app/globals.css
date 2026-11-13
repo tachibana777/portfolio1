@@ -188,3 +188,14 @@ html.dark { color-scheme: dark; }
   gap: 0.5rem;
   padding-right: 0.5rem;
 }
+
+/* ---- Language (EN / TH) ---- */
+html.i18n-pending header, html.i18n-pending main, html.i18n-pending footer { opacity: 0; }
+html[lang="th"] body { font-family: var(--font-thai), "Leelawadee UI", "Noto Sans Thai", Tahoma, sans-serif; }
+html[lang="th"] body :is(p, li, td, th, dd, dt, figcaption) { line-height: 1.85; }
+html[lang="th"] body :is(h1, h2, h3, h4) { line-height: 1.45; }
+html[lang="th"] .tracking-widest, html[lang="th"] .tracking-wider { letter-spacing: 0.02em; }
+html[lang="th"] code, html[lang="th"] pre, html[lang="th"] .font-mono { font-family: ui-monospace, "JetBrains Mono", Consolas, monospace; }
+.lang-toggle-active { background-color: #e7e7e8; color: #0d0d0e; }
+.light .lang-toggle-active { background-color: #171717; color: #ffffff; }
+.light .lang-toggle { border-color: #deded9; }

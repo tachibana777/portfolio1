@@ -102,3 +102,11 @@ newportfolio/
 | **แก้ไขข้อความส่วนหัวหน้าเว็บ (Hero) / ติดต่อ (Contact)** | [`components/home/HeroSection.tsx`](file:///c:/Users/KRITSADA/Desktop/newportfolio/components/home/HeroSection.tsx) และ [`components/home/ContactSection.tsx`](file:///c:/Users/KRITSADA/Desktop/newportfolio/components/home/ContactSection.tsx) |
 | **แก้ไขเมนูบาร์ (Navbar) และ Footer** | [`components/layout/Header.tsx`](file:///c:/Users/KRITSADA/Desktop/newportfolio/components/layout/Header.tsx) และ [`components/layout/Footer.tsx`](file:///c:/Users/KRITSADA/Desktop/newportfolio/components/layout/Footer.tsx) |
 | **แก้ไขชุดสีหลัก, ฟอนต์ หรือพื้นหลัง Global** | [`app/globals.css`](file:///c:/Users/KRITSADA/Desktop/newportfolio/app/globals.css) และ [`tailwind.config.ts`](file:///c:/Users/KRITSADA/Desktop/newportfolio/tailwind.config.ts) |
+| **แก้ไข/เพิ่มคำแปลภาษาไทย (ปุ่ม EN / TH)** | โฟลเดอร์ [`lib/i18n/th/`](file:///c:/Users/KRITSADA/Desktop/newportfolio/lib/i18n/th) (ดูวิธีทำงานด้านล่าง) |
+
+### ระบบสองภาษา (EN / TH)
+
+- ข้อความต้นฉบับเป็นภาษาอังกฤษอยู่ในโค้ดตามเดิม ภาษาไทยเป็นพจนานุกรมแยกใน `lib/i18n/th/*.ts` (คีย์คือ hash ของข้อความอังกฤษ ค่าคือข้อความไทย) ตัวแปลอยู่ที่ `lib/i18n/core.ts` และ `components/i18n/`
+- กดปุ่ม **EN | TH** ที่เมนูด้านบนเพื่อสลับ ระบบจำภาษาที่เลือกไว้ใน `localStorage` และสลับกลับเป็นอังกฤษได้เหมือนเดิมทุกตัวอักษร
+- ข้อความที่ยังไม่มีคำแปลจะแสดงเป็นภาษาอังกฤษ (ไม่ทำให้หน้าเว็บพัง) ศัพท์เทคนิคและชื่อเฉพาะคงเป็นภาษาอังกฤษโดยตั้งใจ
+- เมื่อแก้ข้อความอังกฤษ ต้องแก้คำแปลที่ตรงกัน: เปิดเว็บแล้วรัน `window.__i18n.collect()` ใน DevTools console เพื่อดูรายการ `id → ข้อความ` ของหน้านั้น แล้วนำ `id` ไปใส่ใน `lib/i18n/th/`
