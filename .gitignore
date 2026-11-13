@@ -14,3 +14,6 @@ preview-*.png
 
 # Source write-ups and original screenshots (site copies live in public/events)
 docs/source/
+
+# Working copies of source docs for the lab write-ups
+lab-docs/

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AlertTriangle, CheckCircle2, ChevronLeft, Globe2, KeyRound, Network, Shield, Terminal } from "lucide-react";
 import { PageShell } from "@/components/layout";
 import { Reveal } from "@/components/ui";
+import { ReadFirst, SeriesNav } from "@/components/projects/ReadFirst";
 
 export const metadata = {
   title: "Wazuh XDR-style Correlation Lab | Kritsada Hongpatsa",
@@ -25,10 +26,10 @@ const objectives = [
 ];
 
 const rules = [
-  ["100110", "Suricata event whose destination is an IP in misp_badip", "12", "T1071"],
+  ["100110", "Suricata event whose destination is an IP in misp_badip (known false positive: it matches the destination of any Suricata event, so a DHCP reply from the gateway to Kali raised 100530; fired 31 times, 11 Nov 06:23 to 12 Nov 09:18)", "12", "T1071"],
   ["100500", "SSH login succeeded from an IP in misp_badip", "15", "T1078"],
-  ["100510 / 100511", "A persistence change within 10 minutes of a successful SSH login", "14", "T1078"],
-  ["100520", "SSH login succeeded within 10 minutes of a brute-force alert from the same IP (IP not in the list)", "15", "T1110"],
+  ["100510 / 100511", "A persistence change within 10 minutes of a successful SSH login. 100511 has never fired in the lab (0 alerts, 6 to 13 November 2026); it was not exercised because the lab account is a system-type user.", "14", "T1078"],
+  ["100520", "SSH login succeeded within 10 minutes of a brute-force alert from the same IP (IP not in the list). It is tested from the Manager (192.168.136.144), not from Kali, because Kali is in the MISP list and 100520 is for an IP that is not.", "15", "T1110"],
   ["100521", "The same, when the IP is in the MISP list", "15", "T1110"],
   ["100530", "An event toward a listed IP within 10 minutes of a program run from a temp folder", "15", "T1071"],
   ["100540", "A program run from a temp folder within 10 minutes of a DNS query for a listed domain", "14", "T1204"],
@@ -51,12 +52,12 @@ const joins = [
 ];
 
 const stages = [
-  ["1. Guess passwords", "8 wrong SSH passwords against the endpoint (KALI)", "5760 eight times, then 5763 at 07:56:36"],
-  ["2. Get in", "A correct SSH login (KALI)", "100521 at 07:57:12"],
-  ["3. Settle in", "Create a cron file (ENDPOINT)", "100510 at 07:58:18"],
-  ["4. Run a payload", "Run a script from /tmp (ENDPOINT)", "100400 at 07:59:36"],
-  ["5. Call home", "The script connects to Kali (ENDPOINT)", "100530 at 08:00:46"],
-  ["6. Download", "getent hosts qouv.fr, then run another script", "100300 at 08:04:20, 100540 at 08:04:44"],
+  ["1. Guess passwords", "8 wrong SSH passwords against the endpoint (KALI)", "5760 eight times, then 5763 at 07:56:36", "10 (5763, Wazuh built-in)"],
+  ["2. Get in", "A correct SSH login (KALI)", "100521 at 07:57:12", "15"],
+  ["3. Settle in", "Create a cron file (ENDPOINT)", "100510 at 07:58:18", "14"],
+  ["4. Run a payload", "Run a script from /tmp (ENDPOINT)", "100400 at 07:59:36", "10"],
+  ["5. Call home", "The script connects to Kali (ENDPOINT)", "100530 at 08:00:46", "15"],
+  ["6. Download", "getent hosts qouv.fr, then run another script", "100300 at 08:04:20, 100540 at 08:04:44", "12 (100300), 14 (100540)"],
 ];
 
 const mitre = [
@@ -77,7 +78,7 @@ const results = [
   ["100530", "Script from /tmp that opens a TCP connection to Kali", "100110 at 06:23:00, 100400 at 06:23:30, 100530 at 06:25:10"],
   ["100540", "getent hosts qouv.fr, then a script from /tmp", "100300 at 07:13:29, 100540 at 07:13:49"],
   ["All", "Negative cases in logtest (unlisted IP, normal login, PAM line, exec or outbound alone)", "none of the correlation rules fired"],
-  ["100521", "Kali (a listed IP) sent 8 wrong passwords, then logged in", "5763 at 07:56:36, 100521 at 07:57:12; a first attempt gave only 100500, which exposed that 100500 hides 100520"],
+  ["100521", "Kali (a listed IP) sent 8 wrong passwords, then logged in (this single alert is both the test of the new rule and stage 2 of the final exercise)", "5763 at 07:56:36, 100521 at 07:57:12"],
   ["All", "Final exercise: six stages from Kali in about 8 minutes", "5763 → 100521 → 100510 → 100400 → 100530 → 100300 → 100540"],
   ["Dashboard", "Filter on the exercise rules, 14:55 to 15:06 local time", "12 hits, 10 of level 12 or higher; MITRE chart shows five techniques"],
 ];
@@ -103,11 +104,33 @@ export default function WazuhXdrLabPage() {
 
           <div className="grid grid-cols-1 gap-3 rounded-2xl border border-dashed border-neutral-800 bg-panel p-5 sm:grid-cols-2 md:grid-cols-4">{[{ label: "MISP", value: "IOC source · .142" }, { label: "Wazuh Manager", value: "Correlation rules · .144" }, { label: "Endpoint", value: "Agent, Suricata, auditd · .143" }, { label: "Kali Linux", value: "Simulated attacker · .145" }].map(({ label, value }) => <div key={label}><span className="block text-[11px] font-mono uppercase tracking-wider text-neutral-500">{label}</span><p className="mt-1 text-sm font-medium text-neutral-200">{value}</p></div>)}</div>
 
+          <SeriesNav current="/projects/wazuh-xdr-lab" />
+
+          <ReadFirst
+            part="XDR"
+            intro={[
+              ["What this part is", "XDR links different kinds of evidence into one story. A listed IP, a successful login and a new cron job are each minor alone; together they describe an attack. In this lab it is done with Wazuh correlation rules on the Manager (frequency 2, timeframe 600 s): a second event within ten minutes of the first."],
+              ["The plan", "Learn what Wazuh can join (shared fields such as the source IP, the agent), then add rules one at a time: outbound to a listed IP (100110), SSH login from a listed IP (100500), persistence after login (100510, 100511), brute force then success (100520, 100521), program from /tmp then contact with a listed IP (100530), listed domain then execution (100540). Finish with one attack from Kali that touches several rules."],
+            ]}
+            image={{ src: "/events/diagram-04-xdr-chain.png", alt: "The final exercise chain, 11 Nov 2026 UTC", width: 1568, height: 124 }}
+            afterImage={[
+              ["How it differs", "EDR looks deeply at one host; XDR looks across sources (network, logins, endpoint). XDR here detects but does not act, on purpose: acting is SOAR's job."],
+              ["How it works with the others", <>It needs MISP lists (IPs, domains; see the <Link href="/projects/misp-threat-intel-lab" className="text-sky-300 hover:underline">MISP page</Link>) and EDR events (/tmp execution, persistence; see the <Link href="/projects/wazuh-edr-lab" className="text-sky-300 hover:underline">EDR page</Link>). Seven of its rules (100500, 100510, 100511, 100520, 100521, 100530, 100540) are sent to Shuffle (<Link href="/projects/wazuh-soar-lab" className="text-sky-300 hover:underline">SOAR page</Link>).</>],
+              ["Prepare", "Everything from the MISP and EDR parts working; test events ready for wazuh-logtest; Kali for the exercise."],
+            ]}
+            checklist={[
+              "Each rule passes wazuh-logtest before a live test",
+              "100520 tested from the Manager, because Kali is in the list and 100520 is for an IP that is not",
+              "The final exercise yields the chain above (levels 10, 15, 14, 10, 15, 12, 14; not a straight climb)",
+            ]}
+            learn="Rule order matters: 100500 matched first and hid 100520, which is why 100521 was added. Alert counts: 100500 ×3, 100510 ×3, 100520 ×1, 100521 ×1, 100530 ×6, 100540 ×2."
+            limits="Rule 100511 never fired (untested). Rule 100110 can false-alert on a DHCP reply from the gateway (31 alerts). Correlation is by host and time only."
+          />
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-neutral-100 sm:text-3xl">1. Project Overview</h2>
             <div className="space-y-3.5 text-sm font-light leading-relaxed text-neutral-300 sm:text-base">
               <p>A single alert says that one thing happened: &quot;a program ran from /tmp&quot;. A <strong className="font-semibold text-neutral-100">correlation</strong> says that several things happened in a meaningful order: &quot;a listed domain was queried, then a program ran from /tmp&quot;. That is much stronger evidence, and it is the core idea of XDR in this lab.</p>
-              <p>This part adds the outbound rule 100110 and six correlation rules (100500, 100510, 100520, 100521, 100530, 100540; rule 100521 was added after the first run of the final exercise exposed a gap). It is an XDR-style pipeline, not a commercial XDR: one Manager, one endpoint, Linux only, correlation by host and time (not by process).</p>
+              <p>This part adds the outbound rule 100110 and six correlation rules (100500, 100510, 100520, 100521, 100530, 100540; rule 100521 is the child rule added to close a gap that the final exercise exposed; see the timeline in section 7). It is an XDR-style pipeline, not a commercial XDR: one Manager, one endpoint, Linux only, correlation by host and time (not by process).</p>
             </div>
           </section>
 
@@ -176,11 +199,11 @@ export default function WazuhXdrLabPage() {
 
           <section className="space-y-5">
             <h2 className="text-2xl font-semibold text-neutral-100 sm:text-3xl">7. Final Exercise: One Attack, Several Stages</h2>
-            <p className="text-sm font-light leading-relaxed text-neutral-300 sm:text-base">One continuous multi-step attack from Kali, run on 11 November 2026. Every stage fired, in order, from 07:56:36 to 08:04:44 UTC (about eight minutes), and the alert level climbs from 10 to 14 and 15.</p>
+            <p className="text-sm font-light leading-relaxed text-neutral-300 sm:text-base">One continuous multi-step attack from Kali, run on 11 November 2026. Every stage fired, in order, from 07:56:36 to 08:04:44 UTC (about eight minutes), and the alert levels range from 10 to 15; the correlation rules sit at 14 and 15.</p>
             <div className="overflow-x-auto rounded-xl border border-neutral-800">
               <table className="w-full text-left text-xs sm:text-sm">
-                <thead className="border-b border-neutral-800 bg-neutral-900/80 font-mono text-xs uppercase tracking-wider text-neutral-400"><tr><th className="px-4 py-3 font-medium">Stage</th><th className="px-4 py-3 font-medium">Action</th><th className="px-4 py-3 font-medium">Alert (UTC)</th></tr></thead>
-                <tbody className="divide-y divide-neutral-800/80 font-light text-neutral-300">{stages.map(([a, b, c]) => <tr key={a} className="hover:bg-neutral-900/30"><td className="px-4 py-2.5 font-medium text-neutral-200">{a}</td><td className="px-4 py-2.5">{b}</td><td className="px-4 py-2.5 font-mono text-sky-300">{c}</td></tr>)}</tbody>
+                <thead className="border-b border-neutral-800 bg-neutral-900/80 font-mono text-xs uppercase tracking-wider text-neutral-400"><tr><th className="px-4 py-3 font-medium">Stage</th><th className="px-4 py-3 font-medium">Action</th><th className="px-4 py-3 font-medium">Alert (UTC)</th><th className="px-4 py-3 font-medium">Level</th></tr></thead>
+                <tbody className="divide-y divide-neutral-800/80 font-light text-neutral-300">{stages.map(([a, b, c, d]) => <tr key={a} className="hover:bg-neutral-900/30"><td className="px-4 py-2.5 font-medium text-neutral-200">{a}</td><td className="px-4 py-2.5">{b}</td><td className="px-4 py-2.5 font-mono text-sky-300">{c}</td><td className="px-4 py-2.5">{d}</td></tr>)}</tbody>
               </table>
             </div>
             <div className="overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950">
@@ -191,7 +214,7 @@ export default function WazuhXdrLabPage() {
             </div>
             <ul className="list-disc space-y-2 pl-5 text-sm font-light leading-relaxed text-neutral-300 sm:text-base">
               <li>Only the most specific alert is logged: no separate 100500 before 100521, no 100410 before 100510, no 100110 before 100530.</li>
-              <li>The first attempt gave 100500 instead of 100520 and led to the new rule 100521.</li>
+              <li>The first attempt (07:48:34, from Kali, a listed IP) gave only 100500, because 100500 matches first and hides 100520. That led to the new rule 100521, a child of 100500 for a listed IP that guessed passwords first.</li><li>Timeline: 07:48:34 first attempt, only 100500 fires; rule 100521 is added; 07:56:36 5763 (brute force) from Kali; 07:57:12 <strong className="font-semibold text-neutral-100">100521</strong> fires. Rule 100521 fired once in the whole lab, so that one alert is both the test of the new rule and stage 2 of the final exercise.</li>
               <li>Each correlation fired within 10 minutes of its trigger, and none fired when its trigger was missing.</li>
               <li>The alerts were copied to a file before clean-up, because deleting the test files creates alerts of its own.</li>
             </ul>

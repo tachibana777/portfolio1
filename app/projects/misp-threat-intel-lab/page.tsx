@@ -19,6 +19,7 @@ import {
 import { SiUbuntu, SiVmware } from "react-icons/si";
 import { PageShell } from "@/components/layout";
 import { Reveal } from "@/components/ui";
+import { ReadFirst, SeriesNav } from "@/components/projects/ReadFirst";
 
 export const metadata = {
   title: "MISP Threat Intelligence Sharing Lab | Kritsada Hongpatsa",
@@ -118,6 +119,35 @@ export default function MispLabPage() {
             ))}
           </div>
 
+          <p className="-mt-6 text-xs font-light text-neutral-400 sm:text-sm">
+            The VM at 192.168.136.143 was a second MISP server (organisation ORGNAME) in Lab 1 and became the protected endpoint (<code className={code}>misp-endpoint</code>) in Lab 2.
+          </p>
+
+          <SeriesNav current="/projects/misp-threat-intel-lab" />
+
+          <ReadFirst
+            part="MISP"
+            intro={[
+              ["What this part is", "MISP is the intelligence layer. It stores indicators of compromise (bad IPs, domains, file hashes) with context, and shares them between organisations. It never looks at your hosts or traffic, so on its own it detects nothing."],
+              ["The plan", "Two halves. Lab 1: two MISP servers (organisations NCSA and ORGNAME) share events, so you learn organisations, roles, sync, feeds, TLP and MITRE tags. Lab 2: a script pulls IPs out of MISP, cleans them, and loads them into Wazuh as a list. Suricata on the endpoint supplies traffic; a rule matches it against the list."],
+            ]}
+            image={{ src: "/events/diagram-02-misp-pipeline.png", alt: "MISP to alert pipeline", width: 1568, height: 318 }}
+            afterImage={[
+              ["How it differs from the other parts", "MISP knows what is bad; Wazuh (this part's second half) sees what happens; EDR acts on one host; XDR correlates; SOAR decides. Without MISP the later parts have nothing to match against."],
+              ["How it works with them", <>The same MISP also feeds the hash list (<Link href="/projects/wazuh-edr-lab" className="text-sky-300 hover:underline">EDR page</Link>), the domain list and the correlation rules (<Link href="/projects/wazuh-xdr-lab" className="text-sky-300 hover:underline">XDR page</Link>), and answers Shuffle&apos;s &quot;is this IP known?&quot; question (<Link href="/projects/wazuh-soar-lab" className="text-sky-300 hover:underline">SOAR page</Link>).</>],
+              ["Note", "The VM at 192.168.136.143 was the second MISP server in Lab 1 and became the protected endpoint in Lab 2 (it still runs apache2, mariadb and redis from that time)."],
+              ["Prepare", "misp-intel: Ubuntu 24.04.5, 2 vCPU, 1.9 GB RAM, 96 GB disk, MISP 2.5.51 (1,682 events on 13 Nov 2026). Plus wazuh-manager, misp-endpoint and Kali."],
+            ]}
+            checklist={[
+              "Two MISP nodes synchronise",
+              "A script pulls IPs (to_ids, published, warning list on, last 30 days) and cleans them",
+              "misp_badip list exists on the Manager (1,000 sampled IPs + one test IP)",
+              "Ping from Kali raises rule 100100 (level 12) on the dashboard",
+            ]}
+            learn={'Filtering matters: 39,785 IP attributes were flagged in MISP, 37,005 survived the script\'s filters, and only a random 1,000 went into the list. Rule 100100 fired 1,115 times between 6 and 12 Nov; it now has ignore="300" (one alert per five minutes, all IPs together).'}
+            limits="Lists are scheduled every six hours by cron; the hash log shows one run per day at 06:00 UTC."
+          />
+
           <div className="h-px w-full bg-neutral-800/80" />
 
           {/* 1. Project Overview */}
@@ -130,12 +160,44 @@ export default function MispLabPage() {
               <p>This part has two halves:</p>
               <ul className="list-disc space-y-2 pl-5 text-neutral-300">
                 <li>
-                  <strong className="font-semibold text-neutral-100">Lab 1 (sections 1.1 to 1.9):</strong> deploy two MISP nodes and make them share events, to learn organisations, roles, synchronisation, feeds and classification.
+                  <strong className="font-semibold text-neutral-100">Lab 1 (sections 5 to 11):</strong> deploy two MISP nodes and make them share events, to learn organisations, roles, synchronisation, feeds and classification.
                 </li>
                 <li>
-                  <strong className="font-semibold text-neutral-100">Lab 2 (sections 1.10 to 1.17):</strong> pull indicators out of MISP, clean them, and let Wazuh match them against live network data from Suricata.
+                  <strong className="font-semibold text-neutral-100">Lab 2 (section 12):</strong> pull indicators out of MISP, clean them, and let Wazuh match them against live network data from Suricata.
                 </li>
               </ul>
+              <p>
+                The rest of the series: <Link href="/projects/wazuh-edr-lab" className="text-sky-300 hover:underline">the EDR page</Link>, <Link href="/projects/wazuh-xdr-lab" className="text-sky-300 hover:underline">the XDR page</Link> and <Link href="/projects/wazuh-soar-lab" className="text-sky-300 hover:underline">the SOAR page</Link>, or <Link href="/projects/start-here" className="text-sky-300 hover:underline">start here</Link>.
+              </p>
+              <h3 className="pt-2 font-semibold text-neutral-100">What to prepare</h3>
+              <div className="overflow-x-auto rounded-xl border border-neutral-800">
+                <table className="w-full text-left text-xs sm:text-sm">
+                  <thead className="border-b border-neutral-800 bg-neutral-900/80 font-mono text-xs uppercase tracking-wider text-neutral-400">
+                    <tr><th className="px-4 py-3 font-medium">VM</th><th className="px-4 py-3 font-medium">Role</th><th className="px-4 py-3 font-medium">OS</th><th className="px-4 py-3 font-medium">vCPU</th><th className="px-4 py-3 font-medium">RAM</th><th className="px-4 py-3 font-medium">Disk</th></tr>
+                  </thead>
+                  <tbody className="divide-y divide-neutral-800/80 text-neutral-300 font-light">
+                    {[
+                      ["misp-intel", "MISP", "Ubuntu 24.04.5", "2", "1.9 GB", "96 GB"],
+                      ["wazuh-manager", "Wazuh server, rules, API, dashboard", "Ubuntu 24.04.5", "4", "7.7 GB", "77 GB"],
+                      ["misp-endpoint", "Protected host: agent, Suricata, auditd, scripts", "Ubuntu 24.04.5", "2", "1.9 GB", "96 GB"],
+                      ["Kali", "Attacker", "Kali Linux", "not recorded", "not recorded", "not recorded"],
+                    ].map((row) => (
+                      <tr key={row[0]} className="hover:bg-neutral-900/30">
+                        <td className="px-4 py-2.5 font-mono text-sky-300">{row[0]}</td>
+                        {row.slice(1).map((c, i) => <td key={i} className="px-4 py-2.5">{c}</td>)}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p>MISP 2.5.51 held 1,682 events on 13 November 2026. MISP ran on 1.9 GB RAM, which is small; give it more if it is slow.</p>
+              <h3 className="pt-2 font-semibold text-neutral-100">Why this design</h3>
+              <p>MISP stores intelligence and detects nothing; the Manager turns it into lists; Suricata and the agent supply the events that the lists are matched against. Both lists (hashes and IPs) are rebuilt by cron, scheduled every six hours (<code className={code}>0 */6</code> for hashes, <code className={code}>10 */6</code> for IPs). The hash log (<code className={code}>/var/log/misp-hashes.log</code>) shows one run per day, at 06:00 UTC, on 11, 12 and 13 November; why the other runs are absent was not checked.</p>
+              <Shot
+                src="/events/misp-hash-cron.png"
+                alt="Manager terminal: the last three hash import runs at 06:00 UTC on 11, 12 and 13 November and the two cron lines scheduled every six hours"
+                label="Hash import log and cron lines, 13 November 2026"
+              />
             </div>
 
             <h3 className="pt-2 font-semibold text-neutral-100">What MISP is, and what it is not</h3>
@@ -548,6 +610,12 @@ export default function MispLabPage() {
               label="MISP Events List — Synchronized Threat Intelligence"
             />
 
+            <Shot
+              src="/events/misp-events-overview.png"
+              alt="MISP 2.5.51 Events list on 13 November 2026 with creator and owner organisation NCSA, MITRE ATT&CK tagged events and TLP tags"
+              label="MISP 2.5.51 Events List, 13 November 2026"
+            />
+
             <figure className="overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950">
               <div className="border-b border-neutral-800 px-4 py-3">
                 <h3 className="text-sm font-semibold text-neutral-100">Event context</h3>
@@ -595,7 +663,7 @@ curl -k -s -X POST "$MISP_URL/attributes/restSearch" \\
   -d '{"returnFormat":"text","type":["ip-src","ip-dst"],"to_ids":1,"enforceWarninglist":1,"published":1,"deleted":0,"last":"30d"}' \\
   -o "$RAW"
 
-# keep valid IPv4, drop private/loopback/link-local/multicast, drop the whitelist, dedupe, sample
+# keep valid IPv4, drop private/loopback/link-local/multicast/reserved (first octet 224 to 255), drop the whitelist, dedupe, sample
 grep -E '^([0-9]{1,3}\\.){3}[0-9]{1,3}$' "$RAW" > "$CLEAN"
 grep -Ev '^(10\\.|127\\.|169\\.254\\.|192\\.168\\.|172\\.(1[6-9]|2[0-9]|3[0-1])\\.|0\\.|2(2[4-9]|[3-5][0-9])\\.)' "$CLEAN" > "$CLEAN.pub"
 grep -vxFf "$WHITELIST" "$CLEAN.pub" | sort -u | shuf -n "$LIMIT" > "$CLEAN.final"
@@ -618,13 +686,13 @@ fi`}</code>
                   Supporting files: <code className={code}>/opt/misp-sync/whitelist.txt</code> (public DNS servers and similar, one IP per line) and <code className={code}>/opt/misp-sync/lab_ips.txt</code> (contains <code className={code}>192.168.136.145</code>). The API key is stored root-only with <code className={code}>chmod 600</code>.
                 </p>
                 <p className="mt-3">
-                  <strong className="font-semibold text-neutral-100">Result:</strong> 37,005 indicators pulled; 1,000 randomly sampled plus the test IP gives 1,001 lines in <code className={code}>misp_badip</code>. The sampling was for the demo; it did not rank indicators by quality.
+                  <strong className="font-semibold text-neutral-100">Result:</strong> 37,005 indicators pulled. The raw count of IP attributes flagged for detection in MISP on 13 November 2026 was 39,785 (29,738 destination plus 10,047 source); 37,005 is the number left after the script&apos;s filters (30 days, published, warning list on). 1,000 randomly sampled plus the test IP gives 1,001 lines in <code className={code}>misp_badip</code>. The sampling was for the demo; it did not rank indicators by quality.
                 </p>
                 <p className="mt-3">
-                  <strong className="font-semibold text-neutral-100">Weakness (not tested):</strong> because the lab IP is appended after the filter, a MISP outage would leave a list containing only that address and the &quot;empty list&quot; check would not trigger. The hash feed script in Part 2 checks the HTTP status first, which avoids this.
+                  <strong className="font-semibold text-neutral-100">Weakness (not tested):</strong> because the lab IP is appended after the filter, a MISP outage would leave a list containing only that address and the &quot;empty list&quot; check would not trigger. The hash feed script on the <Link href="/projects/wazuh-edr-lab" className="text-sky-300 hover:underline">EDR page</Link> (Step 7) checks the HTTP status first, which avoids this.
                 </p>
                 <p className="mt-3">
-                  <strong className="font-semibold text-neutral-100">Scheduling:</strong> the first write-up said &quot;cron every 6 hours&quot;, but <code className={code}>crontab</code> did not exist on this minimal system, so the job never ran. Fixed in Part 2: install <code className={code}>cron</code>, then <code className={code}>10 */6 * * * /opt/misp-sync/fetch_and_clean.sh &gt;&gt; /var/log/misp-ips.log 2&gt;&amp;1</code>. The script now calls <code className={code}>wazuh-control reload</code> instead of restarting the Manager.
+                  <strong className="font-semibold text-neutral-100">Scheduling:</strong> the first write-up said &quot;cron every 6 hours&quot;, but <code className={code}>crontab</code> did not exist on this minimal system, so the job never ran. Fixed on the <Link href="/projects/wazuh-edr-lab" className="text-sky-300 hover:underline">EDR page</Link>: install <code className={code}>cron</code>, then <code className={code}>10 */6 * * * /opt/misp-sync/fetch_and_clean.sh &gt;&gt; /var/log/misp-ips.log 2&gt;&amp;1</code>. The script now calls <code className={code}>wazuh-control reload</code> instead of restarting the Manager.
                 </p>
               </div>
 
@@ -649,6 +717,13 @@ fi`}</code>
                   <code>{`/var/ossec/bin/wazuh-analysisd -t; echo "exit code: $?"`}</code>
                 </pre>
                 <p className="mt-2">Expected: rule 100100, level 12, &quot;Alert to be generated&quot; in <code className={code}>wazuh-logtest</code>.</p>
+                <div className="mt-3">
+                  <Shot
+                    src="/events/misp-logtest-rule-100100.png"
+                    alt="wazuh-logtest output: rule 86600 matched, then rule 100100 matched with level 12 and the description MISP IOC match for 192.168.136.145"
+                    label="wazuh-logtest: rule 100100 matches"
+                  />
+                </div>
               </div>
 
               <div>
@@ -663,8 +738,15 @@ fi`}</code>
 </localfile>`}</code>
                 </pre>
                 <p className="mt-2">
-                  The installation commands were not recorded. Check afterwards with <code className={code}>systemctl is-active suricata</code> and <code className={code}>tail -1 /var/log/suricata/eve.json</code>.
+                  The installation commands were not recorded. To reproduce it (proposed, not tested here): add the OISF Suricata PPA, install <code className={code}>suricata</code>, set <code className={code}>af-packet: - interface: ens33</code> in <code className={code}>/etc/suricata/suricata.yaml</code>, enable the <code className={code}>eve-log</code> output, run <code className={code}>suricata-update</code>, then restart the service. Check with <code className={code}>suricata -V</code> (8.0.8 in this lab) and by counting loaded rules (<code className={code}>grep -c &apos;^alert&apos; /var/lib/suricata/rules/suricata.rules</code> gave 53,375 on 13 November 2026). Check afterwards with <code className={code}>systemctl is-active suricata</code> and <code className={code}>tail -1 /var/log/suricata/eve.json</code>.
                 </p>
+                <div className="mt-3">
+                  <Shot
+                    src="/events/misp-suricata-version.png"
+                    alt="Terminal on the endpoint: suricata -V reports 8.0.8 RELEASE and grep -c of the alert rules gives 53375"
+                    label="Suricata version and number of loaded rules, 13 November 2026"
+                  />
+                </div>
               </div>
 
               <div>
@@ -674,7 +756,7 @@ fi`}</code>
 nmap -sS -p 1-1000 192.168.136.143`}</code>
                 </pre>
                 <p className="mt-2">
-                  Nmap found ports 22, 80 and 443 open. Use <code className={code}>ping</code> alone when you only need an alert; a scan produced about 1,000 alerts because the rule fires per flow.
+                  Nmap found ports 22, 80 and 443 open. Use <code className={code}>ping</code> alone when you only need an alert; a scan produced about 1,000 alerts because the rule fires per flow. The rule now carries <code className={code}>ignore=&quot;300&quot;</code>, so it fires at most once every five minutes. This applies to all IPs together, not per IP.
                 </p>
               </div>
             </div>
@@ -693,9 +775,9 @@ nmap -sS -p 1-1000 192.168.136.143`}</code>
                   <tbody className="divide-y divide-neutral-800/80 text-neutral-300 font-light">
                     {[
                       ["1", "wazuh-logtest output", "Rule 100100 fires, level 12"],
-                      ["2", "wc -l misp_badip gives 1001; grep -c of the test IP gives 1", "The CDB loaded and holds the test IP"],
+                      ["2", "wc -l misp_badip gives 1,001; grep -c of the test IP gives 1", "The CDB loaded and holds the test IP"],
                       ["3", "Suricata eve.json", "event_type: flow, src_ip 192.168.136.145 → 192.168.136.143, many destination ports"],
-                      ["4", "alerts.json", "Rule 100100, agent misp-endpoint, location /var/log/suricata/eve.json, firedtimes 199 or more"],
+                      ["4", "alerts.json", "Rule 100100, agent misp-endpoint, location /var/log/suricata/eve.json. In total this rule fired 1,115 times between 6 and 12 November 2026."],
                       ["5", "Wazuh Overview dashboard", "High severity (level 12 to 14) = 1,001; Agents Active (1)"],
                     ].map(([n, e, w]) => (
                       <tr key={n} className="hover:bg-neutral-900/30">
@@ -732,7 +814,7 @@ nmap -sS -p 1-1000 192.168.136.143`}</code>
                     ["Rule 100100 never fired in logtest", "Duplicate rule ID in local_rules.xml from a paste error", "Rewrote the file with one rule; used if_sid 86600"],
                     ["Suricata upgrade failed", "File conflict with the separate suricata-update package", "Removed the old package and reinstalled"],
                     ["One nmap scan gave about 1,000 alerts", "The rule fires per flow", 'ignore="300"; a per-IP throttle is still open'],
-                    ['The "cron every 6 hours" never ran', "crontab was not installed on Ubuntu minimal", "Installed cron and created the job (Part 2, step 7)"],
+                    ['The "cron every 6 hours" never ran', "crontab was not installed on Ubuntu minimal", "Installed cron and created the job (EDR page, Step 7)"],
                   ].map(([a, b, c]) => (
                     <tr key={a} className="hover:bg-neutral-900/30">
                       <td className="px-4 py-2.5 font-medium text-neutral-200">{a}</td>
@@ -799,7 +881,7 @@ nmap -sS -p 1-1000 192.168.136.143`}</code>
                 <li>The detected IP was a private lab address (Kali) added by hand to simulate a bad IP; it was not a real threat actor&apos;s indicator from a MISP feed.</li>
                 <li>The demo list is a random sample of 1,000 from 37,005, not selected by quality or confidence.</li>
                 <li>Alerts came from Suricata flow events matched against the list, not from Suricata signature alerts (a SYN scan did not trigger the ET rules).</li>
-                <li>Rule 100100 checks <code className={code}>src_ip</code> only; the outbound rule came later (Part 3).</li>
+                <li>Rule 100100 checks <code className={code}>src_ip</code> only; the outbound rule came later (<Link href="/projects/wazuh-xdr-lab" className="text-sky-300 hover:underline">XDR page</Link>).</li>
                 <li>Feed ingestion was not verified (caching off); private VMware network; self-signed certificates.</li>
               </ul>
             </div>
