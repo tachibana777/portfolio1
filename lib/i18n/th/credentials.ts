@@ -4,7 +4,7 @@ import { hashKey, type Dict } from "../core";
 const credentials: Dict = {
   // ---- Certifications
   emu7kh: "ใบรับรองทางวิชาชีพและการอบรมเฉพาะทางด้าน Cybersecurity, CTF และ offensive security",
-  b75y74: "ได้รับ Honorable Mention สาขาวิทยาศาสตร์และเทคโนโลยี จากโครงการ 'Carbon Point recorded on Blockchain for traceability, security, integrity, transparency' ในการประกวด Undergraduate Student Innovation Awards ครั้งที่ 1, PSRU",
+  b75y74: "ได้รับ Honorable Mention สาขาวิทยาศาสตร์และ technology จากโครงการ 'Carbon Point recorded on Blockchain for traceability, security, integrity, transparency' ในการประกวด Undergraduate Student Innovation Awards ครั้งที่ 1, PSRU",
   "1r4k6rz": "ดูใบรับรอง",
   op2krr: "เข้าแข่งขัน Thailand Cyber Top Talent 2026 ในฐานะสมาชิกทีม Whereistheflag จากมหาวิทยาลัยราชภัฏพิบูลสงคราม",
   "2yryr": "ได้รับรางวัล Honorable Mention ในการแข่งขัน AI Tech Startup กับทีม BLOCKSPHERE ภายใต้โครงการ Digital Innovation Hub",
@@ -15,7 +15,7 @@ const credentials: Dict = {
   "1621eje": "ผ่านหลักสูตรอบรมภาคปฏิบัติ Secure Software Development &amp; Application Security ที่จัดขึ้นระหว่างวันที่ 27–28 มิถุนายน 2026",
   "1j8tuvc": "สำเร็จหลักสูตร Getting Started in Cybersecurity 3.0 ของ Fortinet Training Institute",
   "149udws": "เม.ย. 2026",
-  itbw7c: "เข้าร่วมแข่งขัน Wan Lai CTF Challenge ออนไลน์ โดย DropCTF เมื่อวันที่ 30 เมษายน 2026",
+  itbw7c: "เข้าร่วมแข่งขัน Wan Lai CTF Challenge online โดย DropCTF เมื่อวันที่ 30 เมษายน 2026",
   eng71z: "มี.ค. 2026",
   "1latlyn": "ผ่านการอบรมภาคปฏิบัติและเข้าแข่งขันทักษะ cybersecurity ที่ PSRU Cyber Hackathon #3",
   wjzxbn: "ส.ค. 2025",
@@ -29,7 +29,7 @@ const credentials: Dict = {
   "1rdpu7l": "ก.ย. 2024",
   "9o4c2d": "เข้าร่วม NCSA CTF Boot Camp 2024 จัดโดยสำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ",
   wa0bmo: "ส.ค. 2024",
-  nnj7md: "สำเร็จหลักสูตร Basic Cybersecurity บนแพลตฟอร์มเรียนรู้ NCSA MOOC เมื่อวันที่ 25 สิงหาคม 2024",
+  nnj7md: "สำเร็จหลักสูตร Basic Cybersecurity บน platform เรียนรู้ NCSA MOOC เมื่อวันที่ 25 สิงหาคม 2024",
   wev5a0: "ก.ค. 2024",
   "19z8bjt": "Business Brotherhood — ทุน 200,000 บาท",
   ze18if: "Robo Tech ได้รับทุน 200,000 บาท สำหรับ Biosite กล้องตรวจจับท่านั่ง ในโครงการ Business Brotherhood 2024 (ระยะที่ 1) หมวด Digital Technology",
@@ -69,7 +69,7 @@ const certificateTitles = [
   "SOLIDWORKS 3D Design — Second Runner-up",
   "Research to Market (R2M) 2023",
 ];
-for (const t of certificateTitles) credentials[hashKey(`View ${t} certificate in a new tab`)] = `ดูใบรับรอง ${t} ในแท็บใหม่`;
+for (const t of certificateTitles) credentials[hashKey(`View ${t} certificate in a new tab`)] = `ดูใบรับรอง ${t} ใน tab ใหม่`;
 for (let n = 1; n <= 12; n++) credentials[hashKey(`Go to page ${n}`)] = `ไปที่หน้า ${n}`;
 
 export default credentials;

@@ -6,7 +6,7 @@ const extras: Dict = {
   r2bb1u: "แหล่ง hash · .142",
   "121mavf": "Rule + ที่เก็บ evidence · .144",
   "1mhfnxc": "Agent, auditd, script · .143",
-  "18io7wx": "ผู้โจมตีจำลอง · .145",
+  "18io7wx": "attacker จำลอง · .145",
   "1fns5fl": "แหล่ง IOC · .142",
   "18r8vzy": "Correlation rule · .144",
 };
@@ -14,11 +14,11 @@ const extras: Dict = {
 // Buttons created at run time (image zoom dialog, theme switch).
 const ui: Record<string, string> = {
   "Close image": "ปิดรูป",
-  "Zoom in": "ซูมเข้า",
-  "Zoom out": "ซูมออก",
-  "Switch to light mode": "เปลี่ยนเป็นโหมดสว่าง",
-  "Switch to dark mode": "เปลี่ยนเป็นโหมดมืด",
-  "Toggle color theme": "สลับโหมดสีของหน้าเว็บ",
+  "Zoom in": "zoom in",
+  "Zoom out": "zoom out",
+  "Switch to light mode": "เปลี่ยนเป็น light mode",
+  "Switch to dark mode": "เปลี่ยนเป็น dark mode",
+  "Toggle color theme": "สลับ dark/light mode",
 };
 for (const [en, th] of Object.entries(ui)) extras[hashKey(en)] = th;
 

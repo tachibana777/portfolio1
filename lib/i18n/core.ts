@@ -88,7 +88,7 @@ function parseTemplate(t: string): Node2[] {
 
 const touched = new Map<Element, Node[]>(); // element -> its original child nodes
 const touchedAttrs: [Element, string, string][] = [];
-const done = new WeakSet<Element>();
+let done = new WeakSet<Element>();
 
 function applyNodes(el: Element, nodes: Node2[]): void {
   const kids = Array.from(el.children);
@@ -144,6 +144,7 @@ export function restoreEnglish(): void {
   touched.clear();
   for (const [el, a, v] of touchedAttrs) el.setAttribute(a, v);
   touchedAttrs.length = 0;
+  done = new WeakSet<Element>(); // forget what was translated, so switching back to Thai translates again
 }
 
 /** Dev helper: list every unit/attribute template under root with its id (used to build the dictionary). */
