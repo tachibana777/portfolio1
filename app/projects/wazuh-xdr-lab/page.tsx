@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui";
 import { ReadFirst, SeriesNav } from "@/components/projects/ReadFirst";
 
 export const metadata = {
-  title: "Wazuh XDR-style Correlation Lab | Kritsada Hongpatsa",
+  title: "Wazuh XDR Lab | Kritsada Hongpatsa",
   description:
     "Six rules that link network, endpoint and login signals so one alert tells one stage of an attack.",
 };
@@ -97,7 +97,7 @@ export default function WazuhXdrLabPage() {
               <span className="inline-flex items-center gap-1.5 rounded-full border border-neutral-700 bg-neutral-900/90 px-3 py-1 text-xs font-mono font-medium text-rose-400"><Shield size={12} /> Blue Team &amp; XDR</span>
               <span className="rounded-full border border-neutral-800 bg-neutral-900/50 px-3 py-1 text-xs font-mono text-neutral-400">Personal Cybersecurity Home Lab</span>
             </div>
-            <h1 className="text-3xl font-bold tracking-tight text-neutral-100 sm:text-4xl md:text-5xl">Wazuh XDR-style Correlation Lab</h1>
+            <h1 className="text-3xl font-bold tracking-tight text-neutral-100 sm:text-4xl md:text-5xl">Wazuh XDR Lab</h1>
             <p className="text-lg font-light text-neutral-300 sm:text-xl">Six rules that link network, endpoint and login signals so one alert tells one stage of an attack</p>
             <div className="flex flex-wrap gap-2 pt-1">{["Wazuh 4.14.9", "Suricata 8.0.8", "auditd", "journald", "Kali Linux", "MITRE ATT&CK"].map((tech) => <span key={tech} className="rounded-lg border border-neutral-800 bg-panel px-2.5 py-1 text-xs font-medium text-neutral-200">{tech}</span>)}</div>
           </header>

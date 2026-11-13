@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui";
 import { ReadFirst, SeriesNav } from "@/components/projects/ReadFirst";
 
 export const metadata = {
-  title: "Wazuh EDR Lab: Hash Response, Evidence, Auditd, Isolation | Kritsada Hongpatsa",
+  title: "Wazuh EDR Lab | Kritsada Hongpatsa",
   description:
     "Detect known malware by hash, keep evidence off the host, quarantine or delete, block IPs and domains, watch persistence, triage and isolate.",
 };
@@ -102,7 +102,7 @@ export default function WazuhEdrLabPage() {
               <span className="inline-flex items-center gap-1.5 rounded-full border border-neutral-700 bg-neutral-900/90 px-3 py-1 text-xs font-mono font-medium text-sky-400"><Shield size={12} /> Blue Team &amp; EDR</span>
               <span className="rounded-full border border-neutral-800 bg-neutral-900/50 px-3 py-1 text-xs font-mono text-neutral-400">Personal Cybersecurity Home Lab</span>
             </div>
-            <h1 className="text-3xl font-bold tracking-tight text-neutral-100 sm:text-4xl md:text-5xl">Wazuh EDR Lab: Hash Response, Evidence, Auditd, Isolation</h1>
+            <h1 className="text-3xl font-bold tracking-tight text-neutral-100 sm:text-4xl md:text-5xl">Wazuh EDR Lab</h1>
             <p className="text-lg font-light text-neutral-300 sm:text-xl">Detect known malware by hash, keep evidence off the host, quarantine or delete, block IPs and domains, watch persistence, triage and isolate</p>
             <div className="flex flex-wrap gap-2 pt-1">
               {["Wazuh 4.14.9", "auditd", "iptables", "OpenSSH", "Bash", "Ubuntu 24.04", "Active Response", "FIM"].map((tech) => <span key={tech} className="rounded-lg border border-neutral-800 bg-panel px-2.5 py-1 text-xs font-medium text-neutral-200">{tech}</span>)}
