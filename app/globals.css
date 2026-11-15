@@ -199,3 +199,11 @@ html[lang="th"] code, html[lang="th"] pre, html[lang="th"] .font-mono { font-fam
 .lang-toggle-active { background-color: #e7e7e8; color: #0d0d0e; }
 .light .lang-toggle-active { background-color: #171717; color: #ffffff; }
 .light .lang-toggle { border-color: #deded9; }
+
+/* Tables: keep short cells (stage names, rule ids, headings) on one line, wrap long text evenly. */
+main table { table-layout: auto; }
+main table th { white-space: nowrap; }
+main table td, main table th { vertical-align: top; }
+main table td { text-wrap: pretty; overflow-wrap: break-word; }
+main table td:first-child { min-width: 9rem; }
+html[lang="th"] main table td:first-child { min-width: 10rem; }

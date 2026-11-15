@@ -2,6 +2,10 @@ import type { Dict } from "../core";
 
 // Wazuh XDR Lab page.
 const xdr: Dict = {
+  tcgu8v: "แหล่ง IOC",
+  "10asn2w": "Correlation rule",
+  "1pl6l5t": "Agent, Suricata, auditd",
+  pplfmg: "attacker จำลอง",
   "mcp8o3": "Rule 6 ข้อที่เชื่อมสัญญาณจาก network, endpoint และ login เข้าด้วยกัน เพื่อให้ alert แต่ละรายการบ่งบอกขั้นตอนหนึ่งของการโจมตี",
   rq46dg: "อ่านส่วนนี้ก่อน (XDR)",
   "am1yl1": "<0>ส่วนนี้คืออะไร</0> XDR เชื่อมหลักฐานที่ต่างชนิดกันให้เห็นเป็นเหตุการณ์เดียว IP ที่อยู่ใน list, login ที่สำเร็จ และ cron job ใหม่ แต่ละอย่างอาจไม่น่ากังวลเมื่อดูแยกกัน แต่เมื่อรวมกันจะอธิบายการโจมตีได้ ใน lab นี้ทำด้วย correlation rule ของ Wazuh บน Manager (frequency 2, timeframe 600 วินาที) คือ event ที่สองต้องเกิดภายใน 10 นาทีหลัง event แรก",
