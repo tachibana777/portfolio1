@@ -12,6 +12,18 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     date: "Nov 2026",
+    title: "Wazuh SOAR Lab: Shuffle, MISP Check and Approval",
+    company: "Blue Team & SOAR",
+    location: "National Cyber Security Agency (NCSA)",
+    bullets: [
+      "Built a Shuffle (Docker) playbook that receives Wazuh alerts (rules 100500, 100510, 100511, 100520, 100521, 100530, 100540) through a webhook and checks the source IP against MISP.",
+      "Blocked IPs listed in MISP automatically through the Wazuh API, asked a person to approve or decline when the IP was unknown, and released each block after 60 seconds with a delay node.",
+      "Applied least privilege with a Wazuh API user limited to active-response on one agent and a read-only MISP key, and kept the allowlist in the block script so a wrong decision cannot cut the lab off.",
+      "Added rules 100601 to 100603 so the SOAR case (blocked, pending, unblocked) shows on the Wazuh dashboard, and found that Wazuh's own 600 s timeout did not release blocks in this lab."
+    ]
+  },
+  {
+    date: "Nov 2026",
     title: "Wazuh XDR-style Correlation Lab",
     company: "Blue Team & XDR",
     location: "National Cyber Security Agency (NCSA)",
