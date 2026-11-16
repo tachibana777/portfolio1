@@ -9,9 +9,10 @@ import xdr from "./xdr";
 import soar from "./soar";
 import soc from "./soc";
 import extras from "./extras";
+import updates from "./updates";
 
 // Thai dictionary: key = hash of the English template (see lib/i18n/core.ts), value = Thai template.
 // Technical terms stay in English (web-app, endpoint, dashboard, alert, log, script ...).
-const th: Dict = { ...home, ...profile, ...credentials, ...startHere, ...misp, ...edr, ...xdr, ...soar, ...soc, ...extras };
+const th: Dict = { ...home, ...profile, ...credentials, ...startHere, ...misp, ...edr, ...xdr, ...soar, ...soc, ...extras, ...updates };
 
 export default th;

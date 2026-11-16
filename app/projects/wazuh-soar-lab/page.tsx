@@ -91,6 +91,9 @@ const results = [
   ["5", "IP not in MISP, declined", "Run stopped (\"User declined the input\"); no DROP rule; rule 100602 at 07:23:25"],
   ["6", "New read-only MISP key", "HTTP 200 from servers/getVersion; replay reached the block and unblock nodes"],
   ["7", "Manual block and unblock through the API (192.0.2.77)", "BLOCKED then UNBLOCKED"],
+  ["8", "16 Nov: SSH login from a listed IP (1.12.231.30, MISP event 1442)", "06:33:49 rules 100100 and 100500, BLOCKED by Active Response; 06:34:01 Shuffle block (API 200); 06:34:04 rule 100601; 06:34:50 UNBLOCKED (60 s after the first block); 06:35:05 Shuffle unblock logs NOT BLOCKED and rule 100603; no DROP rule left at 06:35:39"],
+  ["9", "16 Nov: SSH login from an IP that is not in MISP (negative control)", "Only rule 5715 at 06:29; no 100500, no Shuffle run, no block"],
+  ["10", "16 Nov: Shuffle calling the Wazuh API", "HTTP 401 at first (empty password in the Basic header); after a new password and header: POST authenticate 200 and PUT active-response 200"],
 ];
 
 const troubleshooting = [
@@ -103,6 +106,8 @@ const troubleshooting = [
   ["Condition with .#0 rejected", "Conditions cannot index lists", "Use the header, or a Filter List action"],
   ["Wazuh unblock has no Delay field", "The Http node only has a request Timeout", "Add a Wait 60s Execute-python node"],
   ["Duplicate syslog listener", "The sed command was run twice", "Count blocks, remove the extra, validate, restart"],
+  ["Shuffle gets HTTP 401 from the Wazuh API", "The Basic header in the Wazuh login node was built from an empty password", "Set a new password for shuffle-soar, rebuild the header (check its length) and test: authenticate must return 200"],
+  ["Block never released by the Wazuh timeout", "The script did not answer the check_keys message, so execd did not register a release time (log: Active response won't be added to timeout list)", "Add the check_keys handshake to the script; the log then shows Adding command ... delete"],
 ];
 
 export default function WazuhSoarLabPage() {
@@ -120,7 +125,7 @@ export default function WazuhSoarLabPage() {
             <h1 className="text-3xl font-bold tracking-tight text-neutral-100 sm:text-4xl md:text-5xl">Wazuh SOAR Lab: Shuffle, MISP Check, Approval and Auto-Block</h1>
             <p className="text-lg font-light text-neutral-300 sm:text-xl">Turn a correlated Wazuh alert into a response: ask MISP, block automatically when the indicator is confirmed, ask a person when it is not, release the block, and show the case on the dashboard</p>
             <div className="flex flex-wrap gap-2 pt-1">{["Shuffle (Docker)", "Wazuh 4.14.9", "MISP 2.5.51", "iptables", "Bash", "Ubuntu 24.04"].map((tech) => <span key={tech} className="rounded-lg border border-neutral-800 bg-panel px-2.5 py-1 text-xs font-medium text-neutral-200">{tech}</span>)}</div>
-            <p className="text-xs font-light text-neutral-400 sm:text-sm">Part 4 of the MISP → Wazuh Threat Intelligence, EDR, XDR and SOAR home lab. Tested 13 November 2026. Secrets (API keys, passwords, webhook URL, approval links) are never printed.</p>
+            <p className="text-xs font-light text-neutral-400 sm:text-sm">Part 4 of the MISP → Wazuh Threat Intelligence, EDR, XDR and SOAR home lab. Tested 13 and 16 November 2026. Secrets (API keys, passwords, webhook URL, approval links) are never printed.</p>
           </header>
 
           <SeriesNav current="/projects/wazuh-soar-lab" />
@@ -130,7 +135,7 @@ export default function WazuhSoarLabPage() {
             intro={[
               ["What this part is", "SOAR (security orchestration, automation and response) decides what happens next after a detection, and who must approve it. It detects nothing itself."],
               ["Why I added it", "After XDR the lab could raise \"a listed IP logged in and changed cron\", but a person still had to type the block command. The mentor's model is a national CERT working with a customer: the centre sees the threat; either the customer approves the response, or the system acts first when the case is clear."],
-              ["How the plan changed while building", <>The first version only asked for approval every time. Then came the question: if MISP already confirms the IP, why wait? So the playbook became: <strong className="font-semibold text-neutral-100">confirmed by MISP → block at once; not confirmed → ask a person.</strong> Two more additions followed: a 60-second release (because Wazuh&apos;s own 600 s timeout did not release blocks) and dashboard notices (so the case is visible in Wazuh).</>],
+              ["How the plan changed while building", <>The first version only asked for approval every time. Then came the question: if MISP already confirms the IP, why wait? So the playbook became: <strong className="font-semibold text-neutral-100">confirmed by MISP → block at once; not confirmed → ask a person.</strong> Two more additions followed: a 60-second release (because at that time Wazuh&apos;s own 600 s timeout did not release blocks; the cause was found and fixed on 16 November) and dashboard notices (so the case is visible in Wazuh).</>],
             ]}
             image={{ src: "/events/diagram-05-soar-decision.png", alt: "Decision flow of the playbook", width: 1568, height: 3146 }}
             afterImage={[
@@ -162,10 +167,10 @@ export default function WazuhSoarLabPage() {
             <ul className="list-disc space-y-2 pl-5 text-sm font-light leading-relaxed text-neutral-300 sm:text-base">
               <li><strong className="font-semibold text-neutral-100">Auto-block only for a confirmed indicator.</strong> A source IP that MISP lists (to_ids, published, not on a warning list) is blocked without waiting. Anything else waits for a person.</li>
               <li><strong className="font-semibold text-neutral-100">The allowlist stays in the script.</strong> <code className={code}>block-ip.sh</code> refuses the gateway and the lab hosts, so a wrong decision in Shuffle cannot cut the lab off.</li>
-              <li><strong className="font-semibold text-neutral-100">Short, automatic release (60 seconds in the lab).</strong> Wazuh&apos;s own 600-second timeout did not release blocks in this lab (see Findings), so Shuffle releases the block itself with a delay node.</li>
+              <li><strong className="font-semibold text-neutral-100">Short, automatic release (60 seconds in the lab).</strong> Wazuh&apos;s own timeout did not release blocks when this part was built (the cause was found later, see Findings), so Shuffle releases the block itself with a delay node. Today both can release the same block, and whichever times out first does it.</li>
               <li><strong className="font-semibold text-neutral-100">Least privilege.</strong> Shuffle logs in to the Wazuh API as <code className={code}>shuffle-soar</code>, a user whose role may only run active-response commands on agent 001. The MISP key it uses is read-only.</li>
             </ul>
-            <p className={p}>Only rules 100500, 100510, 100511, 100520, 100521, 100530 and 100540 go to Shuffle. Rule 100100 (a listed IP touching the endpoint) is handled by Wazuh Active Response alone.</p>
+            <p className={p}>Only rules 100500, 100510, 100511, 100520, 100521, 100530 and 100540 go to Shuffle. Rule 100100 (a listed IP touching the endpoint), rule 100200 (known malware hash) and rule 100300 (listed domain) are handled by Wazuh Active Response alone and never reach Shuffle.</p>
           </section>
 
           <section className="space-y-5">
@@ -207,7 +212,7 @@ curl -sk -X PUT "https://192.168.136.144:55000/active-response?agents_list=001" 
             </Step>
 
             <Step title="Step 5. Block and unblock scripts" where="ENDPOINT, in /var/ossec/active-response/bin (mode 750, owner root:wazuh)">
-              <p><code className={code}>block-ip.sh</code> reads JSON on stdin, takes the IP from <code className={code}>.parameters.alert.data.src_ip</code>, refuses anything that is not a plain IPv4 address or is on the allowlist, and adds <code className={code}>iptables -I INPUT -s &lt;ip&gt; -j DROP</code>. <code className={code}>unblock-ip.sh</code> deletes the rule if it exists and logs <code className={code}>UNBLOCKED</code>, <code className={code}>NOT BLOCKED</code> or <code className={code}>invalid ip</code>. Both write to <code className={code}>/var/ossec/logs/active-responses.log</code>.</p>
+              <p><code className={code}>block-ip.sh</code> reads JSON on stdin, takes the IP from <code className={code}>.parameters.alert.data.src_ip</code>, refuses anything that is not a plain IPv4 address or is on the allowlist, and adds <code className={code}>iptables -I INPUT -s &lt;ip&gt; -j DROP</code>. <code className={code}>unblock-ip.sh</code> deletes the rule if it exists and logs <code className={code}>UNBLOCKED</code>, <code className={code}>NOT BLOCKED</code> or <code className={code}>invalid ip</code>. Both write to <code className={code}>/var/ossec/logs/active-responses.log</code>. Since 16 November <code className={code}>block-ip.sh</code> also answers Wazuh&apos;s <code className={code}>check_keys</code> message, with a 3-second read timeout so that a call from Shuffle, which sends no reply, does not hang.</p>
               <Shot src="/events/soar-05-unblock-script.png" alt="Source of unblock-ip.sh: reads the IP from the alert JSON, accepts only a plain IPv4 address, deletes the DROP rule and logs UNBLOCKED or NOT BLOCKED" w={760} h={274} />
             </Step>
 
@@ -243,7 +248,7 @@ logger -n 192.168.136.144 -P 514 -d "SOAR-NOTICE action=blocked ip=192.0.2.50 ru
 
           <section className="space-y-4">
             <h2 className={h2}>4. Results &amp; Evidence</h2>
-            <p className="text-sm font-light text-neutral-400">Times are UTC from the endpoint log and alerts.json on 13 November 2026 (Thailand = UTC+7).</p>
+            <p className="text-sm font-light text-neutral-400">Times are UTC from the endpoint log, api.log and alerts.json on 13 November 2026 (tests 1 to 7) and 16 November 2026 (tests 8 to 10). Thailand = UTC+7.</p>
             <Table head={["#", "Test", "Result"]} rows={results} mono={-1} />
             <Shot src="/events/soar-05-endpoint-log.png" alt="Endpoint log: block-ip BLOCKED at 07:15:30 and unblock-ip UNBLOCKED at 07:16:32 UTC on 13 November, the IP address hidden" w={900} h={100} />
             <p className={p}>Alerts produced by the SOAR rules in the whole lab log: rule 100601 ×3, 100602 ×1, 100603 ×2. In the screenshots the public IP address of the listed test indicator is covered by a black box.</p>
@@ -257,13 +262,16 @@ logger -n 192.168.136.144 -P 514 -d "SOAR-NOTICE action=blocked ip=192.0.2.50 ru
           <section className="rounded-2xl border border-amber-900/50 bg-amber-950/20 p-5">
             <h2 className="flex items-center gap-2 text-xl font-semibold text-neutral-100"><AlertTriangle size={18} className="text-amber-400" /> Findings &amp; Limits</h2>
             <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-neutral-300">
-              <li><strong className="font-semibold text-neutral-100">Wazuh&apos;s own timeout did not release blocks.</strong> Rule 100100 triggers Active Response <code className="text-amber-300">block-ip</code> with <code className="text-amber-300">&lt;timeout&gt;600&lt;/timeout&gt;</code>. After the last such block (192.168.136.145, 12 Nov 09:18:46 UTC) the log shows no <code className="text-amber-300">UNBLOCKED</code> line during the next 17 hours 43 minutes, until the endpoint rebooted. The command definition has <code className="text-amber-300">timeout_allowed=yes</code> and the live script has a <code className="text-amber-300">delete</code> branch, so the cause was not found. Shuffle&apos;s delay node is the working release path for SOAR blocks; the 100100 path has no release.</li>
+              <li><strong className="font-semibold text-neutral-100">Wazuh&apos;s own timeout did not release blocks, and the cause was found on 16 November.</strong> After the last block of 192.168.136.145 (12 Nov 09:18:46 UTC) there was no <code className="text-amber-300">UNBLOCKED</code> line for 17 hours 43 minutes, until the endpoint rebooted. With <code className="text-amber-300">execd.debug=2</code> the log said <code className="text-amber-300">Active response won&apos;t be added to timeout list. Message not received with alert keys</code>: the scripts never answered the <code className="text-amber-300">check_keys</code> message. After adding that handshake to block-ip.sh and block-domain.sh, blocks are released by Wazuh itself (IP: BLOCKED 06:33:49, UNBLOCKED 06:34:50; domain: 06:56:03 to 06:57:06). The timeout is set to 60 s for testing (default 600 s).</li>
+              <li><strong className="font-semibold text-neutral-100">Two systems control one firewall rule.</strong> When both Wazuh Active Response and Shuffle block the same IP, whichever times out first removes the rule and the other logs <code className="text-amber-300">NOT BLOCKED</code>. Nothing breaks, but an <code className="text-amber-300">UNBLOCKED</code> line alone does not prove the rule was just removed; check <code className="text-amber-300">iptables -S</code> too.</li>
+              <li><strong className="font-semibold text-neutral-100">The Approval step is not yet reliable.</strong> On 16 November the Approval node passed without anyone pressing a link (a &quot;No Notification Type specified&quot; warning appeared). The cause is unknown, so do not rely on the human-approval branch until it is retested.</li>
+              <li><strong className="font-semibold text-neutral-100">Listed IPs can drop out of the list between cron runs.</strong> This happened to two test IPs on 16 November and the cause is unknown; check the list before each test.</li>
               <li><strong className="font-semibold text-neutral-100">Rule 100100 has a throttle.</strong> <code className="text-amber-300">ignore=&quot;300&quot;</code> makes Wazuh ignore the rule for five minutes after it fires, so alerts (and blocks) from a steady stream of traffic come at most every five minutes.</li>
               <li><strong className="font-semibold text-neutral-100">Blocks are not persistent.</strong> iptables rules and the lab&apos;s extra routes are lost on reboot (the endpoint rebooted on 13 Nov at 03:01 UTC and the rules were gone).</li>
               <li>Plain HTTP webhook with no authentication; self-signed certificates</li>
               <li>No customer notification channel yet (email, chat); the case appears on the Wazuh dashboard, the analyst&apos;s view</li>
               <li>If MISP is unreachable the run stops after <code className="text-amber-300">Http 1</code>; the original alert stays on the dashboard</li>
-              <li>The allowlist is a hand-written list of lab addresses. During normal operation the spoofed test IP used by the lab is allowlisted; remove it to demonstrate a real block, and restore it afterwards</li>
+              <li>The allowlist is a hand-written list of lab addresses (192.168.136.1, .2, .142, .143, .144, .146 and 127.*). Kali (.145) is not on it, so traffic from Kali is blocked; the temporary test entries were removed on 16 November</li>
               <li>Case management and feedback to MISP (sightings) are not built</li>
               <li>Source-IP lookups only: domains, hashes and file indicators in alerts are not checked by this workflow</li>
             </ul>

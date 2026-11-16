@@ -19,7 +19,7 @@ export const experiences: Experience[] = [
       "Built a Shuffle (Docker) playbook that receives Wazuh alerts (rules 100500, 100510, 100511, 100520, 100521, 100530, 100540) through a webhook and checks the source IP against MISP.",
       "Blocked IPs listed in MISP automatically through the Wazuh API, asked a person to approve or decline when the IP was unknown, and released each block after 60 seconds with a delay node.",
       "Applied least privilege with a Wazuh API user limited to active-response on one agent and a read-only MISP key, and kept the allowlist in the block script so a wrong decision cannot cut the lab off.",
-      "Added rules 100601 to 100603 so the SOAR case (blocked, pending, unblocked) shows on the Wazuh dashboard, and found that Wazuh's own 600 s timeout did not release blocks in this lab."
+      "Added rules 100601 to 100603 so the SOAR case (blocked, pending, unblocked) shows on the Wazuh dashboard, and found why Wazuh's own timeout did not release blocks (the scripts did not answer the check_keys handshake); fixed and re-tested on 16 November 2026."
     ]
   },
   {
@@ -42,7 +42,7 @@ export const experiences: Experience[] = [
     bullets: [
       "Built an open-source EDR on a Wazuh endpoint that detects known malware by SHA256 using a list of about 26,600 SHA256 hashes imported from MISP (26,618 lines) and rule 100200.",
       "Wrote a response script that preserves evidence (hash, metadata, password-protected zip, verified copy on the Manager over a restricted SSH key) before deleting or quarantining a file.",
-      "Added auditd execution and persistence rules (100400, 100410-100413), IP and domain blocking with allowlists and a configured 600 s timeout (automatic release did not work in this lab), and a read-only triage script.",
+      "Added auditd execution and persistence rules (100400, 100410-100413), IP and domain blocking with allowlists and an automatic release timeout (it worked only after a script fix, re-tested on 16 November 2026), and a read-only triage script.",
       "Implemented reversible host isolation with automatic release and documented fixes for symlink false positives, key permissions and timer accuracy."
     ]
   },

@@ -93,7 +93,7 @@ export default function StartHerePage() {
             <h1 className="text-3xl font-bold tracking-tight text-neutral-100 sm:text-4xl md:text-5xl">Start Here: Build a Threat Intelligence, EDR, XDR and SOAR Lab at Home</h1>
             <p className="text-lg font-light text-neutral-300 sm:text-xl">One small VMware lab, four layers. Why each one exists, how they differ, how they work together, and the order to build them so nothing surprises you</p>
             <div className="flex flex-wrap gap-2 pt-1">{["Threat Intelligence", "SIEM", "EDR", "XDR", "SOAR", "MISP 2.5.51", "Wazuh 4.14.9", "Suricata 8.0.8", "auditd", "iptables", "Shuffle", "Ubuntu 24.04", "Kali Linux", "VMware"].map((tech) => <span key={tech} className="rounded-lg border border-neutral-800 bg-panel px-2.5 py-1 text-xs font-medium text-neutral-200">{tech}</span>)}</div>
-            <p className="text-xs font-light text-neutral-400 sm:text-sm">Built and tested on a private VMware lab between 5 and 13 November 2026. Commands, IPs and outputs are shown as they were. Secrets (API keys, passwords, tokens, webhook URL) are never printed.</p>
+            <p className="text-xs font-light text-neutral-400 sm:text-sm">Built and tested on a private VMware lab between 5 and 16 November 2026. Commands, IPs and outputs are shown as they were. Secrets (API keys, passwords, tokens, webhook URL) are never printed.</p>
           </header>
 
           <SeriesNav current="/projects/start-here" />
@@ -150,7 +150,7 @@ export default function StartHerePage() {
             <p className={p}>About 19 GB of RAM for the four Ubuntu VMs plus Kali. MISP ran on 1.9 GB, which is small; give it more if it is slow. Shuffle needs the 4 vCPU / 8 GB class, and its OpenSearch needs <code className={code}>vm.max_map_count=262144</code>.</p>
             <p className={p}><strong className={strong}>Versions:</strong> MISP 2.5.51, Wazuh 4.14.9 (server and agent), Suricata 8.0.8 with Emerging Threats Open rules (about 53,000 loaded), auditd, iptables, Shuffle in Docker.</p>
             <p className={p}><strong className={strong}>Skills:</strong> basic Linux and SSH, reading a log, editing XML. Each page explains its own vocabulary (IOC, decoder, rule, CDB list, Active Response).</p>
-            <p className={p}><strong className={strong}>Time:</strong> not measured. Plan several evenings; the lab log covers about nine days including mistakes.</p>
+            <p className={p}><strong className={strong}>Time:</strong> not measured. Plan several evenings; the lab log covers about twelve days including mistakes.</p>
           </section>
 
           <section className="space-y-4">
@@ -174,7 +174,7 @@ export default function StartHerePage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className={h2}>8. Numbers from the lab (checked 13 November 2026)</h2>
+            <h2 className={h2}>8. Numbers from the lab (checked 13 and 16 November 2026)</h2>
             <Table head={["Item", "Value"]} rows={numbers} />
             <p className="text-sm font-light text-neutral-400">Times in alerts.json are UTC; the dashboard shows Thai time (UTC+7).</p>
           </section>
@@ -184,7 +184,8 @@ export default function StartHerePage() {
             <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-neutral-300">
               <li>It is an <strong className={strong}>EDR-lite and XDR-style pipeline</strong>, not a commercial product: one Manager, one Linux endpoint, correlation by host and time.</li>
               <li>An unknown new file is not caught by hash; only behaviour rules (programs run from /tmp, persistence changes) can catch it.</li>
-              <li><strong className={strong}>Wazuh&apos;s built-in 600-second block timeout did not release blocks.</strong> After the last such block no <code className="text-amber-300">UNBLOCKED</code> line appeared for 17 h 43 min, until a reboot. Shuffle releases SOAR blocks instead; the cause is unknown.</li>
+              <li><strong className={strong}>Wazuh&apos;s block timeout did not release blocks at first; the cause was found and fixed on 16 November.</strong> After the last block on 12 November no <code className="text-amber-300">UNBLOCKED</code> line appeared for 17 h 43 min, until a reboot. The scripts never answered Wazuh&apos;s <code className="text-amber-300">check_keys</code> message, so no release time was registered. With that handshake added, IP and domain blocks are released after the timeout (60 s in the tests, default 600 s). Because Shuffle also releases SOAR blocks, both systems can control one rule and the slower one logs <code className="text-amber-300">NOT BLOCKED</code>.</li>
+              <li>The Approval step in Shuffle once passed without anyone pressing a link (cause unknown), listed IPs can drop out of the list between cron runs (cause unknown), and the domain list behind rule 100300 is written into the rule file, not synced from MISP.</li>
               <li>Blocks are lost on reboot (iptables is not persistent).</li>
               <li>Rule 100511 was never exercised; rule 100110 can false-alert on a DHCP reply from the gateway.</li>
               <li>SOAR has no email or chat notification and no case management. The webhook is plain HTTP with no authentication.</li>
